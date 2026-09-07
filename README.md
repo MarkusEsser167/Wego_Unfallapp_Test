@@ -14,6 +14,50 @@ ist ein Stand gut, wandert er in die Produktivversion.
 | CC | keins | HSE, Niederlassung, Vertriebsleiter |
 | App-Name auf dem Gerät | „Unfall TEST" | „Unfallaufnahme" |
 
+## Zwei Bereiche
+
+Die App startet mit einer Auswahl:
+
+| Bereich | Für was | Stammdaten |
+|---|---|---|
+| **Fuhrpark** | Unfall mit LKW oder PKW – mit Unfallgegner, Zeugen, Polizei, Versicherung | Webfleet (live) |
+| **Lager** | Schaden mit einem Gabelstapler | `stapler.json` (295 Geräte) |
+
+Beide Bereiche teilen sich Fotoaufnahme, Zusammenfassung, PDF- und
+Word-Erzeugung sowie den Mailversand. Die Schritte 1 bis 3 gibt es je Bereich
+einmal (`s1`–`s3` Fuhrpark, `l1`–`l3` Lager), Schritt 4 und 5 sind gemeinsam.
+
+Beim Zurückgehen auf die Bereichsauswahl werden Schadensart und Fotos geleert –
+die drei Angaben sind die einzigen, die sich beide Bereiche teilen, und würden
+sonst in den anderen Bereich hinüberwirken.
+
+### Lager-Ablauf
+
+1. **Staplerauswahl** – nach Standort oder über die Suche (Gerätenummer, Typ, Ort)
+2. **Schadensangaben** – Fahrer, Zeitpunkt, Ort/Halle, Betriebsstunden, Hergang, Schadensart
+3. **Beteiligte** – nur Stapler / Sachschaden Dritter / Personenschaden / beides;
+   die passenden Blöcke erscheinen erst bei Bedarf. Dazu Zeugen und interne Meldung.
+4. **Fotos** – mindestens 2, wie im Fuhrpark
+5. **Zusammenfassung** und Versand
+
+Die Niederlassung hängt beim Lager am Gerät selbst (aus `stapler.json`), nicht
+an einer Webfleet-Gruppe. Der Mailverteiler ist derselbe wie im Fuhrpark.
+
+### Staplerliste pflegen
+
+`stapler.json` entsteht aus `Fuhrpark Bestandsliste.xls` im Arbeitsordner:
+
+```
+python tools/stapler_aus_excel.py
+```
+
+Übernommen wird nur die Fahrzeugart „Stapler". Mitnahmestapler hängen am LKW
+und gehören zum Fuhrpark. Das Skript meldet Standorte, die in `ndl.json`
+fehlen – deren Meldungen gehen sonst ohne Standort-CC raus.
+
+Wie `ndl.json` wird die Datei netzwerk-zuerst geladen: eine neue Liste wirkt
+ohne App-Update.
+
 ## Was im Testbetrieb anders ist
 
 Ein einziger Schalter in `index.html` steuert alles:
@@ -28,6 +72,11 @@ Steht er auf `true`:
   HSE, Niederlassung oder Vertriebsleiter
 - Rotes Warnbanner am oberen Rand
 - `[TEST]` im Seitentitel und im Mailbetreff, „(TESTVERSION)" im PDF-Kopf
+
+Zusätzlich lädt der Service Worker dieser Fassung `index.html` **netzwerk-zuerst**
+statt aus dem Cache. Sonst testet man nach jeder Änderung unbemerkt weiter gegen
+den alten Stand. Offline greift weiterhin der Cache. In der Produktivfassung
+bleibt es bei Cache-zuerst – dort zählen Startgeschwindigkeit und Offlinebetrieb.
 - Der Verteiler wird trotzdem berechnet und im Mailtext sowie im
   Bestätigungsdialog angezeigt – so lässt sich die Standortermittlung prüfen,
   ohne jemanden anzuschreiben

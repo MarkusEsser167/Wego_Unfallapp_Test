@@ -1,0 +1,1776 @@
+{
+ "stand": "28.08.2026",
+ "art": "Stapler",
+ "geraete": [
+  {
+   "nr": "H25-01331",
+   "ndl": "101",
+   "ndlName": "Niederlassung Bremen",
+   "typ": "Linde 1252-01 E25"
+  },
+  {
+   "nr": "H25-01579",
+   "ndl": "101",
+   "ndlName": "Niederlassung Bremen",
+   "typ": "Linde 1252-01 E25"
+  },
+  {
+   "nr": "H25_101_01",
+   "ndl": "101",
+   "ndlName": "Niederlassung Bremen",
+   "typ": "Linde 1252-01 E25"
+  },
+  {
+   "nr": "H35-00049",
+   "ndl": "101",
+   "ndlName": "Niederlassung Bremen",
+   "typ": "Linde  1252-01 E35HL"
+  },
+  {
+   "nr": "H35-00105",
+   "ndl": "101",
+   "ndlName": "Niederlassung Bremen",
+   "typ": "Still RX 60-35 E"
+  },
+  {
+   "nr": "H35-01017",
+   "ndl": "101",
+   "ndlName": "Niederlassung Bremen",
+   "typ": "Linde 1252-01 E35HL"
+  },
+  {
+   "nr": "H40-00070",
+   "ndl": "101",
+   "ndlName": "Niederlassung Bremen",
+   "typ": "Linde 1254-01 E 40/600HL"
+  },
+  {
+   "nr": "H40-52178",
+   "ndl": "101",
+   "ndlName": "Niederlassung Bremen",
+   "typ": "Linde 394 H 40 D"
+  },
+  {
+   "nr": "H30-10112",
+   "ndl": "102",
+   "ndlName": "Niederlassung Bremerhaven",
+   "typ": "Linde 1252-01 E 30 L"
+  },
+  {
+   "nr": "H30-10376",
+   "ndl": "102",
+   "ndlName": "Niederlassung Bremerhaven",
+   "typ": "Linde 1252-01 E 30 L"
+  },
+  {
+   "nr": "H35-00030",
+   "ndl": "103",
+   "ndlName": "Niederlassung Oldenburg",
+   "typ": "Linde 1252-01 E35HL"
+  },
+  {
+   "nr": "H35-05568",
+   "ndl": "103",
+   "ndlName": "Niederlassung Oldenburg",
+   "typ": "Linde 393-02 H35D"
+  },
+  {
+   "nr": "H35-14678",
+   "ndl": "103",
+   "ndlName": "Niederlassung Oldenburg",
+   "typ": "Linde 1252-01 E35HL"
+  },
+  {
+   "nr": "H35-14739",
+   "ndl": "103",
+   "ndlName": "Niederlassung Oldenburg",
+   "typ": "Linde 1252-01 E35HL"
+  },
+  {
+   "nr": "H35-52581",
+   "ndl": "103",
+   "ndlName": "Niederlassung Oldenburg",
+   "typ": "Linde 393 H 35 D"
+  },
+  {
+   "nr": "H35-01375",
+   "ndl": "104",
+   "ndlName": "Niederlassung Herford",
+   "typ": "Linde 387 E 35 L"
+  },
+  {
+   "nr": "H35-14652",
+   "ndl": "104",
+   "ndlName": "Niederlassung Herford",
+   "typ": "Linde 1252-01 E35HL"
+  },
+  {
+   "nr": "H40-02318",
+   "ndl": "104",
+   "ndlName": "Niederlassung Herford",
+   "typ": "Linde 394 H 40 D"
+  },
+  {
+   "nr": "H40-02758",
+   "ndl": "104",
+   "ndlName": "Niederlassung Herford",
+   "typ": "Linde 394 H 40 D"
+  },
+  {
+   "nr": "H10-40418",
+   "ndl": "105",
+   "ndlName": "Niederlassung Paderborn",
+   "typ": "Linde  1167 MM10"
+  },
+  {
+   "nr": "H40-00446",
+   "ndl": "105",
+   "ndlName": "Niederlassung Paderborn",
+   "typ": "Linde 1254-01 E 40/600HL"
+  },
+  {
+   "nr": "H40-01191",
+   "ndl": "105",
+   "ndlName": "Niederlassung Paderborn",
+   "typ": "Linde 394 H 40 D"
+  },
+  {
+   "nr": "H40-02322",
+   "ndl": "105",
+   "ndlName": "Niederlassung Paderborn",
+   "typ": "Linde 394 H 40 D"
+  },
+  {
+   "nr": "H40-03232",
+   "ndl": "105",
+   "ndlName": "Niederlassung Paderborn",
+   "typ": "Linde 394 H 40 D EVO 3B"
+  },
+  {
+   "nr": "H10-01691",
+   "ndl": "106",
+   "ndlName": "Niederlassung Münster",
+   "typ": "Linde 1172 L10 Mitgänger Hochhubwagen"
+  },
+  {
+   "nr": "H12-02391",
+   "ndl": "106",
+   "ndlName": "Niederlassung Münster",
+   "typ": "Linde  1131-00 MT 12"
+  },
+  {
+   "nr": "H35-01858",
+   "ndl": "106",
+   "ndlName": "Niederlassung Münster",
+   "typ": "Linde 387 E 35 L"
+  },
+  {
+   "nr": "H35-04555",
+   "ndl": "106",
+   "ndlName": "Niederlassung Münster",
+   "typ": "Linde 387 E 35 L"
+  },
+  {
+   "nr": "H35-04967",
+   "ndl": "106",
+   "ndlName": "Niederlassung Münster",
+   "typ": "Linde 387-00 E35L"
+  },
+  {
+   "nr": "H35-10440",
+   "ndl": "106",
+   "ndlName": "Niederlassung Münster",
+   "typ": "Linde 1252-01 E35L"
+  },
+  {
+   "nr": "H35-14634",
+   "ndl": "106",
+   "ndlName": "Niederlassung Münster",
+   "typ": "Linde 1252-01 E35L"
+  },
+  {
+   "nr": "H35-14640",
+   "ndl": "106",
+   "ndlName": "Niederlassung Münster",
+   "typ": "Linde 1252-01 E35L"
+  },
+  {
+   "nr": "H30-01705",
+   "ndl": "107",
+   "ndlName": "Niederlassung Kiel",
+   "typ": "Linde 387 E 30 L"
+  },
+  {
+   "nr": "H30-01731",
+   "ndl": "107",
+   "ndlName": "Niederlassung Kiel",
+   "typ": "Linde 387 E 30 L"
+  },
+  {
+   "nr": "H30-01791",
+   "ndl": "107",
+   "ndlName": "Niederlassung Kiel",
+   "typ": "Linde 393 H 30 T"
+  },
+  {
+   "nr": "H30-04111",
+   "ndl": "107",
+   "ndlName": "Niederlassung Kiel",
+   "typ": "Linde 1202 H 30 T"
+  },
+  {
+   "nr": "H30-16367",
+   "ndl": "107",
+   "ndlName": "Niederlassung Kiel",
+   "typ": "Linde 1252-01 E30/600HL"
+  },
+  {
+   "nr": "H30-14696",
+   "ndl": "108",
+   "ndlName": "Niederlassung Fuldabrück",
+   "typ": "Linde 1252-01 E30/600HL"
+  },
+  {
+   "nr": "H30-14746",
+   "ndl": "108",
+   "ndlName": "Niederlassung Fuldabrück",
+   "typ": "Linde 1252-01 E30/600HL"
+  },
+  {
+   "nr": "H40-00449",
+   "ndl": "108",
+   "ndlName": "Niederlassung Fuldabrück",
+   "typ": "Linde  1254-01 E 40/600HL"
+  },
+  {
+   "nr": "H14-04025",
+   "ndl": "110",
+   "ndlName": "Niederlassung Magdeburg",
+   "typ": "Linde 4596-00 L 14 B"
+  },
+  {
+   "nr": "H15-05392",
+   "ndl": "110",
+   "ndlName": "Niederlassung Magdeburg",
+   "typ": "Linde 1133-00 MT 15"
+  },
+  {
+   "nr": "H35-01475",
+   "ndl": "110",
+   "ndlName": "Niederlassung Magdeburg",
+   "typ": "Linde 393 H 35 D"
+  },
+  {
+   "nr": "H35-02138",
+   "ndl": "110",
+   "ndlName": "Niederlassung Magdeburg",
+   "typ": "Linde 393 H 35 D"
+  },
+  {
+   "nr": "H35-10785",
+   "ndl": "110",
+   "ndlName": "Niederlassung Magdeburg",
+   "typ": "Linde 1252-01 E35L"
+  },
+  {
+   "nr": "H40-00775",
+   "ndl": "110",
+   "ndlName": "Niederlassung Magdeburg",
+   "typ": "Linde 394 H 40 D"
+  },
+  {
+   "nr": "H30-01702",
+   "ndl": "111",
+   "ndlName": "Niederlassung Berlin",
+   "typ": "Linde 387 E 30 L"
+  },
+  {
+   "nr": "H30-02842",
+   "ndl": "111",
+   "ndlName": "Niederlassung Berlin",
+   "typ": "Linde 393 H 30 D"
+  },
+  {
+   "nr": "H30-03202",
+   "ndl": "111",
+   "ndlName": "Niederlassung Berlin",
+   "typ": "Linde 1252-01 E30/600HL"
+  },
+  {
+   "nr": "H30-10490",
+   "ndl": "111",
+   "ndlName": "Niederlassung Berlin",
+   "typ": "Linde 1252-01 E 30 L"
+  },
+  {
+   "nr": "H35-00447",
+   "ndl": "111",
+   "ndlName": "Niederlassung Berlin",
+   "typ": "Linde 393-02 H35D"
+  },
+  {
+   "nr": "H35-01536",
+   "ndl": "111",
+   "ndlName": "Niederlassung Berlin",
+   "typ": "Linde 393 H 35 D"
+  },
+  {
+   "nr": "H35-03827",
+   "ndl": "111",
+   "ndlName": "Niederlassung Berlin",
+   "typ": "Linde 393-02 H35D"
+  },
+  {
+   "nr": "H35-03882",
+   "ndl": "111",
+   "ndlName": "Niederlassung Berlin",
+   "typ": "Linde 393 H 35 D"
+  },
+  {
+   "nr": "H40-00268",
+   "ndl": "111",
+   "ndlName": "Niederlassung Berlin",
+   "typ": "Linde 1254-01 E 40/600HL"
+  },
+  {
+   "nr": "H40-01749",
+   "ndl": "111",
+   "ndlName": "Niederlassung Berlin",
+   "typ": "Linde 388-01 E 40 / 600 HL"
+  },
+  {
+   "nr": "H40-01766",
+   "ndl": "111",
+   "ndlName": "Niederlassung Berlin",
+   "typ": "Linde 388-01 E 40 / 600 HL"
+  },
+  {
+   "nr": "H40-01775",
+   "ndl": "111",
+   "ndlName": "Niederlassung Berlin",
+   "typ": "Linde 388-01 E 40 / 600 HL"
+  },
+  {
+   "nr": "H12-06578",
+   "ndl": "112",
+   "ndlName": "Niederlassung Rostock",
+   "typ": "Linde  1131-00 MT 12"
+  },
+  {
+   "nr": "H15-66915",
+   "ndl": "112",
+   "ndlName": "Niederlassung Rostock",
+   "typ": "Linde  1133-03 MT 15"
+  },
+  {
+   "nr": "H16-12595",
+   "ndl": "112",
+   "ndlName": "Niederlassung Rostock",
+   "typ": "Linde  1152 T 16"
+  },
+  {
+   "nr": "H35-04747",
+   "ndl": "112",
+   "ndlName": "Niederlassung Rostock",
+   "typ": "Linde 393 H 35 D"
+  },
+  {
+   "nr": "H40-00468",
+   "ndl": "112",
+   "ndlName": "Niederlassung Rostock",
+   "typ": "Linde 1254-01 E 40/600HL"
+  },
+  {
+   "nr": "H40-01558",
+   "ndl": "112",
+   "ndlName": "Niederlassung Rostock",
+   "typ": "Linde 394-02 H 40 D EVO"
+  },
+  {
+   "nr": "H40-52897",
+   "ndl": "112",
+   "ndlName": "Niederlassung Rostock",
+   "typ": "Linde 394 H 40 D"
+  },
+  {
+   "nr": "H30-03826",
+   "ndl": "116",
+   "ndlName": "Niederlassung Hannover",
+   "typ": "Linde 387-00 E30 / 600 HL Drehkabine"
+  },
+  {
+   "nr": "H35-04685",
+   "ndl": "116",
+   "ndlName": "Niederlassung Hannover",
+   "typ": "Linde 387-00 E35L"
+  },
+  {
+   "nr": "H35-04690",
+   "ndl": "116",
+   "ndlName": "Niederlassung Hannover",
+   "typ": "Linde 387-00 E35L"
+  },
+  {
+   "nr": "H40-00447",
+   "ndl": "116",
+   "ndlName": "Niederlassung Hannover",
+   "typ": "Linde  1254-01 E 40/600HL"
+  },
+  {
+   "nr": "H35-00833",
+   "ndl": "117",
+   "ndlName": "Niederlassung Hamburg",
+   "typ": "Linde 1202 H 35 T"
+  },
+  {
+   "nr": "H35-00950",
+   "ndl": "117",
+   "ndlName": "Niederlassung Hamburg",
+   "typ": "Linde 1202 H 35 T"
+  },
+  {
+   "nr": "H35-01176",
+   "ndl": "117",
+   "ndlName": "Niederlassung Hamburg",
+   "typ": "Linde 393 H 35 T"
+  },
+  {
+   "nr": "H35-01588",
+   "ndl": "117",
+   "ndlName": "Niederlassung Hamburg",
+   "typ": "Linde 387 E 35 HL"
+  },
+  {
+   "nr": "H35-01758",
+   "ndl": "117",
+   "ndlName": "Niederlassung Hamburg",
+   "typ": "Linde 387 E 35 HL"
+  },
+  {
+   "nr": "H35-10013",
+   "ndl": "117",
+   "ndlName": "Niederlassung Hamburg",
+   "typ": "Linde 1252-01 E35HL"
+  },
+  {
+   "nr": "H35-10021",
+   "ndl": "117",
+   "ndlName": "Niederlassung Hamburg",
+   "typ": "Linde 1252-01 E35HL"
+  },
+  {
+   "nr": "H35-16420",
+   "ndl": "117",
+   "ndlName": "Niederlassung Hamburg",
+   "typ": "Linde 1252-01 E35HL"
+  },
+  {
+   "nr": "H35-52908",
+   "ndl": "117",
+   "ndlName": "Niederlassung Hamburg",
+   "typ": "Linde 393 H 35 T"
+  },
+  {
+   "nr": "H15-22417",
+   "ndl": "120",
+   "ndlName": "Niederlassung Westerkappeln -Velpe",
+   "typ": "Logitrans Scherenhubwagen HL 1006 (manuell)"
+  },
+  {
+   "nr": "H25-00958",
+   "ndl": "120",
+   "ndlName": "Niederlassung Westerkappeln -Velpe",
+   "typ": "Linde 392 H 25 T"
+  },
+  {
+   "nr": "H25-01970",
+   "ndl": "120",
+   "ndlName": "Niederlassung Westerkappeln -Velpe",
+   "typ": "Linde 392 H 25 D"
+  },
+  {
+   "nr": "H35-00547",
+   "ndl": "120",
+   "ndlName": "Niederlassung Westerkappeln -Velpe",
+   "typ": "Linde 393 H 35 D"
+  },
+  {
+   "nr": "H35-01848",
+   "ndl": "120",
+   "ndlName": "Niederlassung Westerkappeln -Velpe",
+   "typ": "Linde 393 H 35 D"
+  },
+  {
+   "nr": "H35-02873",
+   "ndl": "120",
+   "ndlName": "Niederlassung Westerkappeln -Velpe",
+   "typ": "Linde 393 H 35 T"
+  },
+  {
+   "nr": "H15-62057",
+   "ndl": "122",
+   "ndlName": "Niederlassung Leipzig",
+   "typ": "Linde 1133-03 MT 15"
+  },
+  {
+   "nr": "H25-01150",
+   "ndl": "122",
+   "ndlName": "Niederlassung Leipzig",
+   "typ": "Linde 387 E 25 L"
+  },
+  {
+   "nr": "H25-03536",
+   "ndl": "122",
+   "ndlName": "Niederlassung Leipzig",
+   "typ": "Linde 393 H 30 D"
+  },
+  {
+   "nr": "H35-00086",
+   "ndl": "122",
+   "ndlName": "Niederlassung Leipzig",
+   "typ": "Linde 387 H 35 E"
+  },
+  {
+   "nr": "H35-01036",
+   "ndl": "122",
+   "ndlName": "Niederlassung Leipzig",
+   "typ": "Linde 393 H 35 D"
+  },
+  {
+   "nr": "H35-01452",
+   "ndl": "122",
+   "ndlName": "Niederlassung Leipzig",
+   "typ": "Linde 387 E 35 L"
+  },
+  {
+   "nr": "H35-01866",
+   "ndl": "122",
+   "ndlName": "Niederlassung Leipzig",
+   "typ": "Linde 387 E 35 L"
+  },
+  {
+   "nr": "H35-05468",
+   "ndl": "122",
+   "ndlName": "Niederlassung Leipzig",
+   "typ": "Linde 387 E 35 L"
+  },
+  {
+   "nr": "H35-10626",
+   "ndl": "122",
+   "ndlName": "Niederlassung Leipzig",
+   "typ": "Linde 1252-01 E35L"
+  },
+  {
+   "nr": "H35_122_01",
+   "ndl": "122",
+   "ndlName": "Niederlassung Leipzig",
+   "typ": "Linde 1252-01 E35HL"
+  },
+  {
+   "nr": "H35_122_02",
+   "ndl": "122",
+   "ndlName": "Niederlassung Leipzig",
+   "typ": "Linde 1252-01 E35L"
+  },
+  {
+   "nr": "H10-00713",
+   "ndl": "130",
+   "ndlName": "Niederlassung Dortmund",
+   "typ": "Linde 1172 L10 Mitgänger Hochhubwagen"
+  },
+  {
+   "nr": "H30-02069",
+   "ndl": "130",
+   "ndlName": "Niederlassung Dortmund",
+   "typ": "Linde 393 H 30 T"
+  },
+  {
+   "nr": "H30-02241",
+   "ndl": "130",
+   "ndlName": "Niederlassung Dortmund",
+   "typ": "Linde 393-02 H30T"
+  },
+  {
+   "nr": "H30-05574",
+   "ndl": "130",
+   "ndlName": "Niederlassung Dortmund",
+   "typ": "Linde 393-02 H 30 T"
+  },
+  {
+   "nr": "H30-10029",
+   "ndl": "130",
+   "ndlName": "Niederlassung Dortmund",
+   "typ": "Linde 1252-01 E30/600HL"
+  },
+  {
+   "nr": "H30-16375",
+   "ndl": "130",
+   "ndlName": "Niederlassung Dortmund",
+   "typ": "Linde 1252-01 E30/600HL"
+  },
+  {
+   "nr": "H35-00325",
+   "ndl": "130",
+   "ndlName": "Niederlassung Dortmund",
+   "typ": "Linde 1252-01 E35L"
+  },
+  {
+   "nr": "H35-10803",
+   "ndl": "130",
+   "ndlName": "Niederlassung Dortmund",
+   "typ": "Linde 1252-01 E35L"
+  },
+  {
+   "nr": "H18-11087",
+   "ndl": "151",
+   "ndlName": "Niederlassung Chemnitz",
+   "typ": "Linde  386-02 E 18 PH"
+  },
+  {
+   "nr": "H20-02013",
+   "ndl": "151",
+   "ndlName": "Niederlassung Chemnitz",
+   "typ": "Linde 1251-01 E20 PH"
+  },
+  {
+   "nr": "H20-05672",
+   "ndl": "151",
+   "ndlName": "Niederlassung Chemnitz",
+   "typ": "Linde 1251-01 E20 PH"
+  },
+  {
+   "nr": "H35-00658",
+   "ndl": "151",
+   "ndlName": "Niederlassung Chemnitz",
+   "typ": "Linde 393-02 H35T"
+  },
+  {
+   "nr": "H35-00650",
+   "ndl": "411",
+   "ndlName": "Außenlager München-Sendling Wego",
+   "typ": "Linde 393-02 H35D"
+  },
+  {
+   "nr": "H35-03716",
+   "ndl": "411",
+   "ndlName": "Außenlager München-Sendling Wego",
+   "typ": "Linde 393 H 35 D"
+  },
+  {
+   "nr": "H35-05037",
+   "ndl": "411",
+   "ndlName": "Außenlager München-Sendling Wego",
+   "typ": "Linde 393 H 35 D"
+  },
+  {
+   "nr": "H35-05524",
+   "ndl": "411",
+   "ndlName": "Außenlager München-Sendling Wego",
+   "typ": "Linde 393 H 35 D"
+  },
+  {
+   "nr": "H30-06404",
+   "ndl": "412",
+   "ndlName": "Außenlager Dresden Wego",
+   "typ": "Linde 393 H 30 D"
+  },
+  {
+   "nr": "H35-00338",
+   "ndl": "412",
+   "ndlName": "Außenlager Dresden Wego",
+   "typ": "Linde  1252-01 E35HL"
+  },
+  {
+   "nr": "H30-05565",
+   "ndl": "413",
+   "ndlName": "Außenlager Olbersdorf",
+   "typ": "Linde 393-02 H30D"
+  },
+  {
+   "nr": "H35-00343",
+   "ndl": "413",
+   "ndlName": "Außenlager Olbersdorf",
+   "typ": "Linde  1252-01 E35HL"
+  },
+  {
+   "nr": "H12-01996",
+   "ndl": "417",
+   "ndlName": "Außenlager Olching VTI",
+   "typ": "Linde  1172 L12i"
+  },
+  {
+   "nr": "H15-64760",
+   "ndl": "417",
+   "ndlName": "Außenlager Olching VTI",
+   "typ": "Linde 1133-03 MT 15"
+  },
+  {
+   "nr": "H16-01474",
+   "ndl": "809",
+   "ndlName": "Niederlassung Folienhandel",
+   "typ": "Linde  1174-00 L 16 R"
+  },
+  {
+   "nr": "H15-40566",
+   "ndl": "810",
+   "ndlName": "Niederlassung Hanau",
+   "typ": "Linde 1131-02 MT15C"
+  },
+  {
+   "nr": "H20-03880",
+   "ndl": "810",
+   "ndlName": "Niederlassung Hanau",
+   "typ": "Linde 1120-00 R 20 G"
+  },
+  {
+   "nr": "H20-04042",
+   "ndl": "810",
+   "ndlName": "Niederlassung Hanau",
+   "typ": "Linde 1120-00 R 20 G"
+  },
+  {
+   "nr": "H30-01087",
+   "ndl": "810",
+   "ndlName": "Niederlassung Hanau",
+   "typ": "Linde 393-02 H30D"
+  },
+  {
+   "nr": "H30-03427",
+   "ndl": "810",
+   "ndlName": "Niederlassung Hanau",
+   "typ": "Linde 393 H 30 D"
+  },
+  {
+   "nr": "H30-05174",
+   "ndl": "810",
+   "ndlName": "Niederlassung Hanau",
+   "typ": "Linde 387 E 30 L"
+  },
+  {
+   "nr": "H35-00495",
+   "ndl": "810",
+   "ndlName": "Niederlassung Hanau",
+   "typ": "Linde 393-02 H35D"
+  },
+  {
+   "nr": "H35-05482",
+   "ndl": "810",
+   "ndlName": "Niederlassung Hanau",
+   "typ": "Linde 1202 H 35 D"
+  },
+  {
+   "nr": "H35-05559",
+   "ndl": "810",
+   "ndlName": "Niederlassung Hanau",
+   "typ": "Linde 393-02 H35D"
+  },
+  {
+   "nr": "H35-14648",
+   "ndl": "810",
+   "ndlName": "Niederlassung Hanau",
+   "typ": "Linde 1252-01 E35HL"
+  },
+  {
+   "nr": "H10-04520",
+   "ndl": "812",
+   "ndlName": "Niederlassung Frankfurt/Main",
+   "typ": "Jungheinrich SDJ 1030"
+  },
+  {
+   "nr": "H20-02415",
+   "ndl": "812",
+   "ndlName": "Niederlassung Frankfurt/Main",
+   "typ": "Linde  1120-00 R 20 G"
+  },
+  {
+   "nr": "H30-03799",
+   "ndl": "812",
+   "ndlName": "Niederlassung Frankfurt/Main",
+   "typ": "Linde 387-00 E30 / 600 HL"
+  },
+  {
+   "nr": "H30-03803",
+   "ndl": "812",
+   "ndlName": "Niederlassung Frankfurt/Main",
+   "typ": "Linde 387-00 E30 / 600 HL"
+  },
+  {
+   "nr": "H30-03805",
+   "ndl": "812",
+   "ndlName": "Niederlassung Frankfurt/Main",
+   "typ": "Linde 387-00 E30 / 600 HL"
+  },
+  {
+   "nr": "H30-03813",
+   "ndl": "812",
+   "ndlName": "Niederlassung Frankfurt/Main",
+   "typ": "Linde 387-00 E30 / 600 HL"
+  },
+  {
+   "nr": "H30-03820",
+   "ndl": "812",
+   "ndlName": "Niederlassung Frankfurt/Main",
+   "typ": "Linde 387-00 E30 / 600 HL"
+  },
+  {
+   "nr": "H30-03823",
+   "ndl": "812",
+   "ndlName": "Niederlassung Frankfurt/Main",
+   "typ": "Linde 387-00 E30 / 600 HL"
+  },
+  {
+   "nr": "H30-03839",
+   "ndl": "812",
+   "ndlName": "Niederlassung Frankfurt/Main",
+   "typ": "Linde 387-00 E30 / 600 HL"
+  },
+  {
+   "nr": "H30-04137",
+   "ndl": "812",
+   "ndlName": "Niederlassung Frankfurt/Main",
+   "typ": "Linde 1252-01 E30/600HL"
+  },
+  {
+   "nr": "H30-71366",
+   "ndl": "812",
+   "ndlName": "Niederlassung Frankfurt/Main",
+   "typ": "Hubtex 2410.2 FLUX 30"
+  },
+  {
+   "nr": "H30-71367",
+   "ndl": "812",
+   "ndlName": "Niederlassung Frankfurt/Main",
+   "typ": "Hubtex 2410.2 FLUX 30"
+  },
+  {
+   "nr": "H30-71368",
+   "ndl": "812",
+   "ndlName": "Niederlassung Frankfurt/Main",
+   "typ": "Hubtex 2410.2 FLUX 30"
+  },
+  {
+   "nr": "H15-66867",
+   "ndl": "815",
+   "ndlName": "Niederlassung Neu-Ulm",
+   "typ": "Linde 1133-03 MT 15"
+  },
+  {
+   "nr": "H25-01992",
+   "ndl": "815",
+   "ndlName": "Niederlassung Neu-Ulm",
+   "typ": "Linde 392 H 25 T"
+  },
+  {
+   "nr": "H30-00346",
+   "ndl": "815",
+   "ndlName": "Niederlassung Neu-Ulm",
+   "typ": "Linde 1252-01 E30/600HL"
+  },
+  {
+   "nr": "H30-16432",
+   "ndl": "815",
+   "ndlName": "Niederlassung Neu-Ulm",
+   "typ": "Linde 1252-01 E30/600HL"
+  },
+  {
+   "nr": "H12-04125",
+   "ndl": "817",
+   "ndlName": "Niederlassung VTI-Freiburg",
+   "typ": "Linde  1131-00 MT 12"
+  },
+  {
+   "nr": "H15-64670",
+   "ndl": "817",
+   "ndlName": "Niederlassung VTI-Freiburg",
+   "typ": "Linde  1133-03 MT 15"
+  },
+  {
+   "nr": "H15-65634",
+   "ndl": "817",
+   "ndlName": "Niederlassung VTI-Freiburg",
+   "typ": "Linde  1133-00 MT 15"
+  },
+  {
+   "nr": "H16-00818",
+   "ndl": "817",
+   "ndlName": "Niederlassung VTI-Freiburg",
+   "typ": "Linde 1120-00 R 16 B"
+  },
+  {
+   "nr": "H25-00789",
+   "ndl": "817",
+   "ndlName": "Niederlassung VTI-Freiburg",
+   "typ": "Still  R 60-25 E"
+  },
+  {
+   "nr": "H12-03688",
+   "ndl": "819",
+   "ndlName": "Elsenfeld",
+   "typ": "Linde 386 E 12"
+  },
+  {
+   "nr": "H15-52027",
+   "ndl": "819",
+   "ndlName": "Elsenfeld",
+   "typ": "Linde 1131-02 MT15C"
+  },
+  {
+   "nr": "H15-52028",
+   "ndl": "819",
+   "ndlName": "Elsenfeld",
+   "typ": "Linde 1131-02 MT15C"
+  },
+  {
+   "nr": "H16-09556",
+   "ndl": "819",
+   "ndlName": "Elsenfeld",
+   "typ": "Linde  386-02 E 16 C"
+  },
+  {
+   "nr": "H45-02789",
+   "ndl": "819",
+   "ndlName": "Elsenfeld",
+   "typ": "Linde 394 H 45 T"
+  },
+  {
+   "nr": "H15-43660",
+   "ndl": "821",
+   "ndlName": "Niederlassung München Eching VTI",
+   "typ": "Linde 1131-02 MT15C"
+  },
+  {
+   "nr": "H15-51976",
+   "ndl": "821",
+   "ndlName": "Niederlassung München Eching VTI",
+   "typ": "Linde 1131-02 MT15C"
+  },
+  {
+   "nr": "H15-61919",
+   "ndl": "821",
+   "ndlName": "Niederlassung München Eching VTI",
+   "typ": "Linde 1133-03 MT 15"
+  },
+  {
+   "nr": "H16-07665",
+   "ndl": "821",
+   "ndlName": "Niederlassung München Eching VTI",
+   "typ": "Linde 386-02 E 16 PH"
+  },
+  {
+   "nr": "H16-07699",
+   "ndl": "821",
+   "ndlName": "Niederlassung München Eching VTI",
+   "typ": "Linde 386-02 E 16 PH"
+  },
+  {
+   "nr": "H16-07743",
+   "ndl": "821",
+   "ndlName": "Niederlassung München Eching VTI",
+   "typ": "Linde 386-02 E 16 PH"
+  },
+  {
+   "nr": "H25-14658",
+   "ndl": "821",
+   "ndlName": "Niederlassung München Eching VTI",
+   "typ": "Linde 1252-01 E25"
+  },
+  {
+   "nr": "H15-05391",
+   "ndl": "822",
+   "ndlName": "Niederlassung VTI-Berlin",
+   "typ": "Linde 1133-00 MT 15"
+  },
+  {
+   "nr": "H15-50034",
+   "ndl": "822",
+   "ndlName": "Niederlassung VTI-Berlin",
+   "typ": "Linde 1131-02 MT15C"
+  },
+  {
+   "nr": "H15-50035",
+   "ndl": "822",
+   "ndlName": "Niederlassung VTI-Berlin",
+   "typ": "Linde 1131-02 MT15C"
+  },
+  {
+   "nr": "H15-61452",
+   "ndl": "822",
+   "ndlName": "Niederlassung VTI-Berlin",
+   "typ": "Linde 1133-03 MT 15"
+  },
+  {
+   "nr": "H25-01159",
+   "ndl": "822",
+   "ndlName": "Niederlassung VTI-Berlin",
+   "typ": "Linde 387 E 25 L"
+  },
+  {
+   "nr": "H25-10486",
+   "ndl": "822",
+   "ndlName": "Niederlassung VTI-Berlin",
+   "typ": "Linde  1252-01 E25L"
+  },
+  {
+   "nr": "H25-52274",
+   "ndl": "822",
+   "ndlName": "Niederlassung VTI-Berlin",
+   "typ": "Linde 392 H 25 T"
+  },
+  {
+   "nr": "H15-02543",
+   "ndl": "823",
+   "ndlName": "Niederlassung Oberhausen",
+   "typ": "Linde 1133-00 MT 15"
+  },
+  {
+   "nr": "H15-66917",
+   "ndl": "823",
+   "ndlName": "Niederlassung Oberhausen",
+   "typ": "Linde  1133-03 MT 15"
+  },
+  {
+   "nr": "H25-01177",
+   "ndl": "823",
+   "ndlName": "Niederlassung Oberhausen",
+   "typ": "Linde  1120-00 R 25"
+  },
+  {
+   "nr": "H25-01227",
+   "ndl": "823",
+   "ndlName": "Niederlassung Oberhausen",
+   "typ": "Linde  1120-00 R 25"
+  },
+  {
+   "nr": "H25-01271",
+   "ndl": "823",
+   "ndlName": "Niederlassung Oberhausen",
+   "typ": "Linde  1120-00 R 25"
+  },
+  {
+   "nr": "H25-51394",
+   "ndl": "823",
+   "ndlName": "Niederlassung Oberhausen",
+   "typ": "Linde 392 H 25 T"
+  },
+  {
+   "nr": "H30-03214",
+   "ndl": "823",
+   "ndlName": "Niederlassung Oberhausen",
+   "typ": "Linde 1252-01 E30/600HL"
+  },
+  {
+   "nr": "H40-00296",
+   "ndl": "823",
+   "ndlName": "Niederlassung Oberhausen",
+   "typ": "Linde 388-01 E 40 / 600 HL"
+  },
+  {
+   "nr": "H10-08048",
+   "ndl": "835",
+   "ndlName": "Niederlassung Frankfurt/Oder",
+   "typ": "Schefer  Premium 10 E"
+  },
+  {
+   "nr": "H30-05493",
+   "ndl": "835",
+   "ndlName": "Niederlassung Frankfurt/Oder",
+   "typ": "Linde 393-02 H30T"
+  },
+  {
+   "nr": "H35-14690",
+   "ndl": "835",
+   "ndlName": "Niederlassung Frankfurt/Oder",
+   "typ": "Linde 1252-01 E35HL"
+  },
+  {
+   "nr": "H35-00620",
+   "ndl": "840",
+   "ndlName": "Niederlassung Wego/VTI Halle",
+   "typ": "Linde 393 H 35 D"
+  },
+  {
+   "nr": "H35-01502",
+   "ndl": "840",
+   "ndlName": "Niederlassung Wego/VTI Halle",
+   "typ": "Linde 1252-01 E35L"
+  },
+  {
+   "nr": "H30-00109",
+   "ndl": "841",
+   "ndlName": "Niederlassung Brandenburg",
+   "typ": "Linde 387 E 30 / 600 HL"
+  },
+  {
+   "nr": "H30-00165",
+   "ndl": "841",
+   "ndlName": "Niederlassung Brandenburg",
+   "typ": "Linde 387 E 30 / 600 HL"
+  },
+  {
+   "nr": "H25-04504",
+   "ndl": "844",
+   "ndlName": "Niederlassung Dresden",
+   "typ": "Linde 392 H 25 T"
+  },
+  {
+   "nr": "H25-51114",
+   "ndl": "844",
+   "ndlName": "Niederlassung Dresden",
+   "typ": "Linde 392 H 25 T"
+  },
+  {
+   "nr": "H30-00402",
+   "ndl": "844",
+   "ndlName": "Niederlassung Dresden",
+   "typ": "Linde 393 H 30 D"
+  },
+  {
+   "nr": "H30-01952",
+   "ndl": "844",
+   "ndlName": "Niederlassung Dresden",
+   "typ": "Linde 1252-01 E30/600HL"
+  },
+  {
+   "nr": "H30-01955",
+   "ndl": "844",
+   "ndlName": "Niederlassung Dresden",
+   "typ": "Linde 1252-01 E30/600HL"
+  },
+  {
+   "nr": "H35-00347",
+   "ndl": "844",
+   "ndlName": "Niederlassung Dresden",
+   "typ": "Linde  1252-01 E35HL"
+  },
+  {
+   "nr": "H35-01048",
+   "ndl": "844",
+   "ndlName": "Niederlassung Dresden",
+   "typ": "Linde 393-02 H35T"
+  },
+  {
+   "nr": "H35-01264",
+   "ndl": "844",
+   "ndlName": "Niederlassung Dresden",
+   "typ": "Linde 393-02 H35T"
+  },
+  {
+   "nr": "H35-02262",
+   "ndl": "844",
+   "ndlName": "Niederlassung Dresden",
+   "typ": "Linde 393 H 35 T"
+  },
+  {
+   "nr": "H35-04417",
+   "ndl": "844",
+   "ndlName": "Niederlassung Dresden",
+   "typ": "Linde 351 H 35 D"
+  },
+  {
+   "nr": "H40-00484",
+   "ndl": "844",
+   "ndlName": "Niederlassung Dresden",
+   "typ": "Linde 1254-01 E 40/600HL"
+  },
+  {
+   "nr": "H30-03402",
+   "ndl": "845",
+   "ndlName": "Niederlassung Bautzen",
+   "typ": "Linde 393 H 30 D"
+  },
+  {
+   "nr": "H35-00341",
+   "ndl": "845",
+   "ndlName": "Niederlassung Bautzen",
+   "typ": "Linde  1252-01 E35HL"
+  },
+  {
+   "nr": "H35-04701",
+   "ndl": "845",
+   "ndlName": "Niederlassung Bautzen",
+   "typ": "Linde 387-00 E35HL"
+  },
+  {
+   "nr": "H30-03530",
+   "ndl": "848",
+   "ndlName": "Niederlassung Merzig",
+   "typ": "Linde 393 H 30 T"
+  },
+  {
+   "nr": "H35-01753",
+   "ndl": "848",
+   "ndlName": "Niederlassung Merzig",
+   "typ": "Linde 393 H 35 T"
+  },
+  {
+   "nr": "H35-03387",
+   "ndl": "848",
+   "ndlName": "Niederlassung Merzig",
+   "typ": "Linde 1252-01 E35L"
+  },
+  {
+   "nr": "H35-03775",
+   "ndl": "848",
+   "ndlName": "Niederlassung Merzig",
+   "typ": "Linde 1252-01 E35L"
+  },
+  {
+   "nr": "H35-10749",
+   "ndl": "848",
+   "ndlName": "Niederlassung Merzig",
+   "typ": "Linde 1252-01 E35L"
+  },
+  {
+   "nr": "H30-03489",
+   "ndl": "867",
+   "ndlName": "Niederlassung Schwerin",
+   "typ": "Linde 393 H 30 T"
+  },
+  {
+   "nr": "H35-00337",
+   "ndl": "867",
+   "ndlName": "Niederlassung Schwerin",
+   "typ": "Linde 1252-01 E35HL"
+  },
+  {
+   "nr": "H35-52587",
+   "ndl": "867",
+   "ndlName": "Niederlassung Schwerin",
+   "typ": "Linde 393 H 35 T"
+  },
+  {
+   "nr": "H12-09061",
+   "ndl": "872",
+   "ndlName": "Niederlassung Nürnberg",
+   "typ": "Linde  1131-00 MT 12"
+  },
+  {
+   "nr": "H15-42295",
+   "ndl": "872",
+   "ndlName": "Niederlassung Nürnberg",
+   "typ": "Linde 1131-02 MT15C"
+  },
+  {
+   "nr": "H20-07951",
+   "ndl": "872",
+   "ndlName": "Niederlassung Nürnberg",
+   "typ": "386-02 E20PH"
+  },
+  {
+   "nr": "H20-07994",
+   "ndl": "872",
+   "ndlName": "Niederlassung Nürnberg",
+   "typ": "386-02 E20PH"
+  },
+  {
+   "nr": "H35-00335",
+   "ndl": "872",
+   "ndlName": "Niederlassung Nürnberg",
+   "typ": "Linde  1252-01 E35HL"
+  },
+  {
+   "nr": "H35-04737",
+   "ndl": "872",
+   "ndlName": "Niederlassung Nürnberg",
+   "typ": "Linde 393 H 35 D"
+  },
+  {
+   "nr": "H35-04796",
+   "ndl": "872",
+   "ndlName": "Niederlassung Nürnberg",
+   "typ": "Linde 393 H 35 D"
+  },
+  {
+   "nr": "H35-06139",
+   "ndl": "872",
+   "ndlName": "Niederlassung Nürnberg",
+   "typ": "Linde 1202 H 35 D"
+  },
+  {
+   "nr": "H40-02906",
+   "ndl": "872",
+   "ndlName": "Niederlassung Nürnberg",
+   "typ": "Linde 394 H 40 D"
+  },
+  {
+   "nr": "H35-00692",
+   "ndl": "873",
+   "ndlName": "Niederlassung München Eching Wego",
+   "typ": "Linde 1252-01 E35HL"
+  },
+  {
+   "nr": "H35-03486",
+   "ndl": "873",
+   "ndlName": "Niederlassung München Eching Wego",
+   "typ": "Linde 393 H 35 D"
+  },
+  {
+   "nr": "H35-05141",
+   "ndl": "873",
+   "ndlName": "Niederlassung München Eching Wego",
+   "typ": "Linde 393-02 H35D"
+  },
+  {
+   "nr": "H35_873_01",
+   "ndl": "873",
+   "ndlName": "Niederlassung München Eching Wego",
+   "typ": "Linde 1252-01 E35HL"
+  },
+  {
+   "nr": "H40-03402",
+   "ndl": "873",
+   "ndlName": "Niederlassung München Eching Wego",
+   "typ": "Linde 394-02 H 40 D EVO"
+  },
+  {
+   "nr": "H25-01975",
+   "ndl": "875",
+   "ndlName": "Außenlager Suhl Wego",
+   "typ": "Linde 392 H 25 T"
+  },
+  {
+   "nr": "H35-00563",
+   "ndl": "875",
+   "ndlName": "Außenlager Suhl Wego",
+   "typ": "Linde 393-02 H35T"
+  },
+  {
+   "nr": "H35-10782",
+   "ndl": "875",
+   "ndlName": "Außenlager Suhl Wego",
+   "typ": "Linde 1252-01 E35L"
+  },
+  {
+   "nr": "H30-03508",
+   "ndl": "878",
+   "ndlName": "Niederlassung Erfurt",
+   "typ": "Linde 393 H 30 T"
+  },
+  {
+   "nr": "H30-53285",
+   "ndl": "878",
+   "ndlName": "Niederlassung Erfurt",
+   "typ": "Linde 393 H 30 T"
+  },
+  {
+   "nr": "H35-00653",
+   "ndl": "878",
+   "ndlName": "Niederlassung Erfurt",
+   "typ": "Linde 393-02 H35T"
+  },
+  {
+   "nr": "H35-03683",
+   "ndl": "878",
+   "ndlName": "Niederlassung Erfurt",
+   "typ": "Linde 393 H 35 T"
+  },
+  {
+   "nr": "H35-10755",
+   "ndl": "878",
+   "ndlName": "Niederlassung Erfurt",
+   "typ": "Linde 1252-01 E35L"
+  },
+  {
+   "nr": "H35-14674",
+   "ndl": "878",
+   "ndlName": "Niederlassung Erfurt",
+   "typ": "Linde 1252-01 E35HL"
+  },
+  {
+   "nr": "H15-20058",
+   "ndl": "880",
+   "ndlName": "Niederlassung Gießen",
+   "typ": "Linde 1131-02 MT15C"
+  },
+  {
+   "nr": "H20-00586",
+   "ndl": "880",
+   "ndlName": "Niederlassung Gießen",
+   "typ": "CN 20"
+  },
+  {
+   "nr": "H25-00172",
+   "ndl": "880",
+   "ndlName": "Niederlassung Gießen",
+   "typ": "Linde 387 E 25"
+  },
+  {
+   "nr": "H25-00200",
+   "ndl": "880",
+   "ndlName": "Niederlassung Gießen",
+   "typ": "Nissan LX 25 G"
+  },
+  {
+   "nr": "H25-00286",
+   "ndl": "880",
+   "ndlName": "Niederlassung Gießen",
+   "typ": "Linde 387 E 25"
+  },
+  {
+   "nr": "H25-12732",
+   "ndl": "880",
+   "ndlName": "Niederlassung Gießen",
+   "typ": "Toyota Traigo 80 9FBMK25T"
+  },
+  {
+   "nr": "H35-01693",
+   "ndl": "880",
+   "ndlName": "Niederlassung Gießen",
+   "typ": "Linde 393 H 35 T"
+  },
+  {
+   "nr": "H35-13095",
+   "ndl": "880",
+   "ndlName": "Niederlassung Gießen",
+   "typ": "Toyota  Traigo 80 9FBM35T"
+  },
+  {
+   "nr": "H15-49002",
+   "ndl": "881",
+   "ndlName": "Niederlassung Ludwigshafen",
+   "typ": "Linde 1131-02 MT15C"
+  },
+  {
+   "nr": "H15-49003",
+   "ndl": "881",
+   "ndlName": "Niederlassung Ludwigshafen",
+   "typ": "Linde 1131-02 MT15C"
+  },
+  {
+   "nr": "H25-11440",
+   "ndl": "881",
+   "ndlName": "Niederlassung Ludwigshafen",
+   "typ": "Linde  1252-01 E25L"
+  },
+  {
+   "nr": "H25-11446",
+   "ndl": "881",
+   "ndlName": "Niederlassung Ludwigshafen",
+   "typ": "Linde  1252-01 E25L"
+  },
+  {
+   "nr": "H40-01245",
+   "ndl": "881",
+   "ndlName": "Niederlassung Ludwigshafen",
+   "typ": "Linde 388-01 E 40 / 600 HL"
+  },
+  {
+   "nr": "H20-03492",
+   "ndl": "884",
+   "ndlName": "Niederlassung Abstatt",
+   "typ": "Linde 386 E 20 PH"
+  },
+  {
+   "nr": "H25-03030",
+   "ndl": "884",
+   "ndlName": "Niederlassung Abstatt",
+   "typ": "Linde 1202 H 25 T"
+  },
+  {
+   "nr": "H25-03084",
+   "ndl": "884",
+   "ndlName": "Niederlassung Abstatt",
+   "typ": "Linde 1202 H 25 T"
+  },
+  {
+   "nr": "H25-05120",
+   "ndl": "884",
+   "ndlName": "Niederlassung Abstatt",
+   "typ": "Linde 387 E 25 / 600 H"
+  },
+  {
+   "nr": "H25-05272",
+   "ndl": "884",
+   "ndlName": "Niederlassung Abstatt",
+   "typ": "Linde 1202 H 25 T"
+  },
+  {
+   "nr": "H25-10003",
+   "ndl": "884",
+   "ndlName": "Niederlassung Abstatt",
+   "typ": "Linde 1252-01 E25"
+  },
+  {
+   "nr": "H25-10017",
+   "ndl": "884",
+   "ndlName": "Niederlassung Abstatt",
+   "typ": "Linde 1252-01 E25"
+  },
+  {
+   "nr": "H12-02825",
+   "ndl": "885",
+   "ndlName": "Niederlassung Viernheim",
+   "typ": "Linde  1131-00 MT 12"
+  },
+  {
+   "nr": "H16-00107",
+   "ndl": "885",
+   "ndlName": "Niederlassung Viernheim",
+   "typ": "Linde  1173-00 L 16 AP"
+  },
+  {
+   "nr": "H16-01523",
+   "ndl": "885",
+   "ndlName": "Niederlassung Viernheim",
+   "typ": "Linde  1120-00 R 16 G"
+  },
+  {
+   "nr": "H30-01299",
+   "ndl": "885",
+   "ndlName": "Niederlassung Viernheim",
+   "typ": "Linde 1252-01 E30/600HL"
+  },
+  {
+   "nr": "H30-14723",
+   "ndl": "885",
+   "ndlName": "Niederlassung Viernheim",
+   "typ": "Linde 1252-01 E30/600HL"
+  },
+  {
+   "nr": "H30-14727",
+   "ndl": "885",
+   "ndlName": "Niederlassung Viernheim",
+   "typ": "Linde 1252-01 E30/600HL"
+  },
+  {
+   "nr": "H12-03075",
+   "ndl": "886",
+   "ndlName": "Niederlassung Ettlingen",
+   "typ": "Linde  1131-00 MT 12"
+  },
+  {
+   "nr": "H30-00106",
+   "ndl": "886",
+   "ndlName": "Niederlassung Ettlingen",
+   "typ": "Linde 393-02 H30T"
+  },
+  {
+   "nr": "H30-02035",
+   "ndl": "886",
+   "ndlName": "Niederlassung Ettlingen",
+   "typ": "Linde 393 H 30 T"
+  },
+  {
+   "nr": "H30-02219",
+   "ndl": "886",
+   "ndlName": "Niederlassung Ettlingen",
+   "typ": "Linde 1252-01 E30/600HL"
+  },
+  {
+   "nr": "H30-16404",
+   "ndl": "886",
+   "ndlName": "Niederlassung Ettlingen",
+   "typ": "Linde 1252-01 E 30 L"
+  },
+  {
+   "nr": "H15-21392",
+   "ndl": "887",
+   "ndlName": "Niederlassungen Ettlingen vti",
+   "typ": "Linde  1131-02 MT15C"
+  },
+  {
+   "nr": "H15-64758",
+   "ndl": "887",
+   "ndlName": "Niederlassungen Ettlingen vti",
+   "typ": "Linde 1133-03 MT 15"
+  },
+  {
+   "nr": "H15-64759",
+   "ndl": "887",
+   "ndlName": "Niederlassungen Ettlingen vti",
+   "typ": "Linde 1133-03 MT 15"
+  },
+  {
+   "nr": "H25-01577",
+   "ndl": "887",
+   "ndlName": "Niederlassungen Ettlingen vti",
+   "typ": "Linde 387 E 25 L"
+  },
+  {
+   "nr": "H25-01578",
+   "ndl": "887",
+   "ndlName": "Niederlassungen Ettlingen vti",
+   "typ": "Linde 387 E 25 L"
+  },
+  {
+   "nr": "H25-10483",
+   "ndl": "887",
+   "ndlName": "Niederlassungen Ettlingen vti",
+   "typ": "Linde  1252-01 E25L"
+  },
+  {
+   "nr": "H25-10495",
+   "ndl": "887",
+   "ndlName": "Niederlassungen Ettlingen vti",
+   "typ": "Linde  1252-01 E25L"
+  },
+  {
+   "nr": "H35-02233",
+   "ndl": "887",
+   "ndlName": "Niederlassungen Ettlingen vti",
+   "typ": "Linde 387 E 35 HL"
+  },
+  {
+   "nr": "H10-02823",
+   "ndl": "889",
+   "ndlName": "Niederlassung Köfering-Regensburg",
+   "typ": "Linde 1172 L10 Mitgänger Hochhubwagen"
+  },
+  {
+   "nr": "H14-02024",
+   "ndl": "889",
+   "ndlName": "Niederlassung Köfering-Regensburg",
+   "typ": "Linde 1251-01 Xi14"
+  },
+  {
+   "nr": "H15-60202",
+   "ndl": "889",
+   "ndlName": "Niederlassung Köfering-Regensburg",
+   "typ": "Linde 1133-03 MT 15"
+  },
+  {
+   "nr": "H15-60203",
+   "ndl": "889",
+   "ndlName": "Niederlassung Köfering-Regensburg",
+   "typ": "Linde 1133-03 MT 15"
+  },
+  {
+   "nr": "H16-02504",
+   "ndl": "889",
+   "ndlName": "Niederlassung Köfering-Regensburg",
+   "typ": "Linde  1173-00 L 16 AP"
+  },
+  {
+   "nr": "H16-02512",
+   "ndl": "889",
+   "ndlName": "Niederlassung Köfering-Regensburg",
+   "typ": "Linde  1173-00 L 16 AP"
+  },
+  {
+   "nr": "H20-00523",
+   "ndl": "889",
+   "ndlName": "Niederlassung Köfering-Regensburg",
+   "typ": "Linde 391 H 20 D"
+  },
+  {
+   "nr": "H20-53188",
+   "ndl": "889",
+   "ndlName": "Niederlassung Köfering-Regensburg",
+   "typ": "Toyota RRE200 H/HE"
+  },
+  {
+   "nr": "H30-10950",
+   "ndl": "889",
+   "ndlName": "Niederlassung Köfering-Regensburg",
+   "typ": "Toyota  02-8 FGF 30 T"
+  },
+  {
+   "nr": "H12-06580",
+   "ndl": "891",
+   "ndlName": "Niederlassung Köln-Niehl",
+   "typ": "Linde  1131-00 MT 12"
+  },
+  {
+   "nr": "H15-42284",
+   "ndl": "891",
+   "ndlName": "Niederlassung Köln-Niehl",
+   "typ": "Linde 1131-02 MT15C"
+  },
+  {
+   "nr": "H15-66863",
+   "ndl": "891",
+   "ndlName": "Niederlassung Köln-Niehl",
+   "typ": "Linde  1133-03 MT 15"
+  },
+  {
+   "nr": "H16-00860",
+   "ndl": "891",
+   "ndlName": "Niederlassung Köln-Niehl",
+   "typ": "Linde 1120-00 R 16 B"
+  },
+  {
+   "nr": "H20-01211",
+   "ndl": "891",
+   "ndlName": "Niederlassung Köln-Niehl",
+   "typ": "Linde 1120-00 R 20"
+  },
+  {
+   "nr": "H30-14702",
+   "ndl": "891",
+   "ndlName": "Niederlassung Köln-Niehl",
+   "typ": "Linde 1252-01 E30/600HL"
+  },
+  {
+   "nr": "H12-02829",
+   "ndl": "895",
+   "ndlName": "Niederlassung Eschweiler",
+   "typ": "Linde  1131-00 MT 12"
+  },
+  {
+   "nr": "H30-00545",
+   "ndl": "895",
+   "ndlName": "Niederlassung Eschweiler",
+   "typ": "Linde 387 E 30 / 600 H"
+  },
+  {
+   "nr": "H30-04090",
+   "ndl": "895",
+   "ndlName": "Niederlassung Eschweiler",
+   "typ": "Linde 1252-01 E30/600H"
+  },
+  {
+   "nr": "H30-16416",
+   "ndl": "895",
+   "ndlName": "Niederlassung Eschweiler",
+   "typ": "Linde 1252-01 E30/600HL"
+  },
+  {
+   "nr": "H30-V03476",
+   "ndl": "895",
+   "ndlName": "Niederlassung Eschweiler",
+   "typ": "Linde 387-00 E30/600H"
+  },
+  {
+   "nr": "H20-00883",
+   "ndl": "896",
+   "ndlName": "Niederlassung Köln-Rodenkirchen",
+   "typ": "Linde 386 E 20 PH"
+  },
+  {
+   "nr": "H30-14684",
+   "ndl": "896",
+   "ndlName": "Niederlassung Köln-Rodenkirchen",
+   "typ": "Linde 1252-01 E30/600HL"
+  },
+  {
+   "nr": "H35-00244",
+   "ndl": "896",
+   "ndlName": "Niederlassung Köln-Rodenkirchen",
+   "typ": "Linde  1252-01 E35HL"
+  },
+  {
+   "nr": "H35-02191",
+   "ndl": "896",
+   "ndlName": "Niederlassung Köln-Rodenkirchen",
+   "typ": "Linde 393 H 35 T"
+  },
+  {
+   "nr": "H20-00422",
+   "ndl": "897",
+   "ndlName": "Niederlassung Mönchengladbach",
+   "typ": "Linde 387 E 20"
+  },
+  {
+   "nr": "H30-05373",
+   "ndl": "897",
+   "ndlName": "Niederlassung Mönchengladbach",
+   "typ": "Linde 393 H 30 T"
+  },
+  {
+   "nr": "H30-14751",
+   "ndl": "897",
+   "ndlName": "Niederlassung Mönchengladbach",
+   "typ": "Linde 1252-01 E30/600HL"
+  }
+ ]
+}

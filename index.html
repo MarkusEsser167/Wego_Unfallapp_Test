@@ -167,6 +167,18 @@
     .lang-btn .flag { display: inline-flex; align-items: center; border-radius: 2px; overflow: hidden; box-shadow: 0 0 0 1px rgba(0,0,0,.08); }
     .lang-btn.active { border-color: var(--ci-cobalt); background: rgba(5,96,171,.08); color: var(--ci-cobalt); }
     .lang-btn:active { transform: scale(.96); }
+/* --- Bereichsauswahl (Startbildschirm) --- */
+.mcard { background: #fff; border: 1.5px solid var(--border); border-radius: var(--r); padding: 18px 16px; display: flex; align-items: center; gap: 14px; margin-bottom: 12px; cursor: pointer; transition: all .2s; box-shadow: 0 1px 3px rgba(0,0,0,.06); }
+.mcard:active { border-color: var(--ci-cobalt); background: rgba(5,96,171,.04); transform: scale(.99); }
+.micon { width: 56px; height: 56px; background: var(--ci-light); border-radius: 9px; display: flex; align-items: center; justify-content: center; font-size: 28px; flex-shrink: 0; }
+.mname { font-weight: 700; font-size: 17px; font-family: Tahoma, sans-serif; }
+.mdesc { font-size: 12px; color: var(--muted); margin-top: 4px; line-height: 1.45; }
+.marrow { color: var(--muted); font-size: 22px; flex-shrink: 0; }
+/* Staplerkarten sehen aus wie Fahrzeugkarten, haben aber eine eigene Klasse:
+   sonst wuerde die Auswahl in der einen Liste die andere mit zuruecksetzen. */
+.scard { background: #fff; border: 1.5px solid var(--border); border-radius: var(--r); padding: 12px; display: flex; gap: 11px; align-items: center; margin-bottom: 8px; cursor: pointer; transition: all .2s; box-shadow: 0 1px 3px rgba(0,0,0,.06); }
+.scard:active, .scard.sel { border-color: var(--ci-cobalt); background: rgba(5,96,171,.04); box-shadow: 0 0 0 2px rgba(5,96,171,.15); }
+.scard.sel .vcheck { background: var(--ci-cobalt); border-color: var(--ci-cobalt); color: #fff; }
   </style>
 </head>
 <body>
@@ -182,7 +194,7 @@
 <header class="hdr">
   <img class="hdr-logo" src="data:image/png;base64,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" alt="wego vti">
   <div class="hdr-divider"></div>
-  <div class="hdr-sub">Unfallaufnahme</div>
+  <div class="hdr-sub" id="hdrSub">Schadensmeldung</div>
   <div class="hdr-badge" data-i18n="hdr_badge">⚠ Notfall</div>
 </header>
 
@@ -197,8 +209,8 @@
   <div class="lang-btn" data-lang="cs" onclick="applyLanguage('cs')"><span class="flag"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 20" width="18" height="12"><rect width="30" height="10" y="0" fill="#fff"/><rect width="30" height="10" y="10" fill="#D7141A"/><path d="M0,0 L15,10 L0,20 Z" fill="#11457E"/></svg></span>CS</div>
 </div>
 
-<!-- PROGRESS -->
-<div class="prog">
+<!-- PROGRESS (auf dem Startbildschirm ausgeblendet) -->
+<div class="prog" id="prog" style="display:none">
   <div class="prog-steps">
     <div class="dot active" id="dot1">1</div><div class="line" id="ln1"></div>
     <div class="dot" id="dot2">2</div><div class="line" id="ln2"></div>
@@ -210,9 +222,35 @@
 </div>
 
 <!-- ══════════════════════════════════════
+     SCREEN 0 – BEREICH WÄHLEN
+═══════════════════════════════════════ -->
+<div class="screen active" id="s0">
+  <div class="stitle" data-i18n="s0_title">Was möchten Sie melden?</div>
+  <div class="ssub" data-i18n="s0_sub">Bereich auswählen</div>
+
+  <div class="mcard" onclick="setMode('fuhrpark')">
+    <div class="micon">🚛</div>
+    <div style="flex:1;min-width:0">
+      <div class="mname" data-i18n="mode_fuhrpark">Fuhrpark</div>
+      <div class="mdesc" data-i18n="mode_fuhrpark_desc">Unfall mit LKW oder PKW – mit Unfallgegner, Zeugen und Polizei</div>
+    </div>
+    <div class="marrow">›</div>
+  </div>
+
+  <div class="mcard" onclick="setMode('lager')">
+    <div class="micon">🏗</div>
+    <div style="flex:1;min-width:0">
+      <div class="mname" data-i18n="mode_lager">Lager</div>
+      <div class="mdesc" data-i18n="mode_lager_desc">Schaden mit einem Gabelstapler – Gerät, Hergang und Fotos</div>
+    </div>
+    <div class="marrow">›</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
      SCREEN 1 – FAHRZEUGAUSWAHL
 ═══════════════════════════════════════ -->
-<div class="screen active" id="s1">
+<div class="screen" id="s1">
   <div class="stitle" data-i18n="step1">Fahrzeugauswahl</div>
   <div class="ssub" id="s1Sub" data-i18n="s1_sub">Gruppe wählen oder Kennzeichen suchen</div>
 
@@ -246,6 +284,7 @@
   </div>
 
   <div class="btn-row" style="margin-top:18px">
+    <button class="btn btn-gray" onclick="goToStart()" data-i18n="btn_zurueck">← Zurück</button>
     <button class="btn btn-red" id="btn1" disabled onclick="goTo(2)" data-i18n="btn_weiter">Weiter →</button>
   </div>
 </div>
@@ -409,13 +448,172 @@
 
 
 <!-- ══════════════════════════════════════
+     LAGER 1 – STAPLERAUSWAHL
+     Die Geraete kommen aus stapler.json (Fuhrpark-Bestandsliste),
+     nicht aus Webfleet - Stapler haben keine Telematikeinheit.
+═══════════════════════════════════════ -->
+<div class="screen" id="l1">
+  <div class="stitle">Staplerauswahl</div>
+  <div class="ssub" id="l1Sub">Standort wählen oder Gerätenummer suchen</div>
+
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="lSearchInput" placeholder="Gerätenummer oder Typ suchen..." oninput="onStaplerSearch(this.value)">
+  </div>
+
+  <div id="lGroupView">
+    <div class="grp-header">
+      <span id="lGrpCount"></span>
+      <span style="font-size:11px;color:var(--muted)">Tippen zum Öffnen</span>
+    </div>
+    <div id="lgList"></div>
+  </div>
+
+  <div id="lDeviceView" style="display:none">
+    <div class="back-btn" onclick="backToStaplerGroups()">← Standorte</div>
+    <div class="grp-header" id="lListHeader"></div>
+    <div id="lList"></div>
+  </div>
+
+  <div class="btn-row" style="margin-top:18px">
+    <button class="btn btn-gray" onclick="goToStart()">← Zurück</button>
+    <button class="btn btn-red" id="lBtn1" disabled onclick="goTo(2)">Weiter →</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     LAGER 2 – FAHRER & SCHADENSANGABEN
+═══════════════════════════════════════ -->
+<div class="screen" id="l2">
+  <div class="stitle">Schadensangaben</div>
+  <div class="ssub">Ihre Daten und den Hergang erfassen</div>
+
+  <div class="vbadge" id="lBadge">🏗 Stapler</div>
+
+  <div class="div">Fahrerangaben</div>
+  <div class="fg"><label><span>Name</span> <span class="req">*</span></label><input type="text" id="lName" placeholder="Vor- und Nachname"></div>
+  <div class="fg"><label>Telefon</label><input type="tel" id="lPhone" placeholder="Durchwahl oder Handynummer"></div>
+
+  <div class="div">Schadensangaben</div>
+  <div class="row2">
+    <div class="fg"><label><span>Datum</span> <span class="req">*</span></label><input type="date" id="lDate"></div>
+    <div class="fg"><label><span>Uhrzeit</span> <span class="req">*</span></label><input type="time" id="lTime"></div>
+  </div>
+  <div class="fg">
+    <label><span>Ort</span> <span class="req">*</span></label>
+    <input type="text" id="lLoc" placeholder="Halle, Gang, Lagerbereich, Hof ...">
+  </div>
+  <div class="fg"><label>Betriebsstunden</label><input type="number" id="lHours" inputmode="numeric" placeholder="Stundenzähler, falls ablesbar"></div>
+  <div class="fg"><label><span>Hergang</span> <span class="req">*</span></label><textarea id="lDesc" placeholder="Was ist passiert? Kurz und präzise beschreiben..."></textarea></div>
+
+  <div class="fg">
+    <label><span>Schadensart</span> <span class="req">*</span></label>
+    <div class="dmg-grid">
+      <div class="dmg" onclick="pickDmg(this,'Anfahrschaden Regal')"><span class="di">🗄</span><span>Regal</span></div>
+      <div class="dmg" onclick="pickDmg(this,'Anfahrschaden Gebäude/Tor')"><span class="di">🚪</span><span>Gebäude / Tor</span></div>
+      <div class="dmg" onclick="pickDmg(this,'Kollision mit Fahrzeug')"><span class="di">🚗</span><span>Fahrzeug</span></div>
+      <div class="dmg" onclick="pickDmg(this,'Kollision mit Person')"><span class="di">⚠</span><span>Person</span></div>
+      <div class="dmg" onclick="pickDmg(this,'Ladung beschädigt')"><span class="di">📦</span><span>Ladung</span></div>
+      <div class="dmg" onclick="pickDmg(this,'Stapler umgekippt')"><span class="di">🔻</span><span>Umgekippt</span></div>
+      <div class="dmg" onclick="pickDmg(this,'Technischer Defekt')"><span class="di">🔧</span><span>Technik</span></div>
+      <div class="dmg" onclick="pickDmg(this,'Schaden beim Be-/Entladen')"><span class="di">🏗</span><span>Be-/Entladen</span></div>
+      <div class="dmg" onclick="pickDmg(this,'Sonstiges')"><span class="di">📋</span><span>Sonstiges</span></div>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-gray" onclick="goTo(1)">← Zurück</button>
+    <button class="btn btn-red" onclick="nextL2()">Weiter →</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     LAGER 3 – BETEILIGTE
+═══════════════════════════════════════ -->
+<div class="screen" id="l3">
+  <div class="stitle">Beteiligte</div>
+  <div class="ssub">Sind Personen oder Dritte betroffen?</div>
+
+  <div class="info">ℹ️ Bei Personenschaden: Sofort Notruf <strong>112</strong> rufen und Ersthelfer verständigen!</div>
+
+  <div class="fg">
+    <label><span>Wer oder was ist betroffen?</span> <span class="req">*</span></label>
+    <select id="lThird" onchange="onThirdChange()">
+      <option value="Nur Schaden am Stapler">Nur Schaden am Stapler</option>
+      <option value="Sachschaden Dritter">Sachschaden Dritter (fremdes Eigentum)</option>
+      <option value="Personenschaden">Personenschaden</option>
+      <option value="Sach- und Personenschaden">Sach- und Personenschaden</option>
+    </select>
+  </div>
+
+  <div id="lSachBlock" style="display:none">
+    <div class="div">Geschädigter (Sachschaden)</div>
+    <div class="fg"><label><span>Name / Firma</span> <span class="req">*</span></label><input type="text" id="lTName" placeholder="Name oder Firmenbezeichnung"></div>
+    <div class="fg"><label><span>Anschrift</span> <span class="req">*</span></label><input type="text" id="lTAddr" placeholder="Straße, PLZ, Ort"></div>
+    <div class="fg"><label>Telefon</label><input type="tel" id="lTPhone" placeholder="Erreichbarkeit"></div>
+    <div class="fg"><label><span>Was wurde beschädigt?</span> <span class="req">*</span></label><textarea id="lTDesc" placeholder="Beschädigte Sache und Umfang..."></textarea></div>
+  </div>
+
+  <div id="lPersBlock" style="display:none">
+    <div class="div">Verletzte Person</div>
+    <div class="fg"><label><span>Name</span> <span class="req">*</span></label><input type="text" id="lPName" placeholder="Vor- und Nachname"></div>
+    <div class="fg">
+      <label>Zugehörigkeit</label>
+      <select id="lPRole">
+        <option value="Eigener Mitarbeiter">Eigener Mitarbeiter</option>
+        <option value="Fremdfirma">Fremdfirma</option>
+        <option value="Besucher / Kunde">Besucher / Kunde</option>
+        <option value="Unbekannt">Unbekannt</option>
+      </select>
+    </div>
+    <div class="fg"><label><span>Art der Verletzung</span> <span class="req">*</span></label><textarea id="lPInjury" placeholder="Welche Verletzung, welches Körperteil..."></textarea></div>
+    <div class="row2">
+      <div class="fg">
+        <label>Erste Hilfe geleistet</label>
+        <select id="lPFirstAid"><option value="Ja">Ja</option><option value="Nein">Nein</option></select>
+      </div>
+      <div class="fg">
+        <label>Ärztliche Behandlung</label>
+        <select id="lPDoctor">
+          <option value="Nein">Nein</option>
+          <option value="Betriebsarzt">Betriebsarzt</option>
+          <option value="Durchgangsarzt">Durchgangsarzt</option>
+          <option value="Krankenhaus">Krankenhaus</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="div">Zeugen</div>
+  <div class="fg"><label>Zeuge 1 (Name + Telefon)</label><input type="text" id="lW1" placeholder="Falls vorhanden"></div>
+  <div class="fg"><label>Zeuge 2 (Name + Telefon)</label><input type="text" id="lW2" placeholder="Falls vorhanden"></div>
+
+  <div class="div">Meldung intern</div>
+  <div class="fg">
+    <label><span>Vorgesetzter informiert</span> <span class="req">*</span></label>
+    <select id="lSup" onchange="document.getElementById('lSupNameWrap').style.display=this.value==='Ja'?'block':'none'">
+      <option value="Ja">Ja</option>
+      <option value="Nein">Nein</option>
+    </select>
+  </div>
+  <div id="lSupNameWrap">
+    <div class="fg"><label>Name des Vorgesetzten</label><input type="text" id="lSupName" placeholder="Wer wurde informiert?"></div>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn btn-gray" onclick="goTo(2)">← Zurück</button>
+    <button class="btn btn-red" onclick="nextL3()">Weiter →</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
      SCREEN 4 – FOTOS
 ═══════════════════════════════════════ -->
 <div class="screen" id="s4">
   <div class="stitle" data-i18n="step4">Fotos</div>
   <div class="ssub" data-i18n="s4_sub">Bis zu 10 Fotos vom Schaden aufnehmen</div>
 
-  <div class="info">📸 <strong data-i18n="info_fotos_pflicht">Pflicht (mind. 2 Fotos):</strong> <span data-i18n="info_fotos_text">Nahaufnahmen aller Schäden + Übersichtsfotos der Unfallstelle. Außerdem: beide Kennzeichen, Spurrillen, Reifenspuren, Zeugenaustauschkarte.</span></div>
+  <div class="info">📸 <strong data-i18n="info_fotos_pflicht">Pflicht (mind. 2 Fotos):</strong> <span id="fotoHint" data-i18n="info_fotos_text">Nahaufnahmen aller Schäden + Übersichtsfotos der Unfallstelle. Außerdem: beide Kennzeichen, Spurrillen, Reifenspuren, Zeugenaustauschkarte.</span></div>
 
   <div class="pgrid" id="pgrid"></div>
   <div class="pcnt" id="pcnt">0 <span data-i18n="photos_of_10">/ 10 Fotos</span> <span style="color:var(--ci-red)" data-i18n="photos_min_pflicht">(mind. 2 Pflicht)</span></div>
@@ -462,7 +660,7 @@
 // ═══════════════════════════════
 // I18N – MEHRSPRACHIGKEIT
 // ═══════════════════════════════
-const I18N = {"de":{"hdr_sub":"Unfallaufnahme","hdr_badge":"⚠ Notfall","step1":"Fahrzeugauswahl","step2":"Fahrer & Unfallangaben","step3":"Unfallgegner & Schaden","step4":"Fotos","step5":"Zusammenfassung","s1_sub":"Gruppe wählen oder Kennzeichen suchen","load_btn":"🔄 Fahrzeuge neu laden","search_placeholder":"Kennzeichen oder Name suchen...","tap_to_open":"Tippen zum Öffnen","back_groups":"← Gruppen","btn_weiter":"Weiter →","btn_zurueck":"← Zurück","all_vehicles":"Alle Fahrzeuge","vehicles_total_suffix":"Fahrzeuge gesamt","vehicles_suffix":"Fahrzeuge","groups_suffix":"Gruppen","results_for":"Ergebnis(se) für","no_vehicles":"Keine Fahrzeuge gefunden","vehicles_in_group":"Fahrzeuge in","s2_sub":"Ihre Daten und Unfalldetails erfassen","km_loading":"📏 Kilometerstand wird geladen...","km_label":"📏 Kilometerstand:","section_fahrerangaben":"Fahrerangaben","label_fahrername":"Fahrername","ph_vorname_nachname":"Vor- und Nachname","label_fs_nr":"Führerschein-Nr.","ph_manuell":"Manuell eintragen","label_telefon":"Telefon","ph_handynummer":"Ihre Handynummer","section_unfallangaben":"Unfallangaben","label_datum":"Datum","label_uhrzeit":"Uhrzeit","label_unfallort":"Unfallort","ph_unfallort":"Straße, Ort / Autobahn, km","label_unfallhergang":"Unfallhergang","ph_unfallhergang":"Beschreiben Sie den Unfallhergang kurz und präzise...","label_schadensart":"Schadensart","dmg_auffahrunfall":"Auffahrunfall","dmg_parkschaden":"Parkschaden","dmg_rangierunfall":"Rangierunfall","dmg_spurwechsel":"Spurwechsel","dmg_wildschaden":"Wildschaden","dmg_abbiegevorfall":"Abbiegevorfall","dmg_beentladen":"Be-/Entladen","dmg_glatteis":"Glatteis","dmg_vorbeifahren":"Vorbeifahren","dmg_sonstiges":"Sonstiges","webfleet_hint":"· aus Webfleet (überschreibbar)","s3_sub":"Art des Schadens und Daten des Unfallgegners","info_notruf":"ℹ️ Bei Personenschaden: Sofort Notruf 112 rufen!","div_art_schadens":"Art des Schadens","label_schadenart":"Schadenart","schaden_fahrzeug":"Fahrzeugschaden","schaden_sach":"Sachschaden","div_fahrzeug_gegner":"Fahrzeug des Gegners","label_kennzeichen":"Kennzeichen","ph_kennzeichen":"z.B. DO-AB 1234","label_fahrzeugtyp":"Fahrzeugtyp","ph_fahrzeugtyp":"z.B. VW Golf","label_farbe":"Farbe","ph_farbe":"Farbe","div_halter":"Halter des Gegnerfahrzeugs","label_name_halter":"Name des Halters","ph_name_firma":"Vor- und Nachname / Firma","label_anschrift_halter":"Anschrift des Halters","ph_anschrift":"Straße, PLZ, Ort","label_telefon_halter":"Telefon Halter","ph_telefonnummer":"Telefonnummer","label_email_halter":"E-Mail Halter","ph_email_optional":"E-Mail-Adresse (optional)","tip_title":"Tipp für schnellere Schadensabwicklung","tip_text":"Vollständige Kontaktdaten beschleunigen die Abwicklung durch die Versicherung erheblich.","div_fahrer_gegner":"Fahrer des Gegners","label_name":"Name","label_anschrift":"Anschrift","ph_nummer":"Nummer","label_email_fahrer":"E-Mail Fahrer","label_geburtsdatum":"Geburtsdatum","ph_fs_nummer":"Führerscheinnummer","div_versicherung":"Versicherung des Gegners","label_vers_gesellschaft":"Versicherungsgesellschaft","ph_huk":"z.B. HUK-Coburg","label_policennummer":"Policennummer","ph_vers_scheinnr":"Versicherungsscheinnummer","div_geschaedigter":"Geschädigter (Sachschaden)","info_sachschaden_beispiel":"🏗 z.B. Gebäude, Zaun, Mauer, geparktes Fahrzeug ohne Fahrer","label_name_firma":"Name / Firma","ph_name_firmenbez":"Name oder Firmenbezeichnung","ph_erreichbarkeit":"Erreichbarkeit","label_email":"E-Mail","ph_email_falls":"E-Mail-Adresse (falls vorhanden)","div_zeugen":"Zeugen","label_zeuge1":"Zeuge 1 (Name + Telefon)","label_zeuge2":"Zeuge 2 (Name + Telefon)","ph_falls_vorhanden":"Falls vorhanden","zeugenkarte_title":"Zeugenaustauschkarte","zeugenkarte_text":"Zeugenaustauschkarte ausfüllen lassen und in Schritt 4 fotografieren!","div_polizei":"Polizei","label_polizei_frage":"Polizei aufgenommen?","opt_bitte_waehlen":"– Bitte wählen –","opt_ja_vor_ort":"Ja – Polizei war vor Ort","opt_nein":"Nein","opt_nicht_gerufen":"Polizei nicht gerufen","label_aktenzeichen":"Aktenzeichen","ph_aktenzeichen":"Aktenzeichen der Polizei","label_dienststelle":"Dienststelle","ph_dienststelle":"z.B. PI Dortmund-Mitte","s4_sub":"Bis zu 10 Fotos vom Schaden aufnehmen","info_fotos_pflicht":"Pflicht (mind. 2 Fotos):","info_fotos_text":"Nahaufnahmen aller Schäden + Übersichtsfotos der Unfallstelle. Außerdem: beide Kennzeichen, Spurrillen, Reifenspuren, Zeugenaustauschkarte.","photos_of_10":"/ 10 Fotos","photos_min_pflicht":"(mind. 2 Pflicht)","btn_kamera":"📷 Kamera","btn_galerie":"🖼 Galerie","s5_sub":"Bericht prüfen und senden","info_email_auto":"📧 PDF wird automatisch per E-Mail versendet","btn_senden":"✉ PDF erstellen & senden","sum_fahrzeug":"🚛 Fahrzeug","sum_fahrer":"👤 Fahrer","sum_unfall":"📍 Unfall","sum_gegner_fzg":"🚗 Unfallgegner Fahrzeug","sum_geschaedigter":"🏗 Geschädigter (Sachschaden)","sum_fotos":"📷 Fotos","sum_k_fahrzeug":"Kennzeichen","sum_k_kennzeichen":"Kennzeichen","sum_k_webfleet_einheit":"Webfleet Einheit","sum_k_km":"Kilometerstand","sum_k_name":"Name","sum_k_telefon":"Telefon","sum_k_datum_zeit":"Datum / Zeit","sum_k_ort":"Ort","sum_k_schadensart":"Schadensart","sum_k_halter":"Halter","sum_k_versicherung":"Versicherung","sum_k_anschrift":"Anschrift","sum_k_aufgenommen":"Aufgenommen","sum_v_foto":"Foto(s)","err_pflichtfelder":"Bitte alle Pflichtfelder (*) ausfüllen","err_fs_pflicht":"Führerschein-Nr. ist ein Pflichtfeld","err_schadensart":"Bitte eine Schadensart auswählen","err_art_schadens":"Bitte Art des Schadens wählen (Fahrzeug-/Sachschaden)","err_kennzeichen_gegner":"Kennzeichen des Unfallgegners ist Pflicht","err_name_halter":"Name des Halters ist Pflicht","err_anschrift_halter":"Anschrift des Halters ist Pflicht","err_name_fahrer_gegner":"Name des Fahrers (Gegner) ist Pflicht","err_anschrift_fahrer_gegner":"Anschrift des Fahrers (Gegner) ist Pflicht","err_name_geschaedigter":"Name des Geschädigten ist Pflicht","err_anschrift_geschaedigter":"Anschrift des Geschädigten ist Pflicht","err_telefon_geschaedigter":"Telefon des Geschädigten ist Pflicht","err_aktenzeichen_pflicht":"Aktenzeichen der Polizei ist Pflicht","err_dienststelle_pflicht":"Dienststelle der Polizei ist Pflicht","err_min_fotos":"Bitte mindestens 2 Fotos aufnehmen","err_generic":"Fehler:","err_photos_max":"weitere Fotos möglich","err_photos_only":"Nur","err_versand_fehlgeschlagen":"Automatischer Versand fehlgeschlagen – Outlook geöffnet","err_pdf_fehler":"PDF-Fehler:","toast_ausgewaehlt":"ausgewählt","toast_fahrer":"Fahrer:","dlg_bericht_gesendet":"Bericht gesendet!","dlg_wurde_gesendet_an":"Der Unfallbericht wurde automatisch an","dlg_gesendet":"gesendet.","dlg_schliessen":"Schließen","lang_switch_label":"Sprache"},"tr":{"hdr_sub":"Kaza Kaydı","hdr_badge":"⚠ Acil Durum","step1":"Araç Seçimi","step2":"Sürücü ve Kaza Bilgileri","step3":"Karşı Taraf ve Hasar","step4":"Fotoğraflar","step5":"Özet","s1_sub":"Grup seçin veya plaka arayın","load_btn":"🔄 Araçları yeniden yükle","search_placeholder":"Plaka veya isim arayın...","tap_to_open":"Açmak için dokunun","back_groups":"← Gruplar","btn_weiter":"İleri →","btn_zurueck":"← Geri","all_vehicles":"Tüm Araçlar","vehicles_total_suffix":"toplam araç","vehicles_suffix":"araç","groups_suffix":"grup","results_for":"için sonuç(lar)","no_vehicles":"Araç bulunamadı","vehicles_in_group":"araç, grup:","s2_sub":"Bilgilerinizi ve kaza detaylarını girin","km_loading":"📏 Kilometre bilgisi yükleniyor...","km_label":"📏 Kilometre:","section_fahrerangaben":"Sürücü Bilgileri","label_fahrername":"Sürücü Adı","ph_vorname_nachname":"Ad ve Soyad","label_fs_nr":"Ehliyet No.","ph_manuell":"Manuel olarak girin","label_telefon":"Telefon","ph_handynummer":"Cep telefonu numaranız","section_unfallangaben":"Kaza Bilgileri","label_datum":"Tarih","label_uhrzeit":"Saat","label_unfallort":"Kaza Yeri","ph_unfallort":"Cadde, Şehir / Otoyol, km","label_unfallhergang":"Kaza Tutanağı","ph_unfallhergang":"Kazanın nasıl olduğunu kısa ve net şekilde açıklayın...","label_schadensart":"Hasar Türü","dmg_auffahrunfall":"Arkadan Çarpma","dmg_parkschaden":"Park Hasarı","dmg_rangierunfall":"Manevra Kazası","dmg_spurwechsel":"Şerit Değiştirme","dmg_wildschaden":"Hayvan Çarpması","dmg_abbiegevorfall":"Dönüş Kazası","dmg_beentladen":"Yükleme/Boşaltma","dmg_glatteis":"Buzlanma","dmg_vorbeifahren":"Yan Geçiş","dmg_sonstiges":"Diğer","webfleet_hint":"· Webfleet'ten (değiştirilebilir)","s3_sub":"Hasar türü ve karşı taraf bilgileri","info_notruf":"ℹ️ Yaralanma durumunda: Hemen 112'yi arayın!","div_art_schadens":"Hasar Türü","label_schadenart":"Hasar Şekli","schaden_fahrzeug":"Araç Hasarı","schaden_sach":"Maddi Hasar","div_fahrzeug_gegner":"Karşı Tarafın Aracı","label_kennzeichen":"Plaka","ph_kennzeichen":"örn. DO-AB 1234","label_fahrzeugtyp":"Araç Tipi","ph_fahrzeugtyp":"örn. VW Golf","label_farbe":"Renk","ph_farbe":"Renk","div_halter":"Karşı Aracın Ruhsat Sahibi","label_name_halter":"Ruhsat Sahibinin Adı","ph_name_firma":"Ad Soyad / Firma","label_anschrift_halter":"Ruhsat Sahibinin Adresi","ph_anschrift":"Cadde, Posta Kodu, Şehir","label_telefon_halter":"Ruhsat Sahibi Telefonu","ph_telefonnummer":"Telefon Numarası","label_email_halter":"Ruhsat Sahibi E-postası","ph_email_optional":"E-posta Adresi (isteğe bağlı)","tip_title":"Daha Hızlı Hasar İşlemi İçin İpucu","tip_text":"Eksiksiz iletişim bilgileri, sigorta işlemlerini büyük ölçüde hızlandırır.","div_fahrer_gegner":"Karşı Tarafın Sürücüsü","label_name":"Ad Soyad","label_anschrift":"Adres","ph_nummer":"Numara","label_email_fahrer":"Sürücü E-postası","label_geburtsdatum":"Doğum Tarihi","ph_fs_nummer":"Ehliyet Numarası","div_versicherung":"Karşı Tarafın Sigortası","label_vers_gesellschaft":"Sigorta Şirketi","ph_huk":"örn. HUK-Coburg","label_policennummer":"Poliçe Numarası","ph_vers_scheinnr":"Poliçe Numarası","div_geschaedigter":"Zarar Gören (Maddi Hasar)","info_sachschaden_beispiel":"🏗 örn. bina, çit, duvar, sürücüsüz park halindeki araç","label_name_firma":"Ad / Firma","ph_name_firmenbez":"Ad veya Firma Adı","ph_erreichbarkeit":"Ulaşılabilirlik","label_email":"E-posta","ph_email_falls":"E-posta Adresi (varsa)","div_zeugen":"Tanıklar","label_zeuge1":"Tanık 1 (Ad + Telefon)","label_zeuge2":"Tanık 2 (Ad + Telefon)","ph_falls_vorhanden":"Varsa","zeugenkarte_title":"Tanık Bilgi Kartı","zeugenkarte_text":"Tanık bilgi kartını doldurtun ve 4. adımda fotoğrafını çekin!","div_polizei":"Polis","label_polizei_frage":"Polis Tutanak Tuttu mu?","opt_bitte_waehlen":"– Lütfen seçin –","opt_ja_vor_ort":"Evet – Polis olay yerindeydi","opt_nein":"Hayır","opt_nicht_gerufen":"Polis çağrılmadı","label_aktenzeichen":"Dosya Numarası","ph_aktenzeichen":"Polis Dosya Numarası","label_dienststelle":"Polis Karakolu","ph_dienststelle":"örn. Dortmund-Mitte Polis Merkezi","s4_sub":"Hasardan en fazla 10 fotoğraf çekin","info_fotos_pflicht":"Zorunlu (en az 2 fotoğraf):","info_fotos_text":"Tüm hasarların yakın çekimi + kaza yerinin genel fotoğrafları. Ayrıca: her iki plaka, fren izleri, lastik izleri, tanık bilgi kartı.","photos_of_10":"/ 10 fotoğraf","photos_min_pflicht":"(en az 2 zorunlu)","btn_kamera":"📷 Kamera","btn_galerie":"🖼 Galeri","s5_sub":"Raporu kontrol edin ve gönderin","info_email_auto":"📧 PDF otomatik olarak e-posta ile gönderilecek","btn_senden":"✉ PDF Oluştur ve Gönder","sum_fahrzeug":"🚛 Araç","sum_fahrer":"👤 Sürücü","sum_unfall":"📍 Kaza","sum_gegner_fzg":"🚗 Karşı Taraf Aracı","sum_geschaedigter":"🏗 Zarar Gören (Maddi Hasar)","sum_fotos":"📷 Fotoğraflar","sum_k_fahrzeug":"Plaka","sum_k_kennzeichen":"Plaka","sum_k_webfleet_einheit":"Webfleet Birimi","sum_k_km":"Kilometre","sum_k_name":"Ad Soyad","sum_k_telefon":"Telefon","sum_k_datum_zeit":"Tarih / Saat","sum_k_ort":"Konum","sum_k_schadensart":"Hasar Türü","sum_k_halter":"Ruhsat Sahibi","sum_k_versicherung":"Sigorta","sum_k_anschrift":"Adres","sum_k_aufgenommen":"Çekilen","sum_v_foto":"fotoğraf","err_pflichtfelder":"Lütfen tüm zorunlu (*) alanları doldurun","err_fs_pflicht":"Ehliyet No. zorunlu bir alandır","err_schadensart":"Lütfen bir hasar türü seçin","err_art_schadens":"Lütfen hasar türünü seçin (Araç/Maddi Hasar)","err_kennzeichen_gegner":"Karşı tarafın plakası zorunludur","err_name_halter":"Ruhsat sahibinin adı zorunludur","err_anschrift_halter":"Ruhsat sahibinin adresi zorunludur","err_name_fahrer_gegner":"Sürücünün adı (karşı taraf) zorunludur","err_anschrift_fahrer_gegner":"Sürücünün adresi (karşı taraf) zorunludur","err_name_geschaedigter":"Zarar görenin adı zorunludur","err_anschrift_geschaedigter":"Zarar görenin adresi zorunludur","err_telefon_geschaedigter":"Zarar görenin telefonu zorunludur","err_aktenzeichen_pflicht":"Polis dosya numarası zorunludur","err_dienststelle_pflicht":"Polis karakolu zorunludur","err_min_fotos":"Lütfen en az 2 fotoğraf çekin","err_generic":"Hata:","err_photos_max":"daha fazla fotoğraf eklenebilir","err_photos_only":"Sadece","err_versand_fehlgeschlagen":"Otomatik gönderim başarısız – Outlook açıldı","err_pdf_fehler":"PDF Hatası:","toast_ausgewaehlt":"seçildi","toast_fahrer":"Sürücü:","dlg_bericht_gesendet":"Rapor Gönderildi!","dlg_wurde_gesendet_an":"Kaza raporu otomatik olarak şu adrese gönderildi:","dlg_gesendet":"gönderildi.","dlg_schliessen":"Kapat","lang_switch_label":"Dil"},"ru":{"hdr_sub":"Оформление ДТП","hdr_badge":"⚠ Экстренный случай","step1":"Выбор автомобиля","step2":"Данные водителя и ДТП","step3":"Виновник и ущерб","step4":"Фотографии","step5":"Сводка","s1_sub":"Выберите группу или найдите по номеру","load_btn":"🔄 Обновить список авто","search_placeholder":"Поиск по номеру или имени...","tap_to_open":"Нажмите, чтобы открыть","back_groups":"← Группы","btn_weiter":"Далее →","btn_zurueck":"← Назад","all_vehicles":"Все автомобили","vehicles_total_suffix":"всего автомобилей","vehicles_suffix":"автомобилей","groups_suffix":"групп","results_for":"результат(ов) для","no_vehicles":"Автомобили не найдены","vehicles_in_group":"автомобилей в группе","s2_sub":"Укажите свои данные и детали ДТП","km_loading":"📏 Загрузка пробега...","km_label":"📏 Пробег:","section_fahrerangaben":"Данные водителя","label_fahrername":"Имя водителя","ph_vorname_nachname":"Имя и фамилия","label_fs_nr":"Номер водит. удост.","ph_manuell":"Ввести вручную","label_telefon":"Телефон","ph_handynummer":"Ваш мобильный номер","section_unfallangaben":"Данные о ДТП","label_datum":"Дата","label_uhrzeit":"Время","label_unfallort":"Место ДТП","ph_unfallort":"Улица, город / автомагистраль, км","label_unfallhergang":"Описание ДТП","ph_unfallhergang":"Кратко и точно опишите обстоятельства ДТП...","label_schadensart":"Вид происшествия","dmg_auffahrunfall":"Наезд сзади","dmg_parkschaden":"Повреждение на парковке","dmg_rangierunfall":"ДТП при маневрировании","dmg_spurwechsel":"Смена полосы","dmg_wildschaden":"Наезд на животное","dmg_abbiegevorfall":"Происшествие при повороте","dmg_beentladen":"Погрузка/разгрузка","dmg_glatteis":"Гололёд","dmg_vorbeifahren":"Проезд мимо","dmg_sonstiges":"Другое","webfleet_hint":"· из Webfleet (можно изменить)","s3_sub":"Вид ущерба и данные виновника","info_notruf":"ℹ️ При травмах: немедленно звоните 112!","div_art_schadens":"Вид ущерба","label_schadenart":"Тип ущерба","schaden_fahrzeug":"Ущерб ТС","schaden_sach":"Материальный ущерб","div_fahrzeug_gegner":"Автомобиль виновника","label_kennzeichen":"Гос. номер","ph_kennzeichen":"напр. DO-AB 1234","label_fahrzeugtyp":"Тип автомобиля","ph_fahrzeugtyp":"напр. VW Golf","label_farbe":"Цвет","ph_farbe":"Цвет","div_halter":"Владелец авто виновника","label_name_halter":"Имя владельца","ph_name_firma":"Имя, фамилия / компания","label_anschrift_halter":"Адрес владельца","ph_anschrift":"Улица, индекс, город","label_telefon_halter":"Телефон владельца","ph_telefonnummer":"Номер телефона","label_email_halter":"Email владельца","ph_email_optional":"Email (необязательно)","tip_title":"Совет для ускорения урегулирования","tip_text":"Полные контактные данные значительно ускоряют урегулирование страховой компанией.","div_fahrer_gegner":"Водитель виновника","label_name":"Имя","label_anschrift":"Адрес","ph_nummer":"Номер","label_email_fahrer":"Email водителя","label_geburtsdatum":"Дата рождения","ph_fs_nummer":"Номер вод. удостоверения","div_versicherung":"Страховка виновника","label_vers_gesellschaft":"Страховая компания","ph_huk":"напр. HUK-Coburg","label_policennummer":"Номер полиса","ph_vers_scheinnr":"Номер страхового полиса","div_geschaedigter":"Пострадавший (матер. ущерб)","info_sachschaden_beispiel":"🏗 напр. здание, забор, стена, припаркованный автомобиль без водителя","label_name_firma":"Имя / компания","ph_name_firmenbez":"Имя или название компании","ph_erreichbarkeit":"Контакт для связи","label_email":"Email","ph_email_falls":"Email (если есть)","div_zeugen":"Свидетели","label_zeuge1":"Свидетель 1 (имя + телефон)","label_zeuge2":"Свидетель 2 (имя + телефон)","ph_falls_vorhanden":"Если есть","zeugenkarte_title":"Карта обмена данными свидетелей","zeugenkarte_text":"Заполните карту обмена данными свидетелей и сфотографируйте её в шаге 4!","div_polizei":"Полиция","label_polizei_frage":"Полиция составляла протокол?","opt_bitte_waehlen":"– Пожалуйста, выберите –","opt_ja_vor_ort":"Да – полиция была на месте","opt_nein":"Нет","opt_nicht_gerufen":"Полиция не вызывалась","label_aktenzeichen":"Номер дела","ph_aktenzeichen":"Номер дела полиции","label_dienststelle":"Отделение полиции","ph_dienststelle":"напр. отдел полиции Дортмунд-Центр","s4_sub":"Сделайте до 10 фото повреждений","info_fotos_pflicht":"Обязательно (мин. 2 фото):","info_fotos_text":"Крупные снимки всех повреждений + общие фото места ДТП. Также: оба номера, следы торможения, следы шин, карта обмена данными свидетелей.","photos_of_10":"/ 10 фото","photos_min_pflicht":"(мин. 2 обязательно)","btn_kamera":"📷 Камера","btn_galerie":"🖼 Галерея","s5_sub":"Проверьте и отправьте отчёт","info_email_auto":"📧 PDF будет автоматически отправлен по электронной почте","btn_senden":"✉ Создать и отправить PDF","sum_fahrzeug":"🚛 Автомобиль","sum_fahrer":"👤 Водитель","sum_unfall":"📍 ДТП","sum_gegner_fzg":"🚗 Автомобиль виновника","sum_geschaedigter":"🏗 Пострадавший (матер. ущерб)","sum_fotos":"📷 Фотографии","sum_k_fahrzeug":"Гос. номер","sum_k_kennzeichen":"Гос. номер","sum_k_webfleet_einheit":"Устройство Webfleet","sum_k_km":"Пробег","sum_k_name":"Имя","sum_k_telefon":"Телефон","sum_k_datum_zeit":"Дата / время","sum_k_ort":"Место","sum_k_schadensart":"Вид происшествия","sum_k_halter":"Владелец","sum_k_versicherung":"Страховка","sum_k_anschrift":"Адрес","sum_k_aufgenommen":"Сделано","sum_v_foto":"фото","err_pflichtfelder":"Заполните все обязательные (*) поля","err_fs_pflicht":"Номер вод. удостоверения обязателен","err_schadensart":"Выберите вид происшествия","err_art_schadens":"Выберите вид ущерба (ТС/материальный)","err_kennzeichen_gegner":"Гос. номер виновника обязателен","err_name_halter":"Имя владельца обязательно","err_anschrift_halter":"Адрес владельца обязателен","err_name_fahrer_gegner":"Имя водителя (виновника) обязательно","err_anschrift_fahrer_gegner":"Адрес водителя (виновника) обязателен","err_name_geschaedigter":"Имя пострадавшего обязательно","err_anschrift_geschaedigter":"Адрес пострадавшего обязателен","err_telefon_geschaedigter":"Телефон пострадавшего обязателен","err_aktenzeichen_pflicht":"Номер дела полиции обязателен","err_dienststelle_pflicht":"Отделение полиции обязательно","err_min_fotos":"Сделайте минимум 2 фото","err_generic":"Ошибка:","err_photos_max":"ещё фото можно добавить","err_photos_only":"Только","err_versand_fehlgeschlagen":"Автоматическая отправка не удалась – открыт Outlook","err_pdf_fehler":"Ошибка PDF:","toast_ausgewaehlt":"выбрано","toast_fahrer":"Водитель:","dlg_bericht_gesendet":"Отчёт отправлен!","dlg_wurde_gesendet_an":"Отчёт о ДТП автоматически отправлен на","dlg_gesendet":"отправлен.","dlg_schliessen":"Закрыть","lang_switch_label":"Язык"},"ro":{"hdr_sub":"Înregistrare accident","hdr_badge":"⚠ Urgență","step1":"Selectare vehicul","step2":"Date șofer și accident","step3":"Partea adversă și daune","step4":"Fotografii","step5":"Rezumat","s1_sub":"Alegeți grupul sau căutați numărul","load_btn":"🔄 Reîncarcă vehiculele","search_placeholder":"Căutare număr sau nume...","tap_to_open":"Atingeți pentru a deschide","back_groups":"← Grupuri","btn_weiter":"Înainte →","btn_zurueck":"← Înapoi","all_vehicles":"Toate vehiculele","vehicles_total_suffix":"vehicule în total","vehicles_suffix":"vehicule","groups_suffix":"grupuri","results_for":"rezultat(e) pentru","no_vehicles":"Niciun vehicul găsit","vehicles_in_group":"vehicule în","s2_sub":"Introduceți datele dvs. și detaliile accidentului","km_loading":"📏 Se încarcă kilometrajul...","km_label":"📏 Kilometraj:","section_fahrerangaben":"Date șofer","label_fahrername":"Nume șofer","ph_vorname_nachname":"Prenume și nume","label_fs_nr":"Nr. permis conducere","ph_manuell":"Introduceți manual","label_telefon":"Telefon","ph_handynummer":"Numărul dvs. de mobil","section_unfallangaben":"Date accident","label_datum":"Data","label_uhrzeit":"Ora","label_unfallort":"Locul accidentului","ph_unfallort":"Stradă, localitate / autostradă, km","label_unfallhergang":"Descrierea accidentului","ph_unfallhergang":"Descrieți pe scurt și precis accidentul...","label_schadensart":"Tip de daună","dmg_auffahrunfall":"Coliziune din spate","dmg_parkschaden":"Daună la parcare","dmg_rangierunfall":"Accident la manevră","dmg_spurwechsel":"Schimbare bandă","dmg_wildschaden":"Coliziune cu animal","dmg_abbiegevorfall":"Incident la virare","dmg_beentladen":"Încărcare/Descărcare","dmg_glatteis":"Polei","dmg_vorbeifahren":"Depășire/Trecere pe lângă","dmg_sonstiges":"Altele","webfleet_hint":"· din Webfleet (editabil)","s3_sub":"Tipul daunei și datele părții adverse","info_notruf":"ℹ️ În caz de vătămare corporală: sunați imediat 112!","div_art_schadens":"Tipul daunei","label_schadenart":"Tip daună","schaden_fahrzeug":"Daună vehicul","schaden_sach":"Daună materială","div_fahrzeug_gegner":"Vehiculul părții adverse","label_kennzeichen":"Nr. înmatriculare","ph_kennzeichen":"ex. DO-AB 1234","label_fahrzeugtyp":"Tip vehicul","ph_fahrzeugtyp":"ex. VW Golf","label_farbe":"Culoare","ph_farbe":"Culoare","div_halter":"Deținătorul vehiculului advers","label_name_halter":"Numele deținătorului","ph_name_firma":"Nume, prenume / firmă","label_anschrift_halter":"Adresa deținătorului","ph_anschrift":"Stradă, cod poștal, localitate","label_telefon_halter":"Telefon deținător","ph_telefonnummer":"Număr de telefon","label_email_halter":"E-mail deținător","ph_email_optional":"Adresă e-mail (opțional)","tip_title":"Sfat pentru soluționare mai rapidă","tip_text":"Datele de contact complete accelerează considerabil soluționarea de către asigurător.","div_fahrer_gegner":"Șoferul părții adverse","label_name":"Nume","label_anschrift":"Adresă","ph_nummer":"Număr","label_email_fahrer":"E-mail șofer","label_geburtsdatum":"Data nașterii","ph_fs_nummer":"Numărul permisului","div_versicherung":"Asigurarea părții adverse","label_vers_gesellschaft":"Societate de asigurări","ph_huk":"ex. HUK-Coburg","label_policennummer":"Număr poliță","ph_vers_scheinnr":"Numărul poliței de asigurare","div_geschaedigter":"Persoana prejudiciată (daună materială)","info_sachschaden_beispiel":"🏗 ex. clădire, gard, zid, vehicul parcat fără șofer","label_name_firma":"Nume / firmă","ph_name_firmenbez":"Nume sau denumire firmă","ph_erreichbarkeit":"Disponibilitate contact","label_email":"E-mail","ph_email_falls":"Adresă e-mail (dacă există)","div_zeugen":"Martori","label_zeuge1":"Martor 1 (nume + telefon)","label_zeuge2":"Martor 2 (nume + telefon)","ph_falls_vorhanden":"Dacă există","zeugenkarte_title":"Fișă de schimb martori","zeugenkarte_text":"Completați fișa de schimb martori și fotografiați-o la pasul 4!","div_polizei":"Poliție","label_polizei_frage":"A intervenit poliția?","opt_bitte_waehlen":"– Vă rugăm alegeți –","opt_ja_vor_ort":"Da – poliția a fost la fața locului","opt_nein":"Nu","opt_nicht_gerufen":"Poliția nu a fost chemată","label_aktenzeichen":"Număr de dosar","ph_aktenzeichen":"Numărul de dosar al poliției","label_dienststelle":"Secție de poliție","ph_dienststelle":"ex. Secția Poliție Dortmund-Centru","s4_sub":"Realizați până la 10 fotografii ale daunei","info_fotos_pflicht":"Obligatoriu (min. 2 fotografii):","info_fotos_text":"Prim-planuri ale tuturor daunelor + fotografii de ansamblu ale locului accidentului. De asemenea: ambele numere de înmatriculare, urme de frânare, urme de anvelope, fișa de schimb martori.","photos_of_10":"/ 10 fotografii","photos_min_pflicht":"(min. 2 obligatorii)","btn_kamera":"📷 Cameră","btn_galerie":"🖼 Galerie","s5_sub":"Verificați și trimiteți raportul","info_email_auto":"📧 PDF-ul va fi trimis automat prin e-mail","btn_senden":"✉ Creează și trimite PDF","sum_fahrzeug":"🚛 Vehicul","sum_fahrer":"👤 Șofer","sum_unfall":"📍 Accident","sum_gegner_fzg":"🚗 Vehiculul părții adverse","sum_geschaedigter":"🏗 Persoana prejudiciată (daună materială)","sum_fotos":"📷 Fotografii","sum_k_fahrzeug":"Nr. înmatriculare","sum_k_kennzeichen":"Nr. înmatriculare","sum_k_webfleet_einheit":"Unitate Webfleet","sum_k_km":"Kilometraj","sum_k_name":"Nume","sum_k_telefon":"Telefon","sum_k_datum_zeit":"Data / Ora","sum_k_ort":"Locație","sum_k_schadensart":"Tip daună","sum_k_halter":"Deținător","sum_k_versicherung":"Asigurare","sum_k_anschrift":"Adresă","sum_k_aufgenommen":"Realizate","sum_v_foto":"fotografie(i)","err_pflichtfelder":"Completați toate câmpurile obligatorii (*)","err_fs_pflicht":"Nr. permisului este obligatoriu","err_schadensart":"Selectați un tip de daună","err_art_schadens":"Selectați tipul daunei (vehicul/material)","err_kennzeichen_gegner":"Numărul de înmatriculare al părții adverse este obligatoriu","err_name_halter":"Numele deținătorului este obligatoriu","err_anschrift_halter":"Adresa deținătorului este obligatorie","err_name_fahrer_gegner":"Numele șoferului (partea adversă) este obligatoriu","err_anschrift_fahrer_gegner":"Adresa șoferului (partea adversă) este obligatorie","err_name_geschaedigter":"Numele persoanei prejudiciate este obligatoriu","err_anschrift_geschaedigter":"Adresa persoanei prejudiciate este obligatorie","err_telefon_geschaedigter":"Telefonul persoanei prejudiciate este obligatoriu","err_aktenzeichen_pflicht":"Numărul de dosar al poliției este obligatoriu","err_dienststelle_pflicht":"Secția de poliție este obligatorie","err_min_fotos":"Realizați cel puțin 2 fotografii","err_generic":"Eroare:","err_photos_max":"fotografii suplimentare posibile","err_photos_only":"Doar","err_versand_fehlgeschlagen":"Trimiterea automată a eșuat – Outlook deschis","err_pdf_fehler":"Eroare PDF:","toast_ausgewaehlt":"selectat","toast_fahrer":"Șofer:","dlg_bericht_gesendet":"Raport trimis!","dlg_wurde_gesendet_an":"Raportul de accident a fost trimis automat către","dlg_gesendet":"trimis.","dlg_schliessen":"Închide","lang_switch_label":"Limbă"},"pl":{"hdr_sub":"Zgłoszenie wypadku","hdr_badge":"⚠ Alarm","step1":"Wybór pojazdu","step2":"Dane kierowcy i wypadku","step3":"Strona przeciwna i szkoda","step4":"Zdjęcia","step5":"Podsumowanie","s1_sub":"Wybierz grupę lub wyszukaj numer rejestracyjny","load_btn":"🔄 Odśwież listę pojazdów","search_placeholder":"Szukaj numeru rejestracyjnego lub nazwy...","tap_to_open":"Dotknij, aby otworzyć","back_groups":"← Grupy","btn_weiter":"Dalej →","btn_zurueck":"← Wstecz","all_vehicles":"Wszystkie pojazdy","vehicles_total_suffix":"pojazdów łącznie","vehicles_suffix":"pojazdów","groups_suffix":"grup","results_for":"wynik(ów) dla","no_vehicles":"Nie znaleziono pojazdów","vehicles_in_group":"pojazdów w grupie","s2_sub":"Wprowadź swoje dane i szczegóły wypadku","km_loading":"📏 Wczytywanie przebiegu...","km_label":"📏 Przebieg:","section_fahrerangaben":"Dane kierowcy","label_fahrername":"Imię i nazwisko kierowcy","ph_vorname_nachname":"Imię i nazwisko","label_fs_nr":"Nr prawa jazdy","ph_manuell":"Wpisz ręcznie","label_telefon":"Telefon","ph_handynummer":"Twój numer telefonu","section_unfallangaben":"Dane wypadku","label_datum":"Data","label_uhrzeit":"Godzina","label_unfallort":"Miejsce wypadku","ph_unfallort":"Ulica, miejscowość / autostrada, km","label_unfallhergang":"Przebieg wypadku","ph_unfallhergang":"Opisz krótko i precyzyjnie przebieg wypadku...","label_schadensart":"Rodzaj szkody","dmg_auffahrunfall":"Najechanie od tyłu","dmg_parkschaden":"Szkoda parkingowa","dmg_rangierunfall":"Wypadek przy manewrowaniu","dmg_spurwechsel":"Zmiana pasa ruchu","dmg_wildschaden":"Kolizja ze zwierzęciem","dmg_abbiegevorfall":"Zdarzenie przy skręcaniu","dmg_beentladen":"Załadunek/Rozładunek","dmg_glatteis":"Gołoledź","dmg_vorbeifahren":"Wymijanie","dmg_sonstiges":"Inne","webfleet_hint":"· z Webfleet (edytowalne)","s3_sub":"Rodzaj szkody i dane strony przeciwnej","info_notruf":"ℹ️ W przypadku obrażeń ciała: natychmiast zadzwoń pod 112!","div_art_schadens":"Rodzaj szkody","label_schadenart":"Typ szkody","schaden_fahrzeug":"Szkoda pojazdu","schaden_sach":"Szkoda materialna","div_fahrzeug_gegner":"Pojazd strony przeciwnej","label_kennzeichen":"Nr rejestracyjny","ph_kennzeichen":"np. DO-AB 1234","label_fahrzeugtyp":"Typ pojazdu","ph_fahrzeugtyp":"np. VW Golf","label_farbe":"Kolor","ph_farbe":"Kolor","div_halter":"Właściciel pojazdu strony przeciwnej","label_name_halter":"Imię i nazwisko właściciela","ph_name_firma":"Imię i nazwisko / firma","label_anschrift_halter":"Adres właściciela","ph_anschrift":"Ulica, kod pocztowy, miejscowość","label_telefon_halter":"Telefon właściciela","ph_telefonnummer":"Numer telefonu","label_email_halter":"E-mail właściciela","ph_email_optional":"Adres e-mail (opcjonalnie)","tip_title":"Wskazówka dla szybszej likwidacji szkody","tip_text":"Kompletne dane kontaktowe znacznie przyspieszają likwidację szkody przez ubezpieczyciela.","div_fahrer_gegner":"Kierowca strony przeciwnej","label_name":"Imię i nazwisko","label_anschrift":"Adres","ph_nummer":"Numer","label_email_fahrer":"E-mail kierowcy","label_geburtsdatum":"Data urodzenia","ph_fs_nummer":"Numer prawa jazdy","div_versicherung":"Ubezpieczenie strony przeciwnej","label_vers_gesellschaft":"Towarzystwo ubezpieczeniowe","ph_huk":"np. HUK-Coburg","label_policennummer":"Numer polisy","ph_vers_scheinnr":"Numer polisy ubezpieczeniowej","div_geschaedigter":"Poszkodowany (szkoda materialna)","info_sachschaden_beispiel":"🏗 np. budynek, płot, mur, zaparkowany pojazd bez kierowcy","label_name_firma":"Imię / firma","ph_name_firmenbez":"Nazwisko lub nazwa firmy","ph_erreichbarkeit":"Kontakt","label_email":"E-mail","ph_email_falls":"Adres e-mail (jeśli dostępny)","div_zeugen":"Świadkowie","label_zeuge1":"Świadek 1 (imię i nazwisko + telefon)","label_zeuge2":"Świadek 2 (imię i nazwisko + telefon)","ph_falls_vorhanden":"Jeśli dotyczy","zeugenkarte_title":"Karta wymiany danych świadków","zeugenkarte_text":"Wypełnij kartę wymiany danych świadków i sfotografuj ją w kroku 4!","div_polizei":"Policja","label_polizei_frage":"Czy policja sporządziła protokół?","opt_bitte_waehlen":"– Proszę wybrać –","opt_ja_vor_ort":"Tak – policja była na miejscu","opt_nein":"Nie","opt_nicht_gerufen":"Nie wezwano policji","label_aktenzeichen":"Sygnatura sprawy","ph_aktenzeichen":"Sygnatura sprawy policyjnej","label_dienststelle":"Jednostka policji","ph_dienststelle":"np. Komisariat Dortmund-Centrum","s4_sub":"Zrób maksymalnie 10 zdjęć szkody","info_fotos_pflicht":"Wymagane (min. 2 zdjęcia):","info_fotos_text":"Zbliżenia wszystkich uszkodzeń + zdjęcia ogólne miejsca wypadku. Ponadto: obie tablice rejestracyjne, ślady hamowania, ślady opon, karta wymiany danych świadków.","photos_of_10":"/ 10 zdjęć","photos_min_pflicht":"(min. 2 wymagane)","btn_kamera":"📷 Aparat","btn_galerie":"🖼 Galeria","s5_sub":"Sprawdź i wyślij raport","info_email_auto":"📧 PDF zostanie automatycznie wysłany e-mailem","btn_senden":"✉ Utwórz i wyślij PDF","sum_fahrzeug":"🚛 Pojazd","sum_fahrer":"👤 Kierowca","sum_unfall":"📍 Wypadek","sum_gegner_fzg":"🚗 Pojazd strony przeciwnej","sum_geschaedigter":"🏗 Poszkodowany (szkoda materialna)","sum_fotos":"📷 Zdjęcia","sum_k_fahrzeug":"Nr rejestracyjny","sum_k_kennzeichen":"Nr rejestracyjny","sum_k_webfleet_einheit":"Jednostka Webfleet","sum_k_km":"Przebieg","sum_k_name":"Imię i nazwisko","sum_k_telefon":"Telefon","sum_k_datum_zeit":"Data / godzina","sum_k_ort":"Lokalizacja","sum_k_schadensart":"Rodzaj szkody","sum_k_halter":"Właściciel","sum_k_versicherung":"Ubezpieczenie","sum_k_anschrift":"Adres","sum_k_aufgenommen":"Wykonane","sum_v_foto":"zdjęcie/zdjęć","err_pflichtfelder":"Wypełnij wszystkie wymagane pola (*)","err_fs_pflicht":"Nr prawa jazdy jest wymagany","err_schadensart":"Wybierz rodzaj szkody","err_art_schadens":"Wybierz rodzaj szkody (pojazd/materialna)","err_kennzeichen_gegner":"Numer rejestracyjny strony przeciwnej jest wymagany","err_name_halter":"Imię i nazwisko właściciela jest wymagane","err_anschrift_halter":"Adres właściciela jest wymagany","err_name_fahrer_gegner":"Imię kierowcy (strona przeciwna) jest wymagane","err_anschrift_fahrer_gegner":"Adres kierowcy (strona przeciwna) jest wymagany","err_name_geschaedigter":"Imię poszkodowanego jest wymagane","err_anschrift_geschaedigter":"Adres poszkodowanego jest wymagany","err_telefon_geschaedigter":"Telefon poszkodowanego jest wymagany","err_aktenzeichen_pflicht":"Sygnatura sprawy policyjnej jest wymagana","err_dienststelle_pflicht":"Jednostka policji jest wymagana","err_min_fotos":"Zrób co najmniej 2 zdjęcia","err_generic":"Błąd:","err_photos_max":"kolejnych zdjęć można dodać","err_photos_only":"Tylko","err_versand_fehlgeschlagen":"Automatyczne wysyłanie nie powiodło się – otwarto Outlook","err_pdf_fehler":"Błąd PDF:","toast_ausgewaehlt":"wybrano","toast_fahrer":"Kierowca:","dlg_bericht_gesendet":"Raport wysłany!","dlg_wurde_gesendet_an":"Raport wypadku został automatycznie wysłany do","dlg_gesendet":"wysłano.","dlg_schliessen":"Zamknij","lang_switch_label":"Język"},"cs":{"hdr_sub":"Záznam nehody","hdr_badge":"⚠ Nouzová situace","step1":"Výběr vozidla","step2":"Údaje o řidiči a nehodě","step3":"Protistrana a škoda","step4":"Fotografie","step5":"Shrnutí","s1_sub":"Vyberte skupinu nebo vyhledejte SPZ","load_btn":"🔄 Znovu načíst vozidla","search_placeholder":"Hledat SPZ nebo název...","tap_to_open":"Klepnutím otevřete","back_groups":"← Skupiny","btn_weiter":"Další →","btn_zurueck":"← Zpět","all_vehicles":"Všechna vozidla","vehicles_total_suffix":"vozidel celkem","vehicles_suffix":"vozidel","groups_suffix":"skupin","results_for":"výsledek/výsledky pro","no_vehicles":"Nebyla nalezena žádná vozidla","vehicles_in_group":"vozidel ve skupině","s2_sub":"Zadejte své údaje a podrobnosti nehody","km_loading":"📏 Načítání stavu kilometrů...","km_label":"📏 Stav kilometrů:","section_fahrerangaben":"Údaje o řidiči","label_fahrername":"Jméno řidiče","ph_vorname_nachname":"Jméno a příjmení","label_fs_nr":"Č. řidičského průkazu","ph_manuell":"Zadejte ručně","label_telefon":"Telefon","ph_handynummer":"Vaše mobilní číslo","section_unfallangaben":"Údaje o nehodě","label_datum":"Datum","label_uhrzeit":"Čas","label_unfallort":"Místo nehody","ph_unfallort":"Ulice, obec / dálnice, km","label_unfallhergang":"Popis nehody","ph_unfallhergang":"Stručně a přesně popište průběh nehody...","label_schadensart":"Druh škody","dmg_auffahrunfall":"Náraz zezadu","dmg_parkschaden":"Škoda při parkování","dmg_rangierunfall":"Nehoda při couvání/manévrování","dmg_spurwechsel":"Změna jízdního pruhu","dmg_wildschaden":"Střet se zvěří","dmg_abbiegevorfall":"Nehoda při odbočování","dmg_beentladen":"Nakládka/Vykládka","dmg_glatteis":"Náledí","dmg_vorbeifahren":"Míjení","dmg_sonstiges":"Ostatní","webfleet_hint":"· z Webfleet (lze upravit)","s3_sub":"Druh škody a údaje o protistraně","info_notruf":"ℹ️ Při zranění osob: okamžitě volejte 112!","div_art_schadens":"Druh škody","label_schadenart":"Typ škody","schaden_fahrzeug":"Škoda na vozidle","schaden_sach":"Věcná škoda","div_fahrzeug_gegner":"Vozidlo protistrany","label_kennzeichen":"SPZ","ph_kennzeichen":"např. DO-AB 1234","label_fahrzeugtyp":"Typ vozidla","ph_fahrzeugtyp":"např. VW Golf","label_farbe":"Barva","ph_farbe":"Barva","div_halter":"Držitel vozidla protistrany","label_name_halter":"Jméno držitele","ph_name_firma":"Jméno a příjmení / firma","label_anschrift_halter":"Adresa držitele","ph_anschrift":"Ulice, PSČ, obec","label_telefon_halter":"Telefon držitele","ph_telefonnummer":"Telefonní číslo","label_email_halter":"E-mail držitele","ph_email_optional":"E-mailová adresa (nepovinné)","tip_title":"Tip pro rychlejší vyřízení škody","tip_text":"Úplné kontaktní údaje výrazně urychlují vyřízení škody pojišťovnou.","div_fahrer_gegner":"Řidič protistrany","label_name":"Jméno","label_anschrift":"Adresa","ph_nummer":"Číslo","label_email_fahrer":"E-mail řidiče","label_geburtsdatum":"Datum narození","ph_fs_nummer":"Číslo řidičského průkazu","div_versicherung":"Pojištění protistrany","label_vers_gesellschaft":"Pojišťovna","ph_huk":"např. HUK-Coburg","label_policennummer":"Číslo pojistky","ph_vers_scheinnr":"Číslo pojistné smlouvy","div_geschaedigter":"Poškozený (věcná škoda)","info_sachschaden_beispiel":"🏗 např. budova, plot, zeď, zaparkované vozidlo bez řidiče","label_name_firma":"Jméno / firma","ph_name_firmenbez":"Jméno nebo název firmy","ph_erreichbarkeit":"Dostupnost","label_email":"E-mail","ph_email_falls":"E-mailová adresa (pokud existuje)","div_zeugen":"Svědci","label_zeuge1":"Svědek 1 (jméno + telefon)","label_zeuge2":"Svědek 2 (jméno + telefon)","ph_falls_vorhanden":"Pokud existuje","zeugenkarte_title":"Karta pro výměnu údajů svědků","zeugenkarte_text":"Nechte vyplnit kartu pro výměnu údajů svědků a vyfoťte ji v kroku 4!","div_polizei":"Policie","label_polizei_frage":"Byla přivolána policie?","opt_bitte_waehlen":"– Prosím vyberte –","opt_ja_vor_ort":"Ano – policie byla na místě","opt_nein":"Ne","opt_nicht_gerufen":"Policie nebyla přivolána","label_aktenzeichen":"Číslo jednací","ph_aktenzeichen":"Číslo jednací policie","label_dienststelle":"Policejní útvar","ph_dienststelle":"např. OOP Dortmund-střed","s4_sub":"Pořiďte až 10 fotografií škody","info_fotos_pflicht":"Povinné (min. 2 fotografie):","info_fotos_text":"Detailní záběry všech poškození + celkové fotografie místa nehody. Dále: obě SPZ, brzdné stopy, stopy pneumatik, karta pro výměnu údajů svědků.","photos_of_10":"/ 10 fotografií","photos_min_pflicht":"(min. 2 povinné)","btn_kamera":"📷 Fotoaparát","btn_galerie":"🖼 Galerie","s5_sub":"Zkontrolujte a odešlete hlášení","info_email_auto":"📧 PDF bude automaticky odesláno e-mailem","btn_senden":"✉ Vytvořit a odeslat PDF","sum_fahrzeug":"🚛 Vozidlo","sum_fahrer":"👤 Řidič","sum_unfall":"📍 Nehoda","sum_gegner_fzg":"🚗 Vozidlo protistrany","sum_geschaedigter":"🏗 Poškozený (věcná škoda)","sum_fotos":"📷 Fotografie","sum_k_fahrzeug":"SPZ","sum_k_kennzeichen":"SPZ","sum_k_webfleet_einheit":"Jednotka Webfleet","sum_k_km":"Stav kilometrů","sum_k_name":"Jméno","sum_k_telefon":"Telefon","sum_k_datum_zeit":"Datum / čas","sum_k_ort":"Místo","sum_k_schadensart":"Druh škody","sum_k_halter":"Držitel","sum_k_versicherung":"Pojištění","sum_k_anschrift":"Adresa","sum_k_aufgenommen":"Pořízeno","sum_v_foto":"fotografie","err_pflichtfelder":"Vyplňte prosím všechna povinná pole (*)","err_fs_pflicht":"Číslo řidičského průkazu je povinné","err_schadensart":"Vyberte prosím druh škody","err_art_schadens":"Vyberte druh škody (vozidlo/věcná)","err_kennzeichen_gegner":"SPZ protistrany je povinná","err_name_halter":"Jméno držitele je povinné","err_anschrift_halter":"Adresa držitele je povinná","err_name_fahrer_gegner":"Jméno řidiče (protistrana) je povinné","err_anschrift_fahrer_gegner":"Adresa řidiče (protistrana) je povinná","err_name_geschaedigter":"Jméno poškozeného je povinné","err_anschrift_geschaedigter":"Adresa poškozeného je povinná","err_telefon_geschaedigter":"Telefon poškozeného je povinný","err_aktenzeichen_pflicht":"Číslo jednací policie je povinné","err_dienststelle_pflicht":"Policejní služebna je povinná","err_min_fotos":"Pořiďte prosím alespoň 2 fotografie","err_generic":"Chyba:","err_photos_max":"dalších fotografií lze přidat","err_photos_only":"Pouze","err_versand_fehlgeschlagen":"Automatické odeslání selhalo – otevřen Outlook","err_pdf_fehler":"Chyba PDF:","toast_ausgewaehlt":"vybráno","toast_fahrer":"Řidič:","dlg_bericht_gesendet":"Hlášení odesláno!","dlg_wurde_gesendet_an":"Hlášení o nehodě bylo automaticky odesláno na","dlg_gesendet":"odesláno.","dlg_schliessen":"Zavřít","lang_switch_label":"Jazyk"},"en":{"hdr_sub":"Accident Report","hdr_badge":"⚠ Emergency","step1":"Vehicle Selection","step2":"Driver & Accident Details","step3":"Other Party & Damage","step4":"Photos","step5":"Summary","s1_sub":"Select group or search by license plate","load_btn":"🔄 Reload vehicles","search_placeholder":"Search license plate or name...","tap_to_open":"Tap to open","back_groups":"← Groups","btn_weiter":"Next →","btn_zurueck":"← Back","all_vehicles":"All vehicles","vehicles_total_suffix":"vehicles total","vehicles_suffix":"vehicles","groups_suffix":"groups","results_for":"result(s) for","no_vehicles":"No vehicles found","vehicles_in_group":"vehicles in","s2_sub":"Enter your details and accident information","km_loading":"📏 Loading mileage...","km_label":"📏 Mileage:","section_fahrerangaben":"Driver Details","label_fahrername":"Driver name","ph_vorname_nachname":"First and last name","label_fs_nr":"Driving licence no.","ph_manuell":"Enter manually","label_telefon":"Phone","ph_handynummer":"Your mobile number","section_unfallangaben":"Accident Details","label_datum":"Date","label_uhrzeit":"Time","label_unfallort":"Accident location","ph_unfallort":"Street, city / motorway, km","label_unfallhergang":"Accident description","ph_unfallhergang":"Describe the accident briefly and precisely...","label_schadensart":"Type of incident","dmg_auffahrunfall":"Rear-end collision","dmg_parkschaden":"Parking damage","dmg_rangierunfall":"Manoeuvring accident","dmg_spurwechsel":"Lane change","dmg_wildschaden":"Animal collision","dmg_abbiegevorfall":"Turning incident","dmg_beentladen":"Loading/Unloading","dmg_glatteis":"Ice/Black ice","dmg_vorbeifahren":"Passing","dmg_sonstiges":"Other","webfleet_hint":"· from Webfleet (editable)","s3_sub":"Type of damage and other party details","info_notruf":"ℹ️ In case of injury: call 112 immediately!","div_art_schadens":"Type of damage","label_schadenart":"Damage type","schaden_fahrzeug":"Vehicle damage","schaden_sach":"Property damage","div_fahrzeug_gegner":"Other party's vehicle","label_kennzeichen":"License plate","ph_kennzeichen":"e.g. DO-AB 1234","label_fahrzeugtyp":"Vehicle type","ph_fahrzeugtyp":"e.g. VW Golf","label_farbe":"Colour","ph_farbe":"Colour","div_halter":"Registered keeper of other vehicle","label_name_halter":"Keeper's name","ph_name_firma":"First/last name / company","label_anschrift_halter":"Keeper's address","ph_anschrift":"Street, postcode, city","label_telefon_halter":"Keeper's phone","ph_telefonnummer":"Phone number","label_email_halter":"Keeper's email","ph_email_optional":"Email address (optional)","tip_title":"Tip for faster claims processing","tip_text":"Complete contact details significantly speed up processing by the insurance company.","div_fahrer_gegner":"Other party's driver","label_name":"Name","label_anschrift":"Address","ph_nummer":"Number","label_email_fahrer":"Driver's email","label_geburtsdatum":"Date of birth","ph_fs_nummer":"Driving licence number","div_versicherung":"Other party's insurance","label_vers_gesellschaft":"Insurance company","ph_huk":"e.g. HUK-Coburg","label_policennummer":"Policy number","ph_vers_scheinnr":"Insurance policy number","div_geschaedigter":"Injured party (property damage)","info_sachschaden_beispiel":"🏗 e.g. building, fence, wall, parked vehicle without driver","label_name_firma":"Name / company","ph_name_firmenbez":"Name or company name","ph_erreichbarkeit":"Contact availability","label_email":"Email","ph_email_falls":"Email address (if available)","div_zeugen":"Witnesses","label_zeuge1":"Witness 1 (name + phone)","label_zeuge2":"Witness 2 (name + phone)","ph_falls_vorhanden":"If available","zeugenkarte_title":"Witness exchange card","zeugenkarte_text":"Have the witness exchange card filled out and photograph it in step 4!","div_polizei":"Police","label_polizei_frage":"Did police attend?","opt_bitte_waehlen":"– Please select –","opt_ja_vor_ort":"Yes – police were on site","opt_nein":"No","opt_nicht_gerufen":"Police not called","label_aktenzeichen":"Case reference number","ph_aktenzeichen":"Police case reference","label_dienststelle":"Police station","ph_dienststelle":"e.g. Dortmund-Central police station","s4_sub":"Take up to 10 photos of the damage","info_fotos_pflicht":"Required (min. 2 photos):","info_fotos_text":"Close-ups of all damage + overview photos of the accident scene. Also: both license plates, skid marks, tyre marks, witness exchange card.","photos_of_10":"/ 10 photos","photos_min_pflicht":"(min. 2 required)","btn_kamera":"📷 Camera","btn_galerie":"🖼 Gallery","s5_sub":"Review and send report","info_email_auto":"📧 The PDF will be sent automatically by email","btn_senden":"✉ Create & send PDF","sum_fahrzeug":"🚛 Vehicle","sum_fahrer":"👤 Driver","sum_unfall":"📍 Accident","sum_gegner_fzg":"🚗 Other party's vehicle","sum_geschaedigter":"🏗 Injured party (property damage)","sum_fotos":"📷 Photos","sum_k_fahrzeug":"License plate","sum_k_kennzeichen":"License plate","sum_k_webfleet_einheit":"Webfleet unit","sum_k_km":"Mileage","sum_k_name":"Name","sum_k_telefon":"Phone","sum_k_datum_zeit":"Date / time","sum_k_ort":"Location","sum_k_schadensart":"Type of incident","sum_k_halter":"Keeper","sum_k_versicherung":"Insurance","sum_k_anschrift":"Address","sum_k_aufgenommen":"Taken","sum_v_foto":"photo(s)","err_pflichtfelder":"Please fill in all required fields (*)","err_fs_pflicht":"Driving licence no. is required","err_schadensart":"Please select a type of incident","err_art_schadens":"Please select damage type (vehicle/property)","err_kennzeichen_gegner":"Other party's license plate is required","err_name_halter":"Keeper's name is required","err_anschrift_halter":"Keeper's address is required","err_name_fahrer_gegner":"Driver's name (other party) is required","err_anschrift_fahrer_gegner":"Driver's address (other party) is required","err_name_geschaedigter":"Injured party's name is required","err_anschrift_geschaedigter":"Injured party's address is required","err_telefon_geschaedigter":"Injured party's phone is required","err_aktenzeichen_pflicht":"Police file number is required","err_dienststelle_pflicht":"Police station is required","err_min_fotos":"Please take at least 2 photos","err_generic":"Error:","err_photos_max":"more photos possible","err_photos_only":"Only","err_versand_fehlgeschlagen":"Automatic sending failed – Outlook opened","err_pdf_fehler":"PDF error:","toast_ausgewaehlt":"selected","toast_fahrer":"Driver:","dlg_bericht_gesendet":"Report sent!","dlg_wurde_gesendet_an":"The accident report was automatically sent to","dlg_gesendet":"sent.","dlg_schliessen":"Close","lang_switch_label":"Language"}};
+const I18N = {"de":{"s0_title":"Was möchten Sie melden?","s0_sub":"Bereich auswählen","mode_fuhrpark":"Fuhrpark","mode_fuhrpark_desc":"Unfall mit LKW oder PKW – mit Unfallgegner, Zeugen und Polizei","mode_lager":"Lager","mode_lager_desc":"Schaden mit einem Gabelstapler – Gerät, Hergang und Fotos","hdr_sub":"Unfallaufnahme","hdr_badge":"⚠ Notfall","step1":"Fahrzeugauswahl","step2":"Fahrer & Unfallangaben","step3":"Unfallgegner & Schaden","step4":"Fotos","step5":"Zusammenfassung","s1_sub":"Gruppe wählen oder Kennzeichen suchen","load_btn":"🔄 Fahrzeuge neu laden","search_placeholder":"Kennzeichen oder Name suchen...","tap_to_open":"Tippen zum Öffnen","back_groups":"← Gruppen","btn_weiter":"Weiter →","btn_zurueck":"← Zurück","all_vehicles":"Alle Fahrzeuge","vehicles_total_suffix":"Fahrzeuge gesamt","vehicles_suffix":"Fahrzeuge","groups_suffix":"Gruppen","results_for":"Ergebnis(se) für","no_vehicles":"Keine Fahrzeuge gefunden","vehicles_in_group":"Fahrzeuge in","s2_sub":"Ihre Daten und Unfalldetails erfassen","km_loading":"📏 Kilometerstand wird geladen...","km_label":"📏 Kilometerstand:","section_fahrerangaben":"Fahrerangaben","label_fahrername":"Fahrername","ph_vorname_nachname":"Vor- und Nachname","label_fs_nr":"Führerschein-Nr.","ph_manuell":"Manuell eintragen","label_telefon":"Telefon","ph_handynummer":"Ihre Handynummer","section_unfallangaben":"Unfallangaben","label_datum":"Datum","label_uhrzeit":"Uhrzeit","label_unfallort":"Unfallort","ph_unfallort":"Straße, Ort / Autobahn, km","label_unfallhergang":"Unfallhergang","ph_unfallhergang":"Beschreiben Sie den Unfallhergang kurz und präzise...","label_schadensart":"Schadensart","dmg_auffahrunfall":"Auffahrunfall","dmg_parkschaden":"Parkschaden","dmg_rangierunfall":"Rangierunfall","dmg_spurwechsel":"Spurwechsel","dmg_wildschaden":"Wildschaden","dmg_abbiegevorfall":"Abbiegevorfall","dmg_beentladen":"Be-/Entladen","dmg_glatteis":"Glatteis","dmg_vorbeifahren":"Vorbeifahren","dmg_sonstiges":"Sonstiges","webfleet_hint":"· aus Webfleet (überschreibbar)","s3_sub":"Art des Schadens und Daten des Unfallgegners","info_notruf":"ℹ️ Bei Personenschaden: Sofort Notruf 112 rufen!","div_art_schadens":"Art des Schadens","label_schadenart":"Schadenart","schaden_fahrzeug":"Fahrzeugschaden","schaden_sach":"Sachschaden","div_fahrzeug_gegner":"Fahrzeug des Gegners","label_kennzeichen":"Kennzeichen","ph_kennzeichen":"z.B. DO-AB 1234","label_fahrzeugtyp":"Fahrzeugtyp","ph_fahrzeugtyp":"z.B. VW Golf","label_farbe":"Farbe","ph_farbe":"Farbe","div_halter":"Halter des Gegnerfahrzeugs","label_name_halter":"Name des Halters","ph_name_firma":"Vor- und Nachname / Firma","label_anschrift_halter":"Anschrift des Halters","ph_anschrift":"Straße, PLZ, Ort","label_telefon_halter":"Telefon Halter","ph_telefonnummer":"Telefonnummer","label_email_halter":"E-Mail Halter","ph_email_optional":"E-Mail-Adresse (optional)","tip_title":"Tipp für schnellere Schadensabwicklung","tip_text":"Vollständige Kontaktdaten beschleunigen die Abwicklung durch die Versicherung erheblich.","div_fahrer_gegner":"Fahrer des Gegners","label_name":"Name","label_anschrift":"Anschrift","ph_nummer":"Nummer","label_email_fahrer":"E-Mail Fahrer","label_geburtsdatum":"Geburtsdatum","ph_fs_nummer":"Führerscheinnummer","div_versicherung":"Versicherung des Gegners","label_vers_gesellschaft":"Versicherungsgesellschaft","ph_huk":"z.B. HUK-Coburg","label_policennummer":"Policennummer","ph_vers_scheinnr":"Versicherungsscheinnummer","div_geschaedigter":"Geschädigter (Sachschaden)","info_sachschaden_beispiel":"🏗 z.B. Gebäude, Zaun, Mauer, geparktes Fahrzeug ohne Fahrer","label_name_firma":"Name / Firma","ph_name_firmenbez":"Name oder Firmenbezeichnung","ph_erreichbarkeit":"Erreichbarkeit","label_email":"E-Mail","ph_email_falls":"E-Mail-Adresse (falls vorhanden)","div_zeugen":"Zeugen","label_zeuge1":"Zeuge 1 (Name + Telefon)","label_zeuge2":"Zeuge 2 (Name + Telefon)","ph_falls_vorhanden":"Falls vorhanden","zeugenkarte_title":"Zeugenaustauschkarte","zeugenkarte_text":"Zeugenaustauschkarte ausfüllen lassen und in Schritt 4 fotografieren!","div_polizei":"Polizei","label_polizei_frage":"Polizei aufgenommen?","opt_bitte_waehlen":"– Bitte wählen –","opt_ja_vor_ort":"Ja – Polizei war vor Ort","opt_nein":"Nein","opt_nicht_gerufen":"Polizei nicht gerufen","label_aktenzeichen":"Aktenzeichen","ph_aktenzeichen":"Aktenzeichen der Polizei","label_dienststelle":"Dienststelle","ph_dienststelle":"z.B. PI Dortmund-Mitte","s4_sub":"Bis zu 10 Fotos vom Schaden aufnehmen","info_fotos_pflicht":"Pflicht (mind. 2 Fotos):","info_fotos_text":"Nahaufnahmen aller Schäden + Übersichtsfotos der Unfallstelle. Außerdem: beide Kennzeichen, Spurrillen, Reifenspuren, Zeugenaustauschkarte.","photos_of_10":"/ 10 Fotos","photos_min_pflicht":"(mind. 2 Pflicht)","btn_kamera":"📷 Kamera","btn_galerie":"🖼 Galerie","s5_sub":"Bericht prüfen und senden","info_email_auto":"📧 PDF wird automatisch per E-Mail versendet","btn_senden":"✉ PDF erstellen & senden","sum_fahrzeug":"🚛 Fahrzeug","sum_fahrer":"👤 Fahrer","sum_unfall":"📍 Unfall","sum_gegner_fzg":"🚗 Unfallgegner Fahrzeug","sum_geschaedigter":"🏗 Geschädigter (Sachschaden)","sum_fotos":"📷 Fotos","sum_k_fahrzeug":"Kennzeichen","sum_k_kennzeichen":"Kennzeichen","sum_k_webfleet_einheit":"Webfleet Einheit","sum_k_km":"Kilometerstand","sum_k_name":"Name","sum_k_telefon":"Telefon","sum_k_datum_zeit":"Datum / Zeit","sum_k_ort":"Ort","sum_k_schadensart":"Schadensart","sum_k_halter":"Halter","sum_k_versicherung":"Versicherung","sum_k_anschrift":"Anschrift","sum_k_aufgenommen":"Aufgenommen","sum_v_foto":"Foto(s)","err_pflichtfelder":"Bitte alle Pflichtfelder (*) ausfüllen","err_fs_pflicht":"Führerschein-Nr. ist ein Pflichtfeld","err_schadensart":"Bitte eine Schadensart auswählen","err_art_schadens":"Bitte Art des Schadens wählen (Fahrzeug-/Sachschaden)","err_kennzeichen_gegner":"Kennzeichen des Unfallgegners ist Pflicht","err_name_halter":"Name des Halters ist Pflicht","err_anschrift_halter":"Anschrift des Halters ist Pflicht","err_name_fahrer_gegner":"Name des Fahrers (Gegner) ist Pflicht","err_anschrift_fahrer_gegner":"Anschrift des Fahrers (Gegner) ist Pflicht","err_name_geschaedigter":"Name des Geschädigten ist Pflicht","err_anschrift_geschaedigter":"Anschrift des Geschädigten ist Pflicht","err_telefon_geschaedigter":"Telefon des Geschädigten ist Pflicht","err_aktenzeichen_pflicht":"Aktenzeichen der Polizei ist Pflicht","err_dienststelle_pflicht":"Dienststelle der Polizei ist Pflicht","err_min_fotos":"Bitte mindestens 2 Fotos aufnehmen","err_generic":"Fehler:","err_photos_max":"weitere Fotos möglich","err_photos_only":"Nur","err_versand_fehlgeschlagen":"Automatischer Versand fehlgeschlagen – Outlook geöffnet","err_pdf_fehler":"PDF-Fehler:","toast_ausgewaehlt":"ausgewählt","toast_fahrer":"Fahrer:","dlg_bericht_gesendet":"Bericht gesendet!","dlg_wurde_gesendet_an":"Der Unfallbericht wurde automatisch an","dlg_gesendet":"gesendet.","dlg_schliessen":"Schließen","lang_switch_label":"Sprache"},"tr":{"hdr_sub":"Kaza Kaydı","hdr_badge":"⚠ Acil Durum","step1":"Araç Seçimi","step2":"Sürücü ve Kaza Bilgileri","step3":"Karşı Taraf ve Hasar","step4":"Fotoğraflar","step5":"Özet","s1_sub":"Grup seçin veya plaka arayın","load_btn":"🔄 Araçları yeniden yükle","search_placeholder":"Plaka veya isim arayın...","tap_to_open":"Açmak için dokunun","back_groups":"← Gruplar","btn_weiter":"İleri →","btn_zurueck":"← Geri","all_vehicles":"Tüm Araçlar","vehicles_total_suffix":"toplam araç","vehicles_suffix":"araç","groups_suffix":"grup","results_for":"için sonuç(lar)","no_vehicles":"Araç bulunamadı","vehicles_in_group":"araç, grup:","s2_sub":"Bilgilerinizi ve kaza detaylarını girin","km_loading":"📏 Kilometre bilgisi yükleniyor...","km_label":"📏 Kilometre:","section_fahrerangaben":"Sürücü Bilgileri","label_fahrername":"Sürücü Adı","ph_vorname_nachname":"Ad ve Soyad","label_fs_nr":"Ehliyet No.","ph_manuell":"Manuel olarak girin","label_telefon":"Telefon","ph_handynummer":"Cep telefonu numaranız","section_unfallangaben":"Kaza Bilgileri","label_datum":"Tarih","label_uhrzeit":"Saat","label_unfallort":"Kaza Yeri","ph_unfallort":"Cadde, Şehir / Otoyol, km","label_unfallhergang":"Kaza Tutanağı","ph_unfallhergang":"Kazanın nasıl olduğunu kısa ve net şekilde açıklayın...","label_schadensart":"Hasar Türü","dmg_auffahrunfall":"Arkadan Çarpma","dmg_parkschaden":"Park Hasarı","dmg_rangierunfall":"Manevra Kazası","dmg_spurwechsel":"Şerit Değiştirme","dmg_wildschaden":"Hayvan Çarpması","dmg_abbiegevorfall":"Dönüş Kazası","dmg_beentladen":"Yükleme/Boşaltma","dmg_glatteis":"Buzlanma","dmg_vorbeifahren":"Yan Geçiş","dmg_sonstiges":"Diğer","webfleet_hint":"· Webfleet'ten (değiştirilebilir)","s3_sub":"Hasar türü ve karşı taraf bilgileri","info_notruf":"ℹ️ Yaralanma durumunda: Hemen 112'yi arayın!","div_art_schadens":"Hasar Türü","label_schadenart":"Hasar Şekli","schaden_fahrzeug":"Araç Hasarı","schaden_sach":"Maddi Hasar","div_fahrzeug_gegner":"Karşı Tarafın Aracı","label_kennzeichen":"Plaka","ph_kennzeichen":"örn. DO-AB 1234","label_fahrzeugtyp":"Araç Tipi","ph_fahrzeugtyp":"örn. VW Golf","label_farbe":"Renk","ph_farbe":"Renk","div_halter":"Karşı Aracın Ruhsat Sahibi","label_name_halter":"Ruhsat Sahibinin Adı","ph_name_firma":"Ad Soyad / Firma","label_anschrift_halter":"Ruhsat Sahibinin Adresi","ph_anschrift":"Cadde, Posta Kodu, Şehir","label_telefon_halter":"Ruhsat Sahibi Telefonu","ph_telefonnummer":"Telefon Numarası","label_email_halter":"Ruhsat Sahibi E-postası","ph_email_optional":"E-posta Adresi (isteğe bağlı)","tip_title":"Daha Hızlı Hasar İşlemi İçin İpucu","tip_text":"Eksiksiz iletişim bilgileri, sigorta işlemlerini büyük ölçüde hızlandırır.","div_fahrer_gegner":"Karşı Tarafın Sürücüsü","label_name":"Ad Soyad","label_anschrift":"Adres","ph_nummer":"Numara","label_email_fahrer":"Sürücü E-postası","label_geburtsdatum":"Doğum Tarihi","ph_fs_nummer":"Ehliyet Numarası","div_versicherung":"Karşı Tarafın Sigortası","label_vers_gesellschaft":"Sigorta Şirketi","ph_huk":"örn. HUK-Coburg","label_policennummer":"Poliçe Numarası","ph_vers_scheinnr":"Poliçe Numarası","div_geschaedigter":"Zarar Gören (Maddi Hasar)","info_sachschaden_beispiel":"🏗 örn. bina, çit, duvar, sürücüsüz park halindeki araç","label_name_firma":"Ad / Firma","ph_name_firmenbez":"Ad veya Firma Adı","ph_erreichbarkeit":"Ulaşılabilirlik","label_email":"E-posta","ph_email_falls":"E-posta Adresi (varsa)","div_zeugen":"Tanıklar","label_zeuge1":"Tanık 1 (Ad + Telefon)","label_zeuge2":"Tanık 2 (Ad + Telefon)","ph_falls_vorhanden":"Varsa","zeugenkarte_title":"Tanık Bilgi Kartı","zeugenkarte_text":"Tanık bilgi kartını doldurtun ve 4. adımda fotoğrafını çekin!","div_polizei":"Polis","label_polizei_frage":"Polis Tutanak Tuttu mu?","opt_bitte_waehlen":"– Lütfen seçin –","opt_ja_vor_ort":"Evet – Polis olay yerindeydi","opt_nein":"Hayır","opt_nicht_gerufen":"Polis çağrılmadı","label_aktenzeichen":"Dosya Numarası","ph_aktenzeichen":"Polis Dosya Numarası","label_dienststelle":"Polis Karakolu","ph_dienststelle":"örn. Dortmund-Mitte Polis Merkezi","s4_sub":"Hasardan en fazla 10 fotoğraf çekin","info_fotos_pflicht":"Zorunlu (en az 2 fotoğraf):","info_fotos_text":"Tüm hasarların yakın çekimi + kaza yerinin genel fotoğrafları. Ayrıca: her iki plaka, fren izleri, lastik izleri, tanık bilgi kartı.","photos_of_10":"/ 10 fotoğraf","photos_min_pflicht":"(en az 2 zorunlu)","btn_kamera":"📷 Kamera","btn_galerie":"🖼 Galeri","s5_sub":"Raporu kontrol edin ve gönderin","info_email_auto":"📧 PDF otomatik olarak e-posta ile gönderilecek","btn_senden":"✉ PDF Oluştur ve Gönder","sum_fahrzeug":"🚛 Araç","sum_fahrer":"👤 Sürücü","sum_unfall":"📍 Kaza","sum_gegner_fzg":"🚗 Karşı Taraf Aracı","sum_geschaedigter":"🏗 Zarar Gören (Maddi Hasar)","sum_fotos":"📷 Fotoğraflar","sum_k_fahrzeug":"Plaka","sum_k_kennzeichen":"Plaka","sum_k_webfleet_einheit":"Webfleet Birimi","sum_k_km":"Kilometre","sum_k_name":"Ad Soyad","sum_k_telefon":"Telefon","sum_k_datum_zeit":"Tarih / Saat","sum_k_ort":"Konum","sum_k_schadensart":"Hasar Türü","sum_k_halter":"Ruhsat Sahibi","sum_k_versicherung":"Sigorta","sum_k_anschrift":"Adres","sum_k_aufgenommen":"Çekilen","sum_v_foto":"fotoğraf","err_pflichtfelder":"Lütfen tüm zorunlu (*) alanları doldurun","err_fs_pflicht":"Ehliyet No. zorunlu bir alandır","err_schadensart":"Lütfen bir hasar türü seçin","err_art_schadens":"Lütfen hasar türünü seçin (Araç/Maddi Hasar)","err_kennzeichen_gegner":"Karşı tarafın plakası zorunludur","err_name_halter":"Ruhsat sahibinin adı zorunludur","err_anschrift_halter":"Ruhsat sahibinin adresi zorunludur","err_name_fahrer_gegner":"Sürücünün adı (karşı taraf) zorunludur","err_anschrift_fahrer_gegner":"Sürücünün adresi (karşı taraf) zorunludur","err_name_geschaedigter":"Zarar görenin adı zorunludur","err_anschrift_geschaedigter":"Zarar görenin adresi zorunludur","err_telefon_geschaedigter":"Zarar görenin telefonu zorunludur","err_aktenzeichen_pflicht":"Polis dosya numarası zorunludur","err_dienststelle_pflicht":"Polis karakolu zorunludur","err_min_fotos":"Lütfen en az 2 fotoğraf çekin","err_generic":"Hata:","err_photos_max":"daha fazla fotoğraf eklenebilir","err_photos_only":"Sadece","err_versand_fehlgeschlagen":"Otomatik gönderim başarısız – Outlook açıldı","err_pdf_fehler":"PDF Hatası:","toast_ausgewaehlt":"seçildi","toast_fahrer":"Sürücü:","dlg_bericht_gesendet":"Rapor Gönderildi!","dlg_wurde_gesendet_an":"Kaza raporu otomatik olarak şu adrese gönderildi:","dlg_gesendet":"gönderildi.","dlg_schliessen":"Kapat","lang_switch_label":"Dil"},"ru":{"hdr_sub":"Оформление ДТП","hdr_badge":"⚠ Экстренный случай","step1":"Выбор автомобиля","step2":"Данные водителя и ДТП","step3":"Виновник и ущерб","step4":"Фотографии","step5":"Сводка","s1_sub":"Выберите группу или найдите по номеру","load_btn":"🔄 Обновить список авто","search_placeholder":"Поиск по номеру или имени...","tap_to_open":"Нажмите, чтобы открыть","back_groups":"← Группы","btn_weiter":"Далее →","btn_zurueck":"← Назад","all_vehicles":"Все автомобили","vehicles_total_suffix":"всего автомобилей","vehicles_suffix":"автомобилей","groups_suffix":"групп","results_for":"результат(ов) для","no_vehicles":"Автомобили не найдены","vehicles_in_group":"автомобилей в группе","s2_sub":"Укажите свои данные и детали ДТП","km_loading":"📏 Загрузка пробега...","km_label":"📏 Пробег:","section_fahrerangaben":"Данные водителя","label_fahrername":"Имя водителя","ph_vorname_nachname":"Имя и фамилия","label_fs_nr":"Номер водит. удост.","ph_manuell":"Ввести вручную","label_telefon":"Телефон","ph_handynummer":"Ваш мобильный номер","section_unfallangaben":"Данные о ДТП","label_datum":"Дата","label_uhrzeit":"Время","label_unfallort":"Место ДТП","ph_unfallort":"Улица, город / автомагистраль, км","label_unfallhergang":"Описание ДТП","ph_unfallhergang":"Кратко и точно опишите обстоятельства ДТП...","label_schadensart":"Вид происшествия","dmg_auffahrunfall":"Наезд сзади","dmg_parkschaden":"Повреждение на парковке","dmg_rangierunfall":"ДТП при маневрировании","dmg_spurwechsel":"Смена полосы","dmg_wildschaden":"Наезд на животное","dmg_abbiegevorfall":"Происшествие при повороте","dmg_beentladen":"Погрузка/разгрузка","dmg_glatteis":"Гололёд","dmg_vorbeifahren":"Проезд мимо","dmg_sonstiges":"Другое","webfleet_hint":"· из Webfleet (можно изменить)","s3_sub":"Вид ущерба и данные виновника","info_notruf":"ℹ️ При травмах: немедленно звоните 112!","div_art_schadens":"Вид ущерба","label_schadenart":"Тип ущерба","schaden_fahrzeug":"Ущерб ТС","schaden_sach":"Материальный ущерб","div_fahrzeug_gegner":"Автомобиль виновника","label_kennzeichen":"Гос. номер","ph_kennzeichen":"напр. DO-AB 1234","label_fahrzeugtyp":"Тип автомобиля","ph_fahrzeugtyp":"напр. VW Golf","label_farbe":"Цвет","ph_farbe":"Цвет","div_halter":"Владелец авто виновника","label_name_halter":"Имя владельца","ph_name_firma":"Имя, фамилия / компания","label_anschrift_halter":"Адрес владельца","ph_anschrift":"Улица, индекс, город","label_telefon_halter":"Телефон владельца","ph_telefonnummer":"Номер телефона","label_email_halter":"Email владельца","ph_email_optional":"Email (необязательно)","tip_title":"Совет для ускорения урегулирования","tip_text":"Полные контактные данные значительно ускоряют урегулирование страховой компанией.","div_fahrer_gegner":"Водитель виновника","label_name":"Имя","label_anschrift":"Адрес","ph_nummer":"Номер","label_email_fahrer":"Email водителя","label_geburtsdatum":"Дата рождения","ph_fs_nummer":"Номер вод. удостоверения","div_versicherung":"Страховка виновника","label_vers_gesellschaft":"Страховая компания","ph_huk":"напр. HUK-Coburg","label_policennummer":"Номер полиса","ph_vers_scheinnr":"Номер страхового полиса","div_geschaedigter":"Пострадавший (матер. ущерб)","info_sachschaden_beispiel":"🏗 напр. здание, забор, стена, припаркованный автомобиль без водителя","label_name_firma":"Имя / компания","ph_name_firmenbez":"Имя или название компании","ph_erreichbarkeit":"Контакт для связи","label_email":"Email","ph_email_falls":"Email (если есть)","div_zeugen":"Свидетели","label_zeuge1":"Свидетель 1 (имя + телефон)","label_zeuge2":"Свидетель 2 (имя + телефон)","ph_falls_vorhanden":"Если есть","zeugenkarte_title":"Карта обмена данными свидетелей","zeugenkarte_text":"Заполните карту обмена данными свидетелей и сфотографируйте её в шаге 4!","div_polizei":"Полиция","label_polizei_frage":"Полиция составляла протокол?","opt_bitte_waehlen":"– Пожалуйста, выберите –","opt_ja_vor_ort":"Да – полиция была на месте","opt_nein":"Нет","opt_nicht_gerufen":"Полиция не вызывалась","label_aktenzeichen":"Номер дела","ph_aktenzeichen":"Номер дела полиции","label_dienststelle":"Отделение полиции","ph_dienststelle":"напр. отдел полиции Дортмунд-Центр","s4_sub":"Сделайте до 10 фото повреждений","info_fotos_pflicht":"Обязательно (мин. 2 фото):","info_fotos_text":"Крупные снимки всех повреждений + общие фото места ДТП. Также: оба номера, следы торможения, следы шин, карта обмена данными свидетелей.","photos_of_10":"/ 10 фото","photos_min_pflicht":"(мин. 2 обязательно)","btn_kamera":"📷 Камера","btn_galerie":"🖼 Галерея","s5_sub":"Проверьте и отправьте отчёт","info_email_auto":"📧 PDF будет автоматически отправлен по электронной почте","btn_senden":"✉ Создать и отправить PDF","sum_fahrzeug":"🚛 Автомобиль","sum_fahrer":"👤 Водитель","sum_unfall":"📍 ДТП","sum_gegner_fzg":"🚗 Автомобиль виновника","sum_geschaedigter":"🏗 Пострадавший (матер. ущерб)","sum_fotos":"📷 Фотографии","sum_k_fahrzeug":"Гос. номер","sum_k_kennzeichen":"Гос. номер","sum_k_webfleet_einheit":"Устройство Webfleet","sum_k_km":"Пробег","sum_k_name":"Имя","sum_k_telefon":"Телефон","sum_k_datum_zeit":"Дата / время","sum_k_ort":"Место","sum_k_schadensart":"Вид происшествия","sum_k_halter":"Владелец","sum_k_versicherung":"Страховка","sum_k_anschrift":"Адрес","sum_k_aufgenommen":"Сделано","sum_v_foto":"фото","err_pflichtfelder":"Заполните все обязательные (*) поля","err_fs_pflicht":"Номер вод. удостоверения обязателен","err_schadensart":"Выберите вид происшествия","err_art_schadens":"Выберите вид ущерба (ТС/материальный)","err_kennzeichen_gegner":"Гос. номер виновника обязателен","err_name_halter":"Имя владельца обязательно","err_anschrift_halter":"Адрес владельца обязателен","err_name_fahrer_gegner":"Имя водителя (виновника) обязательно","err_anschrift_fahrer_gegner":"Адрес водителя (виновника) обязателен","err_name_geschaedigter":"Имя пострадавшего обязательно","err_anschrift_geschaedigter":"Адрес пострадавшего обязателен","err_telefon_geschaedigter":"Телефон пострадавшего обязателен","err_aktenzeichen_pflicht":"Номер дела полиции обязателен","err_dienststelle_pflicht":"Отделение полиции обязательно","err_min_fotos":"Сделайте минимум 2 фото","err_generic":"Ошибка:","err_photos_max":"ещё фото можно добавить","err_photos_only":"Только","err_versand_fehlgeschlagen":"Автоматическая отправка не удалась – открыт Outlook","err_pdf_fehler":"Ошибка PDF:","toast_ausgewaehlt":"выбрано","toast_fahrer":"Водитель:","dlg_bericht_gesendet":"Отчёт отправлен!","dlg_wurde_gesendet_an":"Отчёт о ДТП автоматически отправлен на","dlg_gesendet":"отправлен.","dlg_schliessen":"Закрыть","lang_switch_label":"Язык"},"ro":{"hdr_sub":"Înregistrare accident","hdr_badge":"⚠ Urgență","step1":"Selectare vehicul","step2":"Date șofer și accident","step3":"Partea adversă și daune","step4":"Fotografii","step5":"Rezumat","s1_sub":"Alegeți grupul sau căutați numărul","load_btn":"🔄 Reîncarcă vehiculele","search_placeholder":"Căutare număr sau nume...","tap_to_open":"Atingeți pentru a deschide","back_groups":"← Grupuri","btn_weiter":"Înainte →","btn_zurueck":"← Înapoi","all_vehicles":"Toate vehiculele","vehicles_total_suffix":"vehicule în total","vehicles_suffix":"vehicule","groups_suffix":"grupuri","results_for":"rezultat(e) pentru","no_vehicles":"Niciun vehicul găsit","vehicles_in_group":"vehicule în","s2_sub":"Introduceți datele dvs. și detaliile accidentului","km_loading":"📏 Se încarcă kilometrajul...","km_label":"📏 Kilometraj:","section_fahrerangaben":"Date șofer","label_fahrername":"Nume șofer","ph_vorname_nachname":"Prenume și nume","label_fs_nr":"Nr. permis conducere","ph_manuell":"Introduceți manual","label_telefon":"Telefon","ph_handynummer":"Numărul dvs. de mobil","section_unfallangaben":"Date accident","label_datum":"Data","label_uhrzeit":"Ora","label_unfallort":"Locul accidentului","ph_unfallort":"Stradă, localitate / autostradă, km","label_unfallhergang":"Descrierea accidentului","ph_unfallhergang":"Descrieți pe scurt și precis accidentul...","label_schadensart":"Tip de daună","dmg_auffahrunfall":"Coliziune din spate","dmg_parkschaden":"Daună la parcare","dmg_rangierunfall":"Accident la manevră","dmg_spurwechsel":"Schimbare bandă","dmg_wildschaden":"Coliziune cu animal","dmg_abbiegevorfall":"Incident la virare","dmg_beentladen":"Încărcare/Descărcare","dmg_glatteis":"Polei","dmg_vorbeifahren":"Depășire/Trecere pe lângă","dmg_sonstiges":"Altele","webfleet_hint":"· din Webfleet (editabil)","s3_sub":"Tipul daunei și datele părții adverse","info_notruf":"ℹ️ În caz de vătămare corporală: sunați imediat 112!","div_art_schadens":"Tipul daunei","label_schadenart":"Tip daună","schaden_fahrzeug":"Daună vehicul","schaden_sach":"Daună materială","div_fahrzeug_gegner":"Vehiculul părții adverse","label_kennzeichen":"Nr. înmatriculare","ph_kennzeichen":"ex. DO-AB 1234","label_fahrzeugtyp":"Tip vehicul","ph_fahrzeugtyp":"ex. VW Golf","label_farbe":"Culoare","ph_farbe":"Culoare","div_halter":"Deținătorul vehiculului advers","label_name_halter":"Numele deținătorului","ph_name_firma":"Nume, prenume / firmă","label_anschrift_halter":"Adresa deținătorului","ph_anschrift":"Stradă, cod poștal, localitate","label_telefon_halter":"Telefon deținător","ph_telefonnummer":"Număr de telefon","label_email_halter":"E-mail deținător","ph_email_optional":"Adresă e-mail (opțional)","tip_title":"Sfat pentru soluționare mai rapidă","tip_text":"Datele de contact complete accelerează considerabil soluționarea de către asigurător.","div_fahrer_gegner":"Șoferul părții adverse","label_name":"Nume","label_anschrift":"Adresă","ph_nummer":"Număr","label_email_fahrer":"E-mail șofer","label_geburtsdatum":"Data nașterii","ph_fs_nummer":"Numărul permisului","div_versicherung":"Asigurarea părții adverse","label_vers_gesellschaft":"Societate de asigurări","ph_huk":"ex. HUK-Coburg","label_policennummer":"Număr poliță","ph_vers_scheinnr":"Numărul poliței de asigurare","div_geschaedigter":"Persoana prejudiciată (daună materială)","info_sachschaden_beispiel":"🏗 ex. clădire, gard, zid, vehicul parcat fără șofer","label_name_firma":"Nume / firmă","ph_name_firmenbez":"Nume sau denumire firmă","ph_erreichbarkeit":"Disponibilitate contact","label_email":"E-mail","ph_email_falls":"Adresă e-mail (dacă există)","div_zeugen":"Martori","label_zeuge1":"Martor 1 (nume + telefon)","label_zeuge2":"Martor 2 (nume + telefon)","ph_falls_vorhanden":"Dacă există","zeugenkarte_title":"Fișă de schimb martori","zeugenkarte_text":"Completați fișa de schimb martori și fotografiați-o la pasul 4!","div_polizei":"Poliție","label_polizei_frage":"A intervenit poliția?","opt_bitte_waehlen":"– Vă rugăm alegeți –","opt_ja_vor_ort":"Da – poliția a fost la fața locului","opt_nein":"Nu","opt_nicht_gerufen":"Poliția nu a fost chemată","label_aktenzeichen":"Număr de dosar","ph_aktenzeichen":"Numărul de dosar al poliției","label_dienststelle":"Secție de poliție","ph_dienststelle":"ex. Secția Poliție Dortmund-Centru","s4_sub":"Realizați până la 10 fotografii ale daunei","info_fotos_pflicht":"Obligatoriu (min. 2 fotografii):","info_fotos_text":"Prim-planuri ale tuturor daunelor + fotografii de ansamblu ale locului accidentului. De asemenea: ambele numere de înmatriculare, urme de frânare, urme de anvelope, fișa de schimb martori.","photos_of_10":"/ 10 fotografii","photos_min_pflicht":"(min. 2 obligatorii)","btn_kamera":"📷 Cameră","btn_galerie":"🖼 Galerie","s5_sub":"Verificați și trimiteți raportul","info_email_auto":"📧 PDF-ul va fi trimis automat prin e-mail","btn_senden":"✉ Creează și trimite PDF","sum_fahrzeug":"🚛 Vehicul","sum_fahrer":"👤 Șofer","sum_unfall":"📍 Accident","sum_gegner_fzg":"🚗 Vehiculul părții adverse","sum_geschaedigter":"🏗 Persoana prejudiciată (daună materială)","sum_fotos":"📷 Fotografii","sum_k_fahrzeug":"Nr. înmatriculare","sum_k_kennzeichen":"Nr. înmatriculare","sum_k_webfleet_einheit":"Unitate Webfleet","sum_k_km":"Kilometraj","sum_k_name":"Nume","sum_k_telefon":"Telefon","sum_k_datum_zeit":"Data / Ora","sum_k_ort":"Locație","sum_k_schadensart":"Tip daună","sum_k_halter":"Deținător","sum_k_versicherung":"Asigurare","sum_k_anschrift":"Adresă","sum_k_aufgenommen":"Realizate","sum_v_foto":"fotografie(i)","err_pflichtfelder":"Completați toate câmpurile obligatorii (*)","err_fs_pflicht":"Nr. permisului este obligatoriu","err_schadensart":"Selectați un tip de daună","err_art_schadens":"Selectați tipul daunei (vehicul/material)","err_kennzeichen_gegner":"Numărul de înmatriculare al părții adverse este obligatoriu","err_name_halter":"Numele deținătorului este obligatoriu","err_anschrift_halter":"Adresa deținătorului este obligatorie","err_name_fahrer_gegner":"Numele șoferului (partea adversă) este obligatoriu","err_anschrift_fahrer_gegner":"Adresa șoferului (partea adversă) este obligatorie","err_name_geschaedigter":"Numele persoanei prejudiciate este obligatoriu","err_anschrift_geschaedigter":"Adresa persoanei prejudiciate este obligatorie","err_telefon_geschaedigter":"Telefonul persoanei prejudiciate este obligatoriu","err_aktenzeichen_pflicht":"Numărul de dosar al poliției este obligatoriu","err_dienststelle_pflicht":"Secția de poliție este obligatorie","err_min_fotos":"Realizați cel puțin 2 fotografii","err_generic":"Eroare:","err_photos_max":"fotografii suplimentare posibile","err_photos_only":"Doar","err_versand_fehlgeschlagen":"Trimiterea automată a eșuat – Outlook deschis","err_pdf_fehler":"Eroare PDF:","toast_ausgewaehlt":"selectat","toast_fahrer":"Șofer:","dlg_bericht_gesendet":"Raport trimis!","dlg_wurde_gesendet_an":"Raportul de accident a fost trimis automat către","dlg_gesendet":"trimis.","dlg_schliessen":"Închide","lang_switch_label":"Limbă"},"pl":{"hdr_sub":"Zgłoszenie wypadku","hdr_badge":"⚠ Alarm","step1":"Wybór pojazdu","step2":"Dane kierowcy i wypadku","step3":"Strona przeciwna i szkoda","step4":"Zdjęcia","step5":"Podsumowanie","s1_sub":"Wybierz grupę lub wyszukaj numer rejestracyjny","load_btn":"🔄 Odśwież listę pojazdów","search_placeholder":"Szukaj numeru rejestracyjnego lub nazwy...","tap_to_open":"Dotknij, aby otworzyć","back_groups":"← Grupy","btn_weiter":"Dalej →","btn_zurueck":"← Wstecz","all_vehicles":"Wszystkie pojazdy","vehicles_total_suffix":"pojazdów łącznie","vehicles_suffix":"pojazdów","groups_suffix":"grup","results_for":"wynik(ów) dla","no_vehicles":"Nie znaleziono pojazdów","vehicles_in_group":"pojazdów w grupie","s2_sub":"Wprowadź swoje dane i szczegóły wypadku","km_loading":"📏 Wczytywanie przebiegu...","km_label":"📏 Przebieg:","section_fahrerangaben":"Dane kierowcy","label_fahrername":"Imię i nazwisko kierowcy","ph_vorname_nachname":"Imię i nazwisko","label_fs_nr":"Nr prawa jazdy","ph_manuell":"Wpisz ręcznie","label_telefon":"Telefon","ph_handynummer":"Twój numer telefonu","section_unfallangaben":"Dane wypadku","label_datum":"Data","label_uhrzeit":"Godzina","label_unfallort":"Miejsce wypadku","ph_unfallort":"Ulica, miejscowość / autostrada, km","label_unfallhergang":"Przebieg wypadku","ph_unfallhergang":"Opisz krótko i precyzyjnie przebieg wypadku...","label_schadensart":"Rodzaj szkody","dmg_auffahrunfall":"Najechanie od tyłu","dmg_parkschaden":"Szkoda parkingowa","dmg_rangierunfall":"Wypadek przy manewrowaniu","dmg_spurwechsel":"Zmiana pasa ruchu","dmg_wildschaden":"Kolizja ze zwierzęciem","dmg_abbiegevorfall":"Zdarzenie przy skręcaniu","dmg_beentladen":"Załadunek/Rozładunek","dmg_glatteis":"Gołoledź","dmg_vorbeifahren":"Wymijanie","dmg_sonstiges":"Inne","webfleet_hint":"· z Webfleet (edytowalne)","s3_sub":"Rodzaj szkody i dane strony przeciwnej","info_notruf":"ℹ️ W przypadku obrażeń ciała: natychmiast zadzwoń pod 112!","div_art_schadens":"Rodzaj szkody","label_schadenart":"Typ szkody","schaden_fahrzeug":"Szkoda pojazdu","schaden_sach":"Szkoda materialna","div_fahrzeug_gegner":"Pojazd strony przeciwnej","label_kennzeichen":"Nr rejestracyjny","ph_kennzeichen":"np. DO-AB 1234","label_fahrzeugtyp":"Typ pojazdu","ph_fahrzeugtyp":"np. VW Golf","label_farbe":"Kolor","ph_farbe":"Kolor","div_halter":"Właściciel pojazdu strony przeciwnej","label_name_halter":"Imię i nazwisko właściciela","ph_name_firma":"Imię i nazwisko / firma","label_anschrift_halter":"Adres właściciela","ph_anschrift":"Ulica, kod pocztowy, miejscowość","label_telefon_halter":"Telefon właściciela","ph_telefonnummer":"Numer telefonu","label_email_halter":"E-mail właściciela","ph_email_optional":"Adres e-mail (opcjonalnie)","tip_title":"Wskazówka dla szybszej likwidacji szkody","tip_text":"Kompletne dane kontaktowe znacznie przyspieszają likwidację szkody przez ubezpieczyciela.","div_fahrer_gegner":"Kierowca strony przeciwnej","label_name":"Imię i nazwisko","label_anschrift":"Adres","ph_nummer":"Numer","label_email_fahrer":"E-mail kierowcy","label_geburtsdatum":"Data urodzenia","ph_fs_nummer":"Numer prawa jazdy","div_versicherung":"Ubezpieczenie strony przeciwnej","label_vers_gesellschaft":"Towarzystwo ubezpieczeniowe","ph_huk":"np. HUK-Coburg","label_policennummer":"Numer polisy","ph_vers_scheinnr":"Numer polisy ubezpieczeniowej","div_geschaedigter":"Poszkodowany (szkoda materialna)","info_sachschaden_beispiel":"🏗 np. budynek, płot, mur, zaparkowany pojazd bez kierowcy","label_name_firma":"Imię / firma","ph_name_firmenbez":"Nazwisko lub nazwa firmy","ph_erreichbarkeit":"Kontakt","label_email":"E-mail","ph_email_falls":"Adres e-mail (jeśli dostępny)","div_zeugen":"Świadkowie","label_zeuge1":"Świadek 1 (imię i nazwisko + telefon)","label_zeuge2":"Świadek 2 (imię i nazwisko + telefon)","ph_falls_vorhanden":"Jeśli dotyczy","zeugenkarte_title":"Karta wymiany danych świadków","zeugenkarte_text":"Wypełnij kartę wymiany danych świadków i sfotografuj ją w kroku 4!","div_polizei":"Policja","label_polizei_frage":"Czy policja sporządziła protokół?","opt_bitte_waehlen":"– Proszę wybrać –","opt_ja_vor_ort":"Tak – policja była na miejscu","opt_nein":"Nie","opt_nicht_gerufen":"Nie wezwano policji","label_aktenzeichen":"Sygnatura sprawy","ph_aktenzeichen":"Sygnatura sprawy policyjnej","label_dienststelle":"Jednostka policji","ph_dienststelle":"np. Komisariat Dortmund-Centrum","s4_sub":"Zrób maksymalnie 10 zdjęć szkody","info_fotos_pflicht":"Wymagane (min. 2 zdjęcia):","info_fotos_text":"Zbliżenia wszystkich uszkodzeń + zdjęcia ogólne miejsca wypadku. Ponadto: obie tablice rejestracyjne, ślady hamowania, ślady opon, karta wymiany danych świadków.","photos_of_10":"/ 10 zdjęć","photos_min_pflicht":"(min. 2 wymagane)","btn_kamera":"📷 Aparat","btn_galerie":"🖼 Galeria","s5_sub":"Sprawdź i wyślij raport","info_email_auto":"📧 PDF zostanie automatycznie wysłany e-mailem","btn_senden":"✉ Utwórz i wyślij PDF","sum_fahrzeug":"🚛 Pojazd","sum_fahrer":"👤 Kierowca","sum_unfall":"📍 Wypadek","sum_gegner_fzg":"🚗 Pojazd strony przeciwnej","sum_geschaedigter":"🏗 Poszkodowany (szkoda materialna)","sum_fotos":"📷 Zdjęcia","sum_k_fahrzeug":"Nr rejestracyjny","sum_k_kennzeichen":"Nr rejestracyjny","sum_k_webfleet_einheit":"Jednostka Webfleet","sum_k_km":"Przebieg","sum_k_name":"Imię i nazwisko","sum_k_telefon":"Telefon","sum_k_datum_zeit":"Data / godzina","sum_k_ort":"Lokalizacja","sum_k_schadensart":"Rodzaj szkody","sum_k_halter":"Właściciel","sum_k_versicherung":"Ubezpieczenie","sum_k_anschrift":"Adres","sum_k_aufgenommen":"Wykonane","sum_v_foto":"zdjęcie/zdjęć","err_pflichtfelder":"Wypełnij wszystkie wymagane pola (*)","err_fs_pflicht":"Nr prawa jazdy jest wymagany","err_schadensart":"Wybierz rodzaj szkody","err_art_schadens":"Wybierz rodzaj szkody (pojazd/materialna)","err_kennzeichen_gegner":"Numer rejestracyjny strony przeciwnej jest wymagany","err_name_halter":"Imię i nazwisko właściciela jest wymagane","err_anschrift_halter":"Adres właściciela jest wymagany","err_name_fahrer_gegner":"Imię kierowcy (strona przeciwna) jest wymagane","err_anschrift_fahrer_gegner":"Adres kierowcy (strona przeciwna) jest wymagany","err_name_geschaedigter":"Imię poszkodowanego jest wymagane","err_anschrift_geschaedigter":"Adres poszkodowanego jest wymagany","err_telefon_geschaedigter":"Telefon poszkodowanego jest wymagany","err_aktenzeichen_pflicht":"Sygnatura sprawy policyjnej jest wymagana","err_dienststelle_pflicht":"Jednostka policji jest wymagana","err_min_fotos":"Zrób co najmniej 2 zdjęcia","err_generic":"Błąd:","err_photos_max":"kolejnych zdjęć można dodać","err_photos_only":"Tylko","err_versand_fehlgeschlagen":"Automatyczne wysyłanie nie powiodło się – otwarto Outlook","err_pdf_fehler":"Błąd PDF:","toast_ausgewaehlt":"wybrano","toast_fahrer":"Kierowca:","dlg_bericht_gesendet":"Raport wysłany!","dlg_wurde_gesendet_an":"Raport wypadku został automatycznie wysłany do","dlg_gesendet":"wysłano.","dlg_schliessen":"Zamknij","lang_switch_label":"Język"},"cs":{"hdr_sub":"Záznam nehody","hdr_badge":"⚠ Nouzová situace","step1":"Výběr vozidla","step2":"Údaje o řidiči a nehodě","step3":"Protistrana a škoda","step4":"Fotografie","step5":"Shrnutí","s1_sub":"Vyberte skupinu nebo vyhledejte SPZ","load_btn":"🔄 Znovu načíst vozidla","search_placeholder":"Hledat SPZ nebo název...","tap_to_open":"Klepnutím otevřete","back_groups":"← Skupiny","btn_weiter":"Další →","btn_zurueck":"← Zpět","all_vehicles":"Všechna vozidla","vehicles_total_suffix":"vozidel celkem","vehicles_suffix":"vozidel","groups_suffix":"skupin","results_for":"výsledek/výsledky pro","no_vehicles":"Nebyla nalezena žádná vozidla","vehicles_in_group":"vozidel ve skupině","s2_sub":"Zadejte své údaje a podrobnosti nehody","km_loading":"📏 Načítání stavu kilometrů...","km_label":"📏 Stav kilometrů:","section_fahrerangaben":"Údaje o řidiči","label_fahrername":"Jméno řidiče","ph_vorname_nachname":"Jméno a příjmení","label_fs_nr":"Č. řidičského průkazu","ph_manuell":"Zadejte ručně","label_telefon":"Telefon","ph_handynummer":"Vaše mobilní číslo","section_unfallangaben":"Údaje o nehodě","label_datum":"Datum","label_uhrzeit":"Čas","label_unfallort":"Místo nehody","ph_unfallort":"Ulice, obec / dálnice, km","label_unfallhergang":"Popis nehody","ph_unfallhergang":"Stručně a přesně popište průběh nehody...","label_schadensart":"Druh škody","dmg_auffahrunfall":"Náraz zezadu","dmg_parkschaden":"Škoda při parkování","dmg_rangierunfall":"Nehoda při couvání/manévrování","dmg_spurwechsel":"Změna jízdního pruhu","dmg_wildschaden":"Střet se zvěří","dmg_abbiegevorfall":"Nehoda při odbočování","dmg_beentladen":"Nakládka/Vykládka","dmg_glatteis":"Náledí","dmg_vorbeifahren":"Míjení","dmg_sonstiges":"Ostatní","webfleet_hint":"· z Webfleet (lze upravit)","s3_sub":"Druh škody a údaje o protistraně","info_notruf":"ℹ️ Při zranění osob: okamžitě volejte 112!","div_art_schadens":"Druh škody","label_schadenart":"Typ škody","schaden_fahrzeug":"Škoda na vozidle","schaden_sach":"Věcná škoda","div_fahrzeug_gegner":"Vozidlo protistrany","label_kennzeichen":"SPZ","ph_kennzeichen":"např. DO-AB 1234","label_fahrzeugtyp":"Typ vozidla","ph_fahrzeugtyp":"např. VW Golf","label_farbe":"Barva","ph_farbe":"Barva","div_halter":"Držitel vozidla protistrany","label_name_halter":"Jméno držitele","ph_name_firma":"Jméno a příjmení / firma","label_anschrift_halter":"Adresa držitele","ph_anschrift":"Ulice, PSČ, obec","label_telefon_halter":"Telefon držitele","ph_telefonnummer":"Telefonní číslo","label_email_halter":"E-mail držitele","ph_email_optional":"E-mailová adresa (nepovinné)","tip_title":"Tip pro rychlejší vyřízení škody","tip_text":"Úplné kontaktní údaje výrazně urychlují vyřízení škody pojišťovnou.","div_fahrer_gegner":"Řidič protistrany","label_name":"Jméno","label_anschrift":"Adresa","ph_nummer":"Číslo","label_email_fahrer":"E-mail řidiče","label_geburtsdatum":"Datum narození","ph_fs_nummer":"Číslo řidičského průkazu","div_versicherung":"Pojištění protistrany","label_vers_gesellschaft":"Pojišťovna","ph_huk":"např. HUK-Coburg","label_policennummer":"Číslo pojistky","ph_vers_scheinnr":"Číslo pojistné smlouvy","div_geschaedigter":"Poškozený (věcná škoda)","info_sachschaden_beispiel":"🏗 např. budova, plot, zeď, zaparkované vozidlo bez řidiče","label_name_firma":"Jméno / firma","ph_name_firmenbez":"Jméno nebo název firmy","ph_erreichbarkeit":"Dostupnost","label_email":"E-mail","ph_email_falls":"E-mailová adresa (pokud existuje)","div_zeugen":"Svědci","label_zeuge1":"Svědek 1 (jméno + telefon)","label_zeuge2":"Svědek 2 (jméno + telefon)","ph_falls_vorhanden":"Pokud existuje","zeugenkarte_title":"Karta pro výměnu údajů svědků","zeugenkarte_text":"Nechte vyplnit kartu pro výměnu údajů svědků a vyfoťte ji v kroku 4!","div_polizei":"Policie","label_polizei_frage":"Byla přivolána policie?","opt_bitte_waehlen":"– Prosím vyberte –","opt_ja_vor_ort":"Ano – policie byla na místě","opt_nein":"Ne","opt_nicht_gerufen":"Policie nebyla přivolána","label_aktenzeichen":"Číslo jednací","ph_aktenzeichen":"Číslo jednací policie","label_dienststelle":"Policejní útvar","ph_dienststelle":"např. OOP Dortmund-střed","s4_sub":"Pořiďte až 10 fotografií škody","info_fotos_pflicht":"Povinné (min. 2 fotografie):","info_fotos_text":"Detailní záběry všech poškození + celkové fotografie místa nehody. Dále: obě SPZ, brzdné stopy, stopy pneumatik, karta pro výměnu údajů svědků.","photos_of_10":"/ 10 fotografií","photos_min_pflicht":"(min. 2 povinné)","btn_kamera":"📷 Fotoaparát","btn_galerie":"🖼 Galerie","s5_sub":"Zkontrolujte a odešlete hlášení","info_email_auto":"📧 PDF bude automaticky odesláno e-mailem","btn_senden":"✉ Vytvořit a odeslat PDF","sum_fahrzeug":"🚛 Vozidlo","sum_fahrer":"👤 Řidič","sum_unfall":"📍 Nehoda","sum_gegner_fzg":"🚗 Vozidlo protistrany","sum_geschaedigter":"🏗 Poškozený (věcná škoda)","sum_fotos":"📷 Fotografie","sum_k_fahrzeug":"SPZ","sum_k_kennzeichen":"SPZ","sum_k_webfleet_einheit":"Jednotka Webfleet","sum_k_km":"Stav kilometrů","sum_k_name":"Jméno","sum_k_telefon":"Telefon","sum_k_datum_zeit":"Datum / čas","sum_k_ort":"Místo","sum_k_schadensart":"Druh škody","sum_k_halter":"Držitel","sum_k_versicherung":"Pojištění","sum_k_anschrift":"Adresa","sum_k_aufgenommen":"Pořízeno","sum_v_foto":"fotografie","err_pflichtfelder":"Vyplňte prosím všechna povinná pole (*)","err_fs_pflicht":"Číslo řidičského průkazu je povinné","err_schadensart":"Vyberte prosím druh škody","err_art_schadens":"Vyberte druh škody (vozidlo/věcná)","err_kennzeichen_gegner":"SPZ protistrany je povinná","err_name_halter":"Jméno držitele je povinné","err_anschrift_halter":"Adresa držitele je povinná","err_name_fahrer_gegner":"Jméno řidiče (protistrana) je povinné","err_anschrift_fahrer_gegner":"Adresa řidiče (protistrana) je povinná","err_name_geschaedigter":"Jméno poškozeného je povinné","err_anschrift_geschaedigter":"Adresa poškozeného je povinná","err_telefon_geschaedigter":"Telefon poškozeného je povinný","err_aktenzeichen_pflicht":"Číslo jednací policie je povinné","err_dienststelle_pflicht":"Policejní služebna je povinná","err_min_fotos":"Pořiďte prosím alespoň 2 fotografie","err_generic":"Chyba:","err_photos_max":"dalších fotografií lze přidat","err_photos_only":"Pouze","err_versand_fehlgeschlagen":"Automatické odeslání selhalo – otevřen Outlook","err_pdf_fehler":"Chyba PDF:","toast_ausgewaehlt":"vybráno","toast_fahrer":"Řidič:","dlg_bericht_gesendet":"Hlášení odesláno!","dlg_wurde_gesendet_an":"Hlášení o nehodě bylo automaticky odesláno na","dlg_gesendet":"odesláno.","dlg_schliessen":"Zavřít","lang_switch_label":"Jazyk"},"en":{"hdr_sub":"Accident Report","hdr_badge":"⚠ Emergency","step1":"Vehicle Selection","step2":"Driver & Accident Details","step3":"Other Party & Damage","step4":"Photos","step5":"Summary","s1_sub":"Select group or search by license plate","load_btn":"🔄 Reload vehicles","search_placeholder":"Search license plate or name...","tap_to_open":"Tap to open","back_groups":"← Groups","btn_weiter":"Next →","btn_zurueck":"← Back","all_vehicles":"All vehicles","vehicles_total_suffix":"vehicles total","vehicles_suffix":"vehicles","groups_suffix":"groups","results_for":"result(s) for","no_vehicles":"No vehicles found","vehicles_in_group":"vehicles in","s2_sub":"Enter your details and accident information","km_loading":"📏 Loading mileage...","km_label":"📏 Mileage:","section_fahrerangaben":"Driver Details","label_fahrername":"Driver name","ph_vorname_nachname":"First and last name","label_fs_nr":"Driving licence no.","ph_manuell":"Enter manually","label_telefon":"Phone","ph_handynummer":"Your mobile number","section_unfallangaben":"Accident Details","label_datum":"Date","label_uhrzeit":"Time","label_unfallort":"Accident location","ph_unfallort":"Street, city / motorway, km","label_unfallhergang":"Accident description","ph_unfallhergang":"Describe the accident briefly and precisely...","label_schadensart":"Type of incident","dmg_auffahrunfall":"Rear-end collision","dmg_parkschaden":"Parking damage","dmg_rangierunfall":"Manoeuvring accident","dmg_spurwechsel":"Lane change","dmg_wildschaden":"Animal collision","dmg_abbiegevorfall":"Turning incident","dmg_beentladen":"Loading/Unloading","dmg_glatteis":"Ice/Black ice","dmg_vorbeifahren":"Passing","dmg_sonstiges":"Other","webfleet_hint":"· from Webfleet (editable)","s3_sub":"Type of damage and other party details","info_notruf":"ℹ️ In case of injury: call 112 immediately!","div_art_schadens":"Type of damage","label_schadenart":"Damage type","schaden_fahrzeug":"Vehicle damage","schaden_sach":"Property damage","div_fahrzeug_gegner":"Other party's vehicle","label_kennzeichen":"License plate","ph_kennzeichen":"e.g. DO-AB 1234","label_fahrzeugtyp":"Vehicle type","ph_fahrzeugtyp":"e.g. VW Golf","label_farbe":"Colour","ph_farbe":"Colour","div_halter":"Registered keeper of other vehicle","label_name_halter":"Keeper's name","ph_name_firma":"First/last name / company","label_anschrift_halter":"Keeper's address","ph_anschrift":"Street, postcode, city","label_telefon_halter":"Keeper's phone","ph_telefonnummer":"Phone number","label_email_halter":"Keeper's email","ph_email_optional":"Email address (optional)","tip_title":"Tip for faster claims processing","tip_text":"Complete contact details significantly speed up processing by the insurance company.","div_fahrer_gegner":"Other party's driver","label_name":"Name","label_anschrift":"Address","ph_nummer":"Number","label_email_fahrer":"Driver's email","label_geburtsdatum":"Date of birth","ph_fs_nummer":"Driving licence number","div_versicherung":"Other party's insurance","label_vers_gesellschaft":"Insurance company","ph_huk":"e.g. HUK-Coburg","label_policennummer":"Policy number","ph_vers_scheinnr":"Insurance policy number","div_geschaedigter":"Injured party (property damage)","info_sachschaden_beispiel":"🏗 e.g. building, fence, wall, parked vehicle without driver","label_name_firma":"Name / company","ph_name_firmenbez":"Name or company name","ph_erreichbarkeit":"Contact availability","label_email":"Email","ph_email_falls":"Email address (if available)","div_zeugen":"Witnesses","label_zeuge1":"Witness 1 (name + phone)","label_zeuge2":"Witness 2 (name + phone)","ph_falls_vorhanden":"If available","zeugenkarte_title":"Witness exchange card","zeugenkarte_text":"Have the witness exchange card filled out and photograph it in step 4!","div_polizei":"Police","label_polizei_frage":"Did police attend?","opt_bitte_waehlen":"– Please select –","opt_ja_vor_ort":"Yes – police were on site","opt_nein":"No","opt_nicht_gerufen":"Police not called","label_aktenzeichen":"Case reference number","ph_aktenzeichen":"Police case reference","label_dienststelle":"Police station","ph_dienststelle":"e.g. Dortmund-Central police station","s4_sub":"Take up to 10 photos of the damage","info_fotos_pflicht":"Required (min. 2 photos):","info_fotos_text":"Close-ups of all damage + overview photos of the accident scene. Also: both license plates, skid marks, tyre marks, witness exchange card.","photos_of_10":"/ 10 photos","photos_min_pflicht":"(min. 2 required)","btn_kamera":"📷 Camera","btn_galerie":"🖼 Gallery","s5_sub":"Review and send report","info_email_auto":"📧 The PDF will be sent automatically by email","btn_senden":"✉ Create & send PDF","sum_fahrzeug":"🚛 Vehicle","sum_fahrer":"👤 Driver","sum_unfall":"📍 Accident","sum_gegner_fzg":"🚗 Other party's vehicle","sum_geschaedigter":"🏗 Injured party (property damage)","sum_fotos":"📷 Photos","sum_k_fahrzeug":"License plate","sum_k_kennzeichen":"License plate","sum_k_webfleet_einheit":"Webfleet unit","sum_k_km":"Mileage","sum_k_name":"Name","sum_k_telefon":"Phone","sum_k_datum_zeit":"Date / time","sum_k_ort":"Location","sum_k_schadensart":"Type of incident","sum_k_halter":"Keeper","sum_k_versicherung":"Insurance","sum_k_anschrift":"Address","sum_k_aufgenommen":"Taken","sum_v_foto":"photo(s)","err_pflichtfelder":"Please fill in all required fields (*)","err_fs_pflicht":"Driving licence no. is required","err_schadensart":"Please select a type of incident","err_art_schadens":"Please select damage type (vehicle/property)","err_kennzeichen_gegner":"Other party's license plate is required","err_name_halter":"Keeper's name is required","err_anschrift_halter":"Keeper's address is required","err_name_fahrer_gegner":"Driver's name (other party) is required","err_anschrift_fahrer_gegner":"Driver's address (other party) is required","err_name_geschaedigter":"Injured party's name is required","err_anschrift_geschaedigter":"Injured party's address is required","err_telefon_geschaedigter":"Injured party's phone is required","err_aktenzeichen_pflicht":"Police file number is required","err_dienststelle_pflicht":"Police station is required","err_min_fotos":"Please take at least 2 photos","err_generic":"Error:","err_photos_max":"more photos possible","err_photos_only":"Only","err_versand_fehlgeschlagen":"Automatic sending failed – Outlook opened","err_pdf_fehler":"PDF error:","toast_ausgewaehlt":"selected","toast_fahrer":"Driver:","dlg_bericht_gesendet":"Report sent!","dlg_wurde_gesendet_an":"The accident report was automatically sent to","dlg_gesendet":"sent.","dlg_schliessen":"Close","lang_switch_label":"Language"}};
 
 let currentLang = localStorage.getItem('app_lang') || 'de';
 
@@ -553,7 +751,12 @@ async function wfFetch(action, extra) {
 // ═══════════════════════════════
 // STATE
 // ═══════════════════════════════
-const S = { screen: 1, vehicle: null, km: null, photos: [], damage: '', schadenart: '', allVehicles: [], groups: [], currentGroup: null };
+// mode: 'fuhrpark' (Unfall mit LKW/PKW) oder 'lager' (Staplerschaden).
+// Die Screens 1-3 gibt es je Bereich einmal, Fotos und Zusammenfassung teilen
+// sich beide. stapler* haelt die Lager-Stammdaten aus stapler.json.
+const S = { screen: 0, mode: null, vehicle: null, km: null, photos: [], damage: '', schadenart: '',
+            allVehicles: [], groups: [], currentGroup: null,
+            stapler: null, staplerAll: [], staplerGroups: [], staplerStand: '' };
 
 // Standort-Verteiler. Pflegequelle ist die Excel "NL Mail.xlsx";
 // daraus wird ndl.json erzeugt und beim Start geladen.
@@ -575,11 +778,16 @@ async function loadNdl() {
   }
 }
 loadNdl();
+loadStapler();
 
-// Init date/time
+// Init date/time - beide Bereiche starten mit dem aktuellen Zeitpunkt
 const now = new Date();
-document.getElementById('aDate').value = now.toISOString().split('T')[0];
-document.getElementById('aTime').value = now.toTimeString().slice(0,5);
+const heute = now.toISOString().split('T')[0];
+const jetzt = now.toTimeString().slice(0,5);
+document.getElementById('aDate').value = heute;
+document.getElementById('aTime').value = jetzt;
+document.getElementById('lDate').value = heute;
+document.getElementById('lTime').value = jetzt;
 renderPhotos();
 
 // Sprache beim Start anwenden (gespeicherte Auswahl oder Deutsch)
@@ -591,11 +799,49 @@ window.addEventListener('load', () => setTimeout(loadGroups, 400));
 // ═══════════════════════════════
 // NAVIGATION
 // ═══════════════════════════════
-const lbls = ['Fahrzeugauswahl','Unfallangaben','Unfallgegner','Fotos','Zusammenfassung'];
+const LBLS = {
+  fuhrpark: ['Fahrzeugauswahl','Unfallangaben','Unfallgegner','Fotos','Zusammenfassung'],
+  lager:    ['Staplerauswahl','Schadensangaben','Beteiligte','Fotos','Zusammenfassung']
+};
+
+// Schritt 1-3 gibt es je Bereich einmal (s1..s3 / l1..l3), Schritt 4 und 5
+// teilen sich beide Bereiche.
+function screenId(n) {
+  return (S.mode === 'lager' && n <= 3) ? 'l' + n : 's' + n;
+}
+
+function setMode(mode) {
+  S.mode = mode;
+  document.getElementById('hdrSub').textContent =
+    mode === 'lager' ? 'Staplerschaden' : 'Unfallaufnahme';
+  if (mode === 'lager') showStaplerGroups();
+  goTo(1);
+}
+
+function goToStart() {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('s0').classList.add('active');
+  document.getElementById('prog').style.display = 'none';
+  document.getElementById('hdrSub').textContent = 'Schadensmeldung';
+  S.mode = null; S.screen = 0;
+
+  // Fuhrpark und Lager teilen sich Schadensart, Schadenart und Fotos. Ohne
+  // Ruecksetzen wuerde eine im einen Bereich gewaehlte Kachel im anderen
+  // weitergelten und die Pflichtpruefung durchwinken.
+  S.damage = ''; S.schadenart = '';
+  document.querySelectorAll('.dmg.sel').forEach(d => d.classList.remove('sel'));
+  document.getElementById('fahrzeugSchadenBlock').style.display = 'none';
+  document.getElementById('sachSchadenBlock').style.display = 'none';
+  S.photos = [];
+  renderPhotos();
+
+  window.scrollTo(0, 0);
+}
 
 function goTo(n) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.getElementById('s' + n).classList.add('active');
+  document.getElementById(screenId(n)).classList.add('active');
+  document.getElementById('prog').style.display = '';
   S.screen = n;
   // progress
   for (let i = 1; i <= 5; i++) {
@@ -604,7 +850,16 @@ function goTo(n) {
     d.textContent = i < n ? '✓' : i;
     if (i < 5) document.getElementById('ln' + i).className = 'line' + (i < n ? ' done' : '');
   }
-  document.getElementById('pLbl').textContent = lbls[n - 1];
+  document.getElementById('pLbl').textContent = (LBLS[S.mode] || LBLS.fuhrpark)[n - 1];
+
+  // Fotohinweis passt sich dem Bereich an; die Uebersetzung des Fuhrpark-
+  // Textes kommt weiterhin aus I18N.
+  if (n === 4) {
+    document.getElementById('fotoHint').textContent = S.mode === 'lager'
+      ? 'Nahaufnahmen des Schadens am Stapler und am beschädigten Objekt, dazu Übersichtsfotos der Stelle und der Umgebung.'
+      : t('info_fotos_text');
+  }
+
   window.scrollTo(0, 0);
 }
 
@@ -655,6 +910,182 @@ function next4() {
 }
 
 function g(id) { return (document.getElementById(id)?.value || '').trim(); }
+
+// ═══════════════════════════════
+// LAGER – STAPLER
+// Stammdaten kommen aus stapler.json (erzeugt aus der Fuhrpark-Bestandsliste,
+// siehe tools/stapler_aus_excel.py). Stapler haben keine Telematikeinheit,
+// deshalb kein Webfleet: keine Kilometer, kein Fahrername, keine Position.
+// ═══════════════════════════════
+async function loadStapler() {
+  try {
+    const r = await fetch('stapler.json', { cache: 'no-cache' });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    const d = await r.json();
+    if (!d || !Array.isArray(d.geraete) || !d.geraete.length) throw new Error('leere Liste');
+
+    S.staplerAll = d.geraete;
+    S.staplerStand = d.stand || '';
+
+    // Nach Standort buendeln, Reihenfolge nach Niederlassungsnummer
+    const map = new Map();
+    d.geraete.forEach(ger => {
+      const key = ger.ndl || 'zzz';
+      if (!map.has(key)) map.set(key, { ndl: ger.ndl, name: ger.ndlName, geraete: [] });
+      map.get(key).geraete.push(ger);
+    });
+    S.staplerGroups = [...map.values()].sort((a, b) => (a.ndl || 'zzz').localeCompare(b.ndl || 'zzz'));
+
+    console.info('stapler.json geladen: ' + d.geraete.length + ' Geraete, Stand ' + S.staplerStand);
+    if (S.mode === 'lager' && S.screen === 1) showStaplerGroups();
+  } catch (e) {
+    console.warn('stapler.json nicht geladen:', e);
+  }
+}
+
+function showStaplerGroups() {
+  document.getElementById('lGroupView').style.display = 'block';
+  document.getElementById('lDeviceView').style.display = 'none';
+  document.getElementById('lSearchInput').value = '';
+  document.getElementById('l1Sub').textContent = 'Standort wählen oder Gerätenummer suchen'
+    + (S.staplerStand ? ' · Bestand vom ' + S.staplerStand : '');
+
+  const el = document.getElementById('lgList');
+  el.innerHTML = '';
+
+  if (!S.staplerAll.length) {
+    el.innerHTML = '<div class="info red">Staplerliste konnte nicht geladen werden. '
+      + 'Bitte die App einmal mit Netzverbindung starten.</div>';
+    document.getElementById('lGrpCount').textContent = '';
+    return;
+  }
+
+  document.getElementById('lGrpCount').textContent =
+    S.staplerGroups.length + ' Standorte · ' + S.staplerAll.length + ' Stapler';
+
+  const alle = document.createElement('div');
+  alle.className = 'gcard';
+  alle.innerHTML = `
+    <div class="gicon">🏗</div>
+    <div style="flex:1"><div class="gname">Alle Stapler</div>
+    <div class="gcnt">${S.staplerAll.length} Geräte gesamt</div></div>
+    <div style="color:var(--muted);font-size:18px">›</div>`;
+  alle.onclick = () => showStaplerForGroup(null);
+  el.appendChild(alle);
+
+  S.staplerGroups.forEach(grp => {
+    const card = document.createElement('div');
+    card.className = 'gcard';
+    card.innerHTML = `
+      <div class="gicon">📁</div>
+      <div style="flex:1"><div class="gname">${grp.ndl ? grp.ndl + ' – ' : ''}${grp.name}</div>
+      <div class="gcnt">${grp.geraete.length} Stapler</div></div>
+      <div style="color:var(--muted);font-size:18px">›</div>`;
+    card.onclick = () => showStaplerForGroup(grp);
+    el.appendChild(card);
+  });
+}
+
+function showStaplerForGroup(grp) {
+  document.getElementById('lGroupView').style.display = 'none';
+  document.getElementById('lDeviceView').style.display = 'block';
+  const liste = grp ? grp.geraete : S.staplerAll;
+  document.getElementById('lListHeader').textContent =
+    (grp ? (grp.ndl ? grp.ndl + ' – ' : '') + grp.name : 'Alle Stapler')
+    + ' · ' + liste.length + ' Geräte';
+  renderStapler(liste);
+  window.scrollTo(0, 0);
+}
+
+function backToStaplerGroups() { showStaplerGroups(); }
+
+function onStaplerSearch(q) {
+  const s = (q || '').trim().toLowerCase();
+  if (!s) { showStaplerGroups(); return; }
+  const treffer = S.staplerAll.filter(ger =>
+    ger.nr.toLowerCase().includes(s)
+    || (ger.typ || '').toLowerCase().includes(s)
+    || (ger.ndlName || '').toLowerCase().includes(s)
+    || (ger.ndl || '').includes(s));
+  document.getElementById('lGroupView').style.display = 'none';
+  document.getElementById('lDeviceView').style.display = 'block';
+  document.getElementById('lListHeader').textContent = treffer.length + ' Treffer für "' + q + '"';
+  renderStapler(treffer);
+}
+
+function renderStapler(list) {
+  const el = document.getElementById('lList');
+  if (!list.length) {
+    el.innerHTML = '<div class="info red">Kein Stapler gefunden</div>'; return;
+  }
+  el.innerHTML = '';
+  list.forEach(ger => {
+    const card = document.createElement('div');
+    card.className = 'scard' + (S.stapler?.nr === ger.nr ? ' sel' : '');
+    card.innerHTML = `
+      <div class="vicon">🏗</div>
+      <div style="flex:1;min-width:0">
+        <div class="vname">${ger.nr}</div>
+        <div class="vplate">🔧 ${ger.typ || '–'}</div>
+        <div class="vkm">📍 ${ger.ndl ? ger.ndl + ' – ' : ''}${ger.ndlName}</div>
+      </div>
+      <div class="vcheck">${S.stapler?.nr === ger.nr ? '✓' : ''}</div>`;
+    card.onclick = () => selectStapler(card, ger);
+    el.appendChild(card);
+  });
+}
+
+function selectStapler(card, geraet) {
+  // Eigene Klasse .scard, damit die Fahrzeugauswahl im Fuhrpark-Teil
+  // nicht mit zurueckgesetzt wird.
+  document.querySelectorAll('.scard').forEach(c => {
+    c.classList.remove('sel'); c.querySelector('.vcheck').textContent = '';
+  });
+  card.classList.add('sel');
+  card.querySelector('.vcheck').textContent = '✓';
+  S.stapler = geraet;
+  document.getElementById('lBtn1').disabled = false;
+  document.getElementById('lBadge').textContent = '🏗 ' + geraet.nr
+    + (geraet.typ ? ' · ' + geraet.typ : '');
+  toast(geraet.nr + ' ausgewählt');
+}
+
+function lagerBeteiligung() {
+  const v = document.getElementById('lThird').value;
+  return {
+    wert: v,
+    sach: v === 'Sachschaden Dritter' || v === 'Sach- und Personenschaden',
+    pers: v === 'Personenschaden' || v === 'Sach- und Personenschaden'
+  };
+}
+
+function onThirdChange() {
+  const b = lagerBeteiligung();
+  document.getElementById('lSachBlock').style.display = b.sach ? 'block' : 'none';
+  document.getElementById('lPersBlock').style.display = b.pers ? 'block' : 'none';
+}
+
+function nextL2() {
+  if (!g('lName') || !g('lDate') || !g('lTime') || !g('lLoc') || !g('lDesc')) {
+    toast('Bitte alle Pflichtfelder ausfüllen', 'err'); return;
+  }
+  if (!S.damage) { toast('Bitte Schadensart wählen', 'err'); return; }
+  goTo(3);
+}
+
+function nextL3() {
+  const b = lagerBeteiligung();
+  if (b.sach) {
+    if (!g('lTName')) { toast('Bitte Name des Geschädigten angeben', 'err'); return; }
+    if (!g('lTAddr')) { toast('Bitte Anschrift des Geschädigten angeben', 'err'); return; }
+    if (!g('lTDesc')) { toast('Bitte angeben, was beschädigt wurde', 'err'); return; }
+  }
+  if (b.pers) {
+    if (!g('lPName'))   { toast('Bitte Name der verletzten Person angeben', 'err'); return; }
+    if (!g('lPInjury')) { toast('Bitte Art der Verletzung angeben', 'err'); return; }
+  }
+  goTo(4);
+}
 
 // ═══════════════════════════════
 // WEBFLEET – GRUPPEN & FAHRZEUGE
@@ -1079,6 +1510,7 @@ function translateDamage(val) {
 }
 
 function buildSummary() {
+  if (S.mode === 'lager') { buildSummaryLager(); return; }
   document.getElementById('sumContent').innerHTML = `
     <div class="sblock"><h3>${t('sum_fahrzeug')}</h3>
       <div class="srow"><span class="k">${t('sum_k_fahrzeug')}</span><span class="v">${S.vehicle?.name||'–'}</span></div>
@@ -1108,12 +1540,53 @@ function buildSummary() {
     </div>`;
 }
 
+function buildSummaryLager() {
+  const b = lagerBeteiligung();
+  const zeile = (k, v) => '<div class="srow"><span class="k">' + k + '</span><span class="v">' + (v || '–') + '</span></div>';
+  const block = (titel, inhalt) => '<div class="sblock"><h3>' + titel + '</h3>' + inhalt + '</div>';
+
+  let html = block('Stapler',
+      zeile('Gerätenummer', S.stapler?.nr)
+    + zeile('Typ', S.stapler?.typ)
+    + zeile('Standort', S.stapler ? (S.stapler.ndl ? S.stapler.ndl + ' – ' : '') + S.stapler.ndlName : '')
+    + zeile('Betriebsstunden', g('lHours') ? g('lHours') + ' h' : ''));
+
+  html += block('Fahrer', zeile('Name', g('lName')) + zeile('Telefon', g('lPhone')));
+
+  html += block('Schaden',
+      zeile('Datum / Zeit', g('lDate') + ' ' + g('lTime') + ' Uhr')
+    + zeile('Ort', g('lLoc'))
+    + zeile('Schadensart', S.damage)
+    + zeile('Beteiligung', b.wert));
+
+  if (b.sach) {
+    html += block('Geschädigter',
+        zeile('Name / Firma', g('lTName'))
+      + zeile('Anschrift', g('lTAddr'))
+      + zeile('Telefon', g('lTPhone')));
+  }
+
+  if (b.pers) {
+    html += block('Verletzte Person',
+        zeile('Name', g('lPName'))
+      + zeile('Zugehörigkeit', g('lPRole'))
+      + zeile('Verletzung', g('lPInjury'))
+      + zeile('Ärztliche Behandlung', g('lPDoctor')));
+  }
+
+  html += block('Fotos', zeile('Aufgenommen', S.photos.length + ' Foto(s)'));
+
+  document.getElementById('sumContent').innerHTML = html;
+}
+
 // ═══════════════════════════════
 // DOCX GENERIERUNG (Word-Dokument)
 // ═══════════════════════════════
 async function generateDocxBase64() {
   const fzg  = S.schadenart === 'Fahrzeugschaden';
   const sach = S.schadenart === 'Sachschaden';
+  const lager = S.mode === 'lager';
+  const docTitel = lager ? 'Schadensmeldung Stapler' : 'Unfallbericht';
   const now  = new Date().toLocaleString('de-DE');
 
   // Hilfsfunktionen für OOXML
@@ -1170,12 +1643,75 @@ async function generateDocxBase64() {
   body += `<w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="0" w:after="120"/></w:pPr>
     <w:r><w:rPr><w:b/><w:color w:val="0560AB"/><w:sz w:val="36"/><w:szCs w:val="36"/>
       <w:rFonts w:ascii="Tahoma" w:hAnsi="Tahoma"/></w:rPr>
-      <w:t>wego vti – Unfallbericht</w:t></w:r></w:p>`;
+      <w:t>wego vti – ${esc(docTitel)}</w:t></w:r></w:p>`;
   body += `<w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="0" w:after="240"/></w:pPr>
     <w:r><w:rPr><w:color w:val="6B8090"/><w:sz w:val="18"/><w:szCs w:val="18"/>
       <w:rFonts w:ascii="Tahoma" w:hAnsi="Tahoma"/></w:rPr>
       <w:t>Erstellt: ${esc(now)} · ENTWURF – bitte vor Weiterleitung prüfen</w:t></w:r></w:p>`;
   body += hline();
+
+  // Nummer des Fotoabschnitts: im Lagerteil haengt sie davon ab, wie viele
+  // optionale Bloecke (Sachschaden, Personenschaden) eingefuegt wurden.
+  let nr = 10;
+
+  if (lager) {
+
+  const bet = lagerBeteiligung();
+
+  body += heading('1. Stapler', 2);
+  body += table(
+    row('Gerätenummer', S.stapler?.nr) +
+    row('Typ', S.stapler?.typ) +
+    row('Standort', S.stapler ? (S.stapler.ndl ? S.stapler.ndl + ' - ' : '') + S.stapler.ndlName : '–') +
+    row('Betriebsstunden', g('lHours') ? g('lHours') + ' h' : '–')
+  );
+
+  body += heading('2. Fahrer (wego vti)', 2);
+  body += table(
+    row('Name', g('lName')) +
+    row('Telefon', g('lPhone'))
+  );
+
+  body += heading('3. Schadensangaben', 2);
+  body += table(
+    row('Datum', g('lDate')) +
+    row('Uhrzeit', g('lTime') + ' Uhr') +
+    row('Ort', g('lLoc')) +
+    row('Schadensart', S.damage) +
+    row('Hergang', g('lDesc')) +
+    row('Beteiligung', bet.wert)
+  );
+
+  nr = 4;
+  if (bet.sach) {
+    body += heading(nr++ + '. Geschädigter (Sachschaden)', 2);
+    body += table(
+      row('Name / Firma', g('lTName')) +
+      row('Anschrift', g('lTAddr')) +
+      row('Telefon', g('lTPhone')) +
+      row('Beschädigt wurde', g('lTDesc'))
+    );
+  }
+  if (bet.pers) {
+    body += heading(nr++ + '. Personenschaden', 2);
+    body += table(
+      row('Name', g('lPName')) +
+      row('Zugehörigkeit', g('lPRole')) +
+      row('Art der Verletzung', g('lPInjury')) +
+      row('Erste Hilfe geleistet', g('lPFirstAid')) +
+      row('Ärztliche Behandlung', g('lPDoctor'))
+    );
+  }
+
+  body += heading(nr++ + '. Zeugen & interne Meldung', 2);
+  body += table(
+    row('Zeuge 1', g('lW1')) +
+    row('Zeuge 2', g('lW2')) +
+    row('Vorgesetzter informiert', g('lSup')) +
+    row('Name des Vorgesetzten', g('lSup') === 'Ja' ? g('lSupName') : '–')
+  );
+
+  } else {
 
   // Fahrzeug
   body += heading('1. Fahrzeug', 2);
@@ -1256,8 +1792,10 @@ async function generateDocxBase64() {
     row('Dienststelle', g('polDienst'))
   );
 
+  }
+
   // Fotos
-  body += heading('10. Fotos', 2);
+  body += heading(nr + '. Fotos', 2);
   body += table(row('Anzahl aufgenommener Fotos', S.photos.length + ' Foto(s) – siehe PDF-Anlage'));
 
   // Unterschrift
@@ -1310,6 +1848,54 @@ async function generateDocxBase64() {
 // ═══════════════════════════════
 // PDF + EMAIL
 // ═══════════════════════════════
+// Inhaltsteil des PDF fuer den Lagerbereich. sec/row/longRow stammen aus
+// createPDF und fuehren dort die Seitenposition weiter - deshalb werden sie
+// hereingereicht statt hier neu gebaut.
+function pdfLagerAbschnitte(sec, row, longRow) {
+  const b = lagerBeteiligung();
+
+  sec('STAPLER');
+  row('Gerätenummer', S.stapler?.nr);
+  row('Typ', S.stapler?.typ);
+  row('Standort', S.stapler ? (S.stapler.ndl ? S.stapler.ndl + ' - ' : '') + S.stapler.ndlName : '–');
+  row('Betriebsstunden', g('lHours') ? g('lHours') + ' h' : '–');
+
+  sec('FAHRER');
+  row('Name', g('lName'));
+  row('Telefon', g('lPhone'));
+
+  sec('SCHADENSANGABEN');
+  row('Datum', g('lDate'));
+  row('Uhrzeit', g('lTime') + ' Uhr');
+  row('Ort', g('lLoc'));
+  row('Schadensart', S.damage);
+  longRow('Hergang', g('lDesc'));
+  row('Beteiligung', b.wert);
+
+  if (b.sach) {
+    sec('GESCHÄDIGTER (SACHSCHADEN)');
+    row('Name / Firma', g('lTName'));
+    row('Anschrift', g('lTAddr'));
+    row('Telefon', g('lTPhone'));
+    longRow('Beschädigt wurde', g('lTDesc'));
+  }
+
+  if (b.pers) {
+    sec('PERSONENSCHADEN');
+    row('Name', g('lPName'));
+    row('Zugehörigkeit', g('lPRole'));
+    longRow('Verletzung', g('lPInjury'));
+    row('Erste Hilfe geleistet', g('lPFirstAid'));
+    row('Ärztliche Behandlung', g('lPDoctor'));
+  }
+
+  sec('ZEUGEN & MELDUNG');
+  row('Zeuge 1', g('lW1'));
+  row('Zeuge 2', g('lW2'));
+  row('Vorgesetzter informiert', g('lSup'));
+  if (g('lSup') === 'Ja') row('Name des Vorgesetzten', g('lSupName'));
+}
+
 async function createPDF() {
   showLoad('PDF wird erstellt...');
   try {
@@ -1342,11 +1928,18 @@ async function createPDF() {
     doc.setTextColor(255,255,255); doc.setFontSize(20); doc.setFont('helvetica','bold');
     doc.text('wego vti', M, 14);
     doc.setFontSize(11); doc.setFont('helvetica','normal');
-    doc.text(TEST_MODE ? 'Unfallbericht (TESTVERSION)' : 'Unfallbericht', M, 22);
+    const berichtTitel = S.mode === 'lager' ? 'Schadensmeldung Stapler' : 'Unfallbericht';
+    doc.text(TEST_MODE ? berichtTitel + ' (TESTVERSION)' : berichtTitel, M, 22);
     doc.setFontSize(8);
     doc.text('Erstellt: ' + new Date().toLocaleString('de-DE'), M, 30);
     doc.text(MAIL_TO, W-M, 30, {align:'right'});
     y = 44; doc.setTextColor(30,30,30);
+
+    if (S.mode === 'lager') {
+
+    pdfLagerAbschnitte(sec, row, longRow);
+
+    } else {
 
     sec('FAHRZEUG');
     row('Kennzeichen', S.vehicle?.name); row('Webfleet Einheit', S.vehicle?.plate);
@@ -1376,8 +1969,7 @@ async function createPDF() {
       y += 2;
       sec('HALTER DES GEGNERFAHRZEUGS');
       row('Name', g('oHolderName')); row('Anschrift', g('oHolderAddr'));
-      row('Telefon', g('oHolderPhone')) +
-    row('E-Mail', g('oHolderEmail'));
+      row('Telefon', g('oHolderPhone'));
       if (g('oHolderEmail')) row('E-Mail', g('oHolderEmail'));
       y += 2;
       sec('UNFALLGEGNER – FAHRER');
@@ -1407,6 +1999,8 @@ async function createPDF() {
     if (g('polNr')) row('Aktenzeichen', g('polNr'));
     if (g('polDienst')) row('Dienststelle', g('polDienst'));
     y += 6;
+
+    }
 
     // Photos
     if (S.photos.length > 0) {
@@ -1440,13 +2034,17 @@ async function createPDF() {
     const pages = doc.internal.getNumberOfPages();
     for (let i = 1; i <= pages; i++) {
       doc.setPage(i); doc.setFontSize(7); doc.setTextColor(150);
-      doc.text('wego vti · Unfallbericht · vertraulich · Seite ' + i + ' von ' + pages, W/2, 293, {align:'center'});
+      doc.text('wego vti · ' + berichtTitel + ' · vertraulich · Seite ' + i + ' von ' + pages, W/2, 293, {align:'center'});
     }
 
     // Dateiname
-    const dateStr = g('aDate').replace(/-/g,'') || new Date().toISOString().slice(0,10).replace(/-/g,'');
-    const nameSafe = (S.vehicle?.name || S.vehicle?.plate || 'FAHRZEUG').replace(/[^A-Z0-9]/gi,'-');
-    const filename = 'Unfallbericht_' + nameSafe + '_' + dateStr + '.pdf';
+    const lager = S.mode === 'lager';
+    const dateStr = (lager ? g('lDate') : g('aDate')).replace(/-/g,'')
+      || new Date().toISOString().slice(0,10).replace(/-/g,'');
+    const nameSafe = (lager
+      ? (S.stapler?.nr || 'STAPLER')
+      : (S.vehicle?.name || S.vehicle?.plate || 'FAHRZEUG')).replace(/[^A-Z0-9]/gi,'-');
+    const filename = (lager ? 'Staplerschaden_' : 'Unfallbericht_') + nameSafe + '_' + dateStr + '.pdf';
 
     // PDF lokal speichern (Backup)
     doc.save(filename);
@@ -1459,18 +2057,34 @@ async function createPDF() {
     const docxBase64 = await generateDocxBase64();
     const docxFilename = filename.replace('.pdf', '.docx');
 
-    const subject = (TEST_MODE ? '[TEST] ' : '') + 'Unfallbericht - ' + (S.vehicle?.name||S.vehicle?.plate||'') + ' - ' + g('aDate');
-    const message =
-      'Sehr geehrte Damen und Herren,\n\n' +
-      'anbei der Unfallbericht vom ' + g('aDate') + ' um ' + g('aTime') + ' Uhr.\n\n' +
-      'Fahrzeug:       ' + (S.vehicle?.name||'–') + ' (' + (S.vehicle?.plate||'–') + ')\n' +
-      'Kilometerstand: ' + (S.km ? S.km.toLocaleString('de-DE') + ' km' : '–') + '\n' +
-      'Unfallort:      ' + g('aLoc') + '\n' +
-      'Schadensart:    ' + (S.damage||'–') + '\n' +
-      'Art des Schadens: ' + (S.schadenart||'–') + '\n' +
-      'Unfallgegner:   ' + (g('oName')||'–') + ' | Kfz: ' + g('oPlate').toUpperCase() + '\n' +
-      'Versicherung:   ' + (g('oIns')||'–') + '\n\n' +
-      'Mit freundlichen Grüßen,\n' + g('dName') + '\n' + (g('dPhone') ? 'Tel: ' + g('dPhone') : '');
+    const subject = (TEST_MODE ? '[TEST] ' : '')
+      + (lager
+        ? 'Staplerschaden - ' + (S.stapler?.nr||'') + ' - ' + g('lDate')
+        : 'Unfallbericht - ' + (S.vehicle?.name||S.vehicle?.plate||'') + ' - ' + g('aDate'));
+
+    const bet = lager ? lagerBeteiligung() : null;
+    const message = lager
+      ? 'Sehr geehrte Damen und Herren,\n\n' +
+        'anbei die Schadensmeldung zu einem Stapler vom ' + g('lDate') + ' um ' + g('lTime') + ' Uhr.\n\n' +
+        'Stapler:        ' + (S.stapler?.nr||'–') + ' (' + (S.stapler?.typ||'–') + ')\n' +
+        'Standort:       ' + (S.stapler ? (S.stapler.ndl ? S.stapler.ndl + ' - ' : '') + S.stapler.ndlName : '–') + '\n' +
+        'Betriebsstunden:' + (g('lHours') ? ' ' + g('lHours') + ' h' : ' –') + '\n' +
+        'Ort:            ' + g('lLoc') + '\n' +
+        'Schadensart:    ' + (S.damage||'–') + '\n' +
+        'Beteiligung:    ' + (bet.wert||'–') + '\n' +
+        (bet.pers ? 'Personenschaden: ' + (g('lPName')||'–') + ' | ' + (g('lPInjury')||'–') + '\n' : '') +
+        (bet.sach ? 'Geschädigter:   ' + (g('lTName')||'–') + '\n' : '') +
+        '\nMit freundlichen Grüßen,\n' + g('lName') + '\n' + (g('lPhone') ? 'Tel: ' + g('lPhone') : '')
+      : 'Sehr geehrte Damen und Herren,\n\n' +
+        'anbei der Unfallbericht vom ' + g('aDate') + ' um ' + g('aTime') + ' Uhr.\n\n' +
+        'Fahrzeug:       ' + (S.vehicle?.name||'–') + ' (' + (S.vehicle?.plate||'–') + ')\n' +
+        'Kilometerstand: ' + (S.km ? S.km.toLocaleString('de-DE') + ' km' : '–') + '\n' +
+        'Unfallort:      ' + g('aLoc') + '\n' +
+        'Schadensart:    ' + (S.damage||'–') + '\n' +
+        'Art des Schadens: ' + (S.schadenart||'–') + '\n' +
+        'Unfallgegner:   ' + (g('oName')||'–') + ' | Kfz: ' + g('oPlate').toUpperCase() + '\n' +
+        'Versicherung:   ' + (g('oIns')||'–') + '\n\n' +
+        'Mit freundlichen Grüßen,\n' + g('dName') + '\n' + (g('dPhone') ? 'Tel: ' + g('dPhone') : '');
 
     // E-Mail via Google Apps Script senden
     showLoad('E-Mail wird gesendet...');
@@ -1561,7 +2175,11 @@ async function createPDF() {
 // UTILS
 // ═══════════════════════════════
 function getStandortEntry() {
-  // NDL aus aktueller Gruppe (erste 3 Ziffern des Gruppennamens)
+  // Lager: die Niederlassung haengt am Stapler selbst (aus stapler.json)
+  if (S.mode === 'lager') {
+    return (S.stapler && S.stapler.ndl && NDL[S.stapler.ndl]) || null;
+  }
+  // Fuhrpark: NDL aus aktueller Gruppe (erste 3 Ziffern des Gruppennamens)
   if (!S.currentGroup) return null;
   const match = S.currentGroup.name.match(/^(\d{3})/);
   if (!match) return null;

@@ -1,6 +1,6 @@
 // Eigener Cache-Name: Test und Produktiv liegen auf derselben Origin
 // (markusesser167.github.io) und teilen sich den Cache-Speicher.
-const CACHE = 'wego-unfallapp-test-v1';
+const CACHE = 'wego-unfallapp-test-v3';
 const CACHE_PREFIX = 'wego-unfallapp-test-';
 const FILES = [
   './',
@@ -8,7 +8,8 @@ const FILES = [
   './manifest.json',
   './icon-192.png',
   './icon-512.png',
-  './ndl.json'
+  './ndl.json',
+  './stapler.json'
 ];
 
 self.addEventListener('install', e => {
@@ -29,9 +30,20 @@ self.addEventListener('activate', e => {
 });
 
 self.addEventListener('fetch', e => {
-  // Standortliste immer zuerst aus dem Netz holen, damit Aenderungen
-  // an ndl.json ohne neue App-Version ankommen; offline aus dem Cache.
-  if (e.request.url.indexOf('ndl.json') !== -1) {
+  // Stammdaten immer zuerst aus dem Netz holen, damit Aenderungen an
+  // ndl.json und stapler.json ohne neue App-Version ankommen; offline
+  // aus dem Cache.
+  // In der TESTVERSION zusaetzlich die App selbst netzwerk-zuerst holen:
+  // sonst liefert der Cache nach jeder Aenderung weiter den alten Stand
+  // und man testet unbemerkt gegen eine veraltete Fassung. Offline
+  // greift wie gehabt der Cache. In der Produktivfassung bleibt es bei
+  // Cache-zuerst - dort zaehlt Startgeschwindigkeit und Offlinebetrieb.
+  const netzZuerst =
+        e.request.mode === 'navigate'
+     || e.request.url.indexOf('index.html') !== -1
+     || e.request.url.indexOf('ndl.json') !== -1
+     || e.request.url.indexOf('stapler.json') !== -1;
+  if (netzZuerst) {
     e.respondWith(
       fetch(e.request).then(r => {
         const copy = r.clone();
