@@ -1,15 +1,18 @@
 {
-  "name": "wego vti Unfallaufnahme",
-  "short_name": "Unfallaufnahme",
-  "description": "Unfallbericht-App für wego vti LKW-Fahrer",
+  "name": "[TEST] wego vti Unfallaufnahme",
+  "short_name": "Unfall TEST",
+  "description": "Testversion der Unfallbericht-App - Mails gehen an digital-services@wego-vti.de",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#0560AB",
+  "theme_color": "#B00020",
   "orientation": "portrait",
   "lang": "de",
-  "categories": ["utilities", "productivity"],
+  "categories": [
+    "utilities",
+    "productivity"
+  ],
   "icons": [
     {
       "src": "icon-192.png",

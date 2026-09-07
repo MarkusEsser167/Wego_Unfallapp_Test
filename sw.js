@@ -1,4 +1,7 @@
-const CACHE = 'wego-unfallapp-v2';
+// Eigener Cache-Name: Test und Produktiv liegen auf derselben Origin
+// (markusesser167.github.io) und teilen sich den Cache-Speicher.
+const CACHE = 'wego-unfallapp-test-v1';
+const CACHE_PREFIX = 'wego-unfallapp-test-';
 const FILES = [
   './',
   './index.html',
@@ -17,7 +20,10 @@ self.addEventListener('install', e => {
 self.addEventListener('activate', e => {
   e.waitUntil(
     caches.keys().then(keys =>
-      Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))
+      // Nur eigene Altbestaende loeschen - sonst nimmt diese App der
+      // Produktivversion auf demselben Geraet die Offlinefaehigkeit.
+      Promise.all(keys.filter(k => k.indexOf(CACHE_PREFIX) === 0 && k !== CACHE)
+                      .map(k => caches.delete(k)))
     ).then(() => self.clients.claim())
   );
 });
