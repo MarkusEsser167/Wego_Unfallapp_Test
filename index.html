@@ -167,6 +167,10 @@
     .lang-btn .flag { display: inline-flex; align-items: center; border-radius: 2px; overflow: hidden; box-shadow: 0 0 0 1px rgba(0,0,0,.08); }
     .lang-btn.active { border-color: var(--ci-cobalt); background: rgba(5,96,171,.08); color: var(--ci-cobalt); }
     .lang-btn:active { transform: scale(.96); }
+/* Mehrfachauswahl "Betroffen": die blaue Toenung allein reicht als Zustand
+   nicht, wenn mehrere Kacheln gleichzeitig an sein koennen - daher ein Haken. */
+#lBetGrid .dmg { position: relative; }
+#lBetGrid .dmg.sel::after { content: '✓'; position: absolute; top: 3px; right: 7px; font-size: 13px; font-weight: 700; color: var(--ci-cobalt); }
 /* --- Bereichsauswahl (Startbildschirm) --- */
 .mcard { background: #fff; border: 1.5px solid var(--border); border-radius: var(--r); padding: 18px 16px; display: flex; align-items: center; gap: 14px; margin-bottom: 12px; cursor: pointer; transition: all .2s; box-shadow: 0 1px 3px rgba(0,0,0,.06); }
 .mcard:active { border-color: var(--ci-cobalt); background: rgba(5,96,171,.04); transform: scale(.99); }
@@ -531,23 +535,52 @@
      LAGER 3 – BETEILIGTE
 ═══════════════════════════════════════ -->
 <div class="screen" id="l3">
-  <div class="stitle">Beteiligte</div>
-  <div class="ssub">Sind Personen oder Dritte betroffen?</div>
+  <div class="stitle">Betroffen</div>
+  <div class="ssub">Was wurde beschädigt? Mehrfachauswahl möglich</div>
 
   <div class="info">ℹ️ Bei Personenschaden: Sofort Notruf <strong>112</strong> rufen und Ersthelfer verständigen!</div>
 
   <div class="fg">
-    <label><span>Wer oder was ist betroffen?</span> <span class="req">*</span></label>
-    <select id="lThird" onchange="onThirdChange()">
-      <option value="Nur Schaden am Stapler">Nur Schaden am Stapler</option>
-      <option value="Sachschaden Dritter">Sachschaden Dritter (fremdes Eigentum)</option>
-      <option value="Personenschaden">Personenschaden</option>
-      <option value="Sach- und Personenschaden">Sach- und Personenschaden</option>
-    </select>
+    <label><span>Betroffen ist</span> <span class="req">*</span></label>
+    <div class="dmg-grid" id="lBetGrid">
+      <div class="dmg" data-bet="stapler" onclick="toggleBet(this)"><span class="di">🏗</span><span>Stapler selbst</span></div>
+      <div class="dmg" data-bet="eigen"   onclick="toggleBet(this)"><span class="di">📦</span><span>Eigenes Material</span></div>
+      <div class="dmg" data-bet="sach"    onclick="toggleBet(this)"><span class="di">🏢</span><span>Fremdes Eigentum</span></div>
+      <div class="dmg" data-bet="pers"    onclick="toggleBet(this)"><span class="di">⚠</span><span>Person</span></div>
+    </div>
+  </div>
+
+  <div id="lEigenBlock" style="display:none">
+    <div class="div">Eigenes Material / Ausrüstung</div>
+    <div class="fg">
+      <label>Was ist betroffen?</label>
+      <select id="lEArt">
+        <option value="Ware / Handelsware">Ware / Handelsware</option>
+        <option value="Regal / Lagertechnik">Regal / Lagertechnik</option>
+        <option value="Gebäude / Tor / Rampe">Gebäude / Tor / Rampe</option>
+        <option value="Ladungsträger (Palette, Gitterbox)">Ladungsträger (Palette, Gitterbox)</option>
+        <option value="Betriebsmittel / Ausrüstung">Betriebsmittel / Ausrüstung</option>
+        <option value="Anderer Stapler / Fahrzeug">Anderer Stapler / Fahrzeug</option>
+        <option value="Sonstiges">Sonstiges</option>
+      </select>
+    </div>
+    <div class="fg"><label><span>Was wurde beschädigt?</span> <span class="req">*</span></label><textarea id="lEDesc" placeholder="Gegenstand und Umfang der Beschädigung..."></textarea></div>
+    <div class="fg"><label>Artikel- oder Inventarnummer</label><input type="text" id="lENr" placeholder="Falls vorhanden"></div>
+    <div class="row2">
+      <div class="fg"><label>Geschätzter Schaden</label><input type="number" id="lEWert" inputmode="numeric" placeholder="EUR, falls abschätzbar"></div>
+      <div class="fg">
+        <label>Weiter nutzbar</label>
+        <select id="lENutzbar">
+          <option value="Nein">Nein</option>
+          <option value="Eingeschränkt">Eingeschränkt</option>
+          <option value="Ja">Ja</option>
+        </select>
+      </div>
+    </div>
   </div>
 
   <div id="lSachBlock" style="display:none">
-    <div class="div">Geschädigter (Sachschaden)</div>
+    <div class="div">Geschädigter Dritter (fremdes Eigentum)</div>
     <div class="fg"><label><span>Name / Firma</span> <span class="req">*</span></label><input type="text" id="lTName" placeholder="Name oder Firmenbezeichnung"></div>
     <div class="fg"><label><span>Anschrift</span> <span class="req">*</span></label><input type="text" id="lTAddr" placeholder="Straße, PLZ, Ort"></div>
     <div class="fg"><label>Telefon</label><input type="tel" id="lTPhone" placeholder="Erreichbarkeit"></div>
@@ -801,7 +834,7 @@ window.addEventListener('load', () => setTimeout(loadGroups, 400));
 // ═══════════════════════════════
 const LBLS = {
   fuhrpark: ['Fahrzeugauswahl','Unfallangaben','Unfallgegner','Fotos','Zusammenfassung'],
-  lager:    ['Staplerauswahl','Schadensangaben','Beteiligte','Fotos','Zusammenfassung']
+  lager:    ['Staplerauswahl','Schadensangaben','Betroffen','Fotos','Zusammenfassung']
 };
 
 // Schritt 1-3 gibt es je Bereich einmal (s1..s3 / l1..l3), Schritt 4 und 5
@@ -1050,19 +1083,35 @@ function selectStapler(card, geraet) {
   toast(geraet.nr + ' ausgewählt');
 }
 
-function lagerBeteiligung() {
-  const v = document.getElementById('lThird').value;
-  return {
-    wert: v,
-    sach: v === 'Sachschaden Dritter' || v === 'Sach- und Personenschaden',
-    pers: v === 'Personenschaden' || v === 'Sach- und Personenschaden'
-  };
+// Was betroffen ist, sind vier unabhaengige Angaben - ein Anstoss kann den
+// Stapler, eigenes Material und eine Person zugleich treffen. Deshalb
+// Mehrfachauswahl statt einer Liste mit vorgefertigten Kombinationen.
+const BET_NAMEN = {
+  stapler: 'Schaden am Stapler',
+  eigen:   'Schaden an eigenem Material / Ausrüstung',
+  sach:    'Sachschaden Dritter',
+  pers:    'Personenschaden'
+};
+
+function toggleBet(el) {
+  el.classList.toggle('sel');
+  onBetChange();
 }
 
-function onThirdChange() {
+function lagerBeteiligung() {
+  const an = k => !!document.querySelector('#lBetGrid .dmg[data-bet="' + k + '"].sel');
+  const b = { stapler: an('stapler'), eigen: an('eigen'), sach: an('sach'), pers: an('pers') };
+  const namen = Object.keys(BET_NAMEN).filter(k => b[k]).map(k => BET_NAMEN[k]);
+  b.wert = namen.join(', ');
+  b.keine = namen.length === 0;
+  return b;
+}
+
+function onBetChange() {
   const b = lagerBeteiligung();
-  document.getElementById('lSachBlock').style.display = b.sach ? 'block' : 'none';
-  document.getElementById('lPersBlock').style.display = b.pers ? 'block' : 'none';
+  document.getElementById('lEigenBlock').style.display = b.eigen ? 'block' : 'none';
+  document.getElementById('lSachBlock').style.display  = b.sach  ? 'block' : 'none';
+  document.getElementById('lPersBlock').style.display  = b.pers  ? 'block' : 'none';
 }
 
 function nextL2() {
@@ -1075,6 +1124,10 @@ function nextL2() {
 
 function nextL3() {
   const b = lagerBeteiligung();
+  if (b.keine) { toast('Bitte angeben, was betroffen ist', 'err'); return; }
+  if (b.eigen && !g('lEDesc')) {
+    toast('Bitte angeben, welches eigene Material beschädigt wurde', 'err'); return;
+  }
   if (b.sach) {
     if (!g('lTName')) { toast('Bitte Name des Geschädigten angeben', 'err'); return; }
     if (!g('lTAddr')) { toast('Bitte Anschrift des Geschädigten angeben', 'err'); return; }
@@ -1557,10 +1610,19 @@ function buildSummaryLager() {
       zeile('Datum / Zeit', g('lDate') + ' ' + g('lTime') + ' Uhr')
     + zeile('Ort', g('lLoc'))
     + zeile('Schadensart', S.damage)
-    + zeile('Beteiligung', b.wert));
+    + zeile('Betroffen', b.wert));
+
+  if (b.eigen) {
+    html += block('Eigenes Material / Ausrüstung',
+        zeile('Betroffen', g('lEArt'))
+      + zeile('Beschädigt', g('lEDesc'))
+      + zeile('Artikel-/Inventarnr.', g('lENr'))
+      + zeile('Geschätzter Schaden', g('lEWert') ? g('lEWert') + ' EUR' : '')
+      + zeile('Weiter nutzbar', g('lENutzbar')));
+  }
 
   if (b.sach) {
-    html += block('Geschädigter',
+    html += block('Geschädigter Dritter',
         zeile('Name / Firma', g('lTName'))
       + zeile('Anschrift', g('lTAddr'))
       + zeile('Telefon', g('lTPhone')));
@@ -1679,12 +1741,22 @@ async function generateDocxBase64() {
     row('Ort', g('lLoc')) +
     row('Schadensart', S.damage) +
     row('Hergang', g('lDesc')) +
-    row('Beteiligung', bet.wert)
+    row('Betroffen', bet.wert)
   );
 
   nr = 4;
+  if (bet.eigen) {
+    body += heading(nr++ + '. Eigenes Material / Ausrüstung', 2);
+    body += table(
+      row('Betroffen', g('lEArt')) +
+      row('Beschädigt wurde', g('lEDesc')) +
+      row('Artikel-/Inventarnummer', g('lENr')) +
+      row('Geschätzter Schaden', g('lEWert') ? g('lEWert') + ' EUR' : '–') +
+      row('Weiter nutzbar', g('lENutzbar'))
+    );
+  }
   if (bet.sach) {
-    body += heading(nr++ + '. Geschädigter (Sachschaden)', 2);
+    body += heading(nr++ + '. Geschädigter Dritter (fremdes Eigentum)', 2);
     body += table(
       row('Name / Firma', g('lTName')) +
       row('Anschrift', g('lTAddr')) +
@@ -1870,10 +1942,19 @@ function pdfLagerAbschnitte(sec, row, longRow) {
   row('Ort', g('lLoc'));
   row('Schadensart', S.damage);
   longRow('Hergang', g('lDesc'));
-  row('Beteiligung', b.wert);
+  row('Betroffen', b.wert);
+
+  if (b.eigen) {
+    sec('EIGENES MATERIAL / AUSRÜSTUNG');
+    row('Betroffen', g('lEArt'));
+    longRow('Beschädigt wurde', g('lEDesc'));
+    row('Artikel-/Inventarnummer', g('lENr'));
+    row('Geschätzter Schaden', g('lEWert') ? g('lEWert') + ' EUR' : '–');
+    row('Weiter nutzbar', g('lENutzbar'));
+  }
 
   if (b.sach) {
-    sec('GESCHÄDIGTER (SACHSCHADEN)');
+    sec('GESCHÄDIGTER DRITTER (FREMDES EIGENTUM)');
     row('Name / Firma', g('lTName'));
     row('Anschrift', g('lTAddr'));
     row('Telefon', g('lTPhone'));
@@ -2071,9 +2152,11 @@ async function createPDF() {
         'Betriebsstunden:' + (g('lHours') ? ' ' + g('lHours') + ' h' : ' –') + '\n' +
         'Ort:            ' + g('lLoc') + '\n' +
         'Schadensart:    ' + (S.damage||'–') + '\n' +
-        'Beteiligung:    ' + (bet.wert||'–') + '\n' +
+        'Betroffen:      ' + (bet.wert||'–') + '\n' +
+        (bet.eigen ? 'Eigenes Material: ' + (g('lEArt')||'–') + ' | ' + (g('lEDesc')||'–')
+                     + (g('lEWert') ? ' | ca. ' + g('lEWert') + ' EUR' : '') + '\n' : '') +
         (bet.pers ? 'Personenschaden: ' + (g('lPName')||'–') + ' | ' + (g('lPInjury')||'–') + '\n' : '') +
-        (bet.sach ? 'Geschädigter:   ' + (g('lTName')||'–') + '\n' : '') +
+        (bet.sach ? 'Geschädigter Dritter: ' + (g('lTName')||'–') + '\n' : '') +
         '\nMit freundlichen Grüßen,\n' + g('lName') + '\n' + (g('lPhone') ? 'Tel: ' + g('lPhone') : '')
       : 'Sehr geehrte Damen und Herren,\n\n' +
         'anbei der Unfallbericht vom ' + g('aDate') + ' um ' + g('aTime') + ' Uhr.\n\n' +

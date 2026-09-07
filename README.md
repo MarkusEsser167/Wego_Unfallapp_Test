@@ -35,8 +35,14 @@ sonst in den anderen Bereich hinüberwirken.
 
 1. **Staplerauswahl** – nach Standort oder über die Suche (Gerätenummer, Typ, Ort)
 2. **Schadensangaben** – Fahrer, Zeitpunkt, Ort/Halle, Betriebsstunden, Hergang, Schadensart
-3. **Beteiligte** – nur Stapler / Sachschaden Dritter / Personenschaden / beides;
-   die passenden Blöcke erscheinen erst bei Bedarf. Dazu Zeugen und interne Meldung.
+3. **Betroffen** – vier Kacheln zum Ankreuzen, **mehrere gleichzeitig möglich**:
+   Stapler selbst, eigenes Material / Ausrüstung, fremdes Eigentum, Person.
+   Die zugehörigen Blöcke erscheinen erst, wenn angekreuzt. Dazu Zeugen und
+   interne Meldung.
+
+   Mehrfachauswahl statt einer Liste, weil ein Anstoß mehrere Dinge zugleich
+   treffen kann. Bei vier Angaben gäbe es sonst sechzehn Kombinationen zum
+   Auswählen.
 4. **Fotos** – mindestens 2, wie im Fuhrpark
 5. **Zusammenfassung** und Versand
 
