@@ -565,17 +565,13 @@
       </select>
     </div>
     <div class="fg"><label><span>Was wurde beschädigt?</span> <span class="req">*</span></label><textarea id="lEDesc" placeholder="Gegenstand und Umfang der Beschädigung..."></textarea></div>
-    <div class="fg"><label>Artikel- oder Inventarnummer</label><input type="text" id="lENr" placeholder="Falls vorhanden"></div>
-    <div class="row2">
-      <div class="fg"><label>Geschätzter Schaden</label><input type="number" id="lEWert" inputmode="numeric" placeholder="EUR, falls abschätzbar"></div>
-      <div class="fg">
-        <label>Weiter nutzbar</label>
-        <select id="lENutzbar">
-          <option value="Nein">Nein</option>
-          <option value="Eingeschränkt">Eingeschränkt</option>
-          <option value="Ja">Ja</option>
-        </select>
-      </div>
+    <div class="fg">
+      <label>Weiter nutzbar</label>
+      <select id="lENutzbar">
+        <option value="Nein">Nein</option>
+        <option value="Eingeschränkt">Eingeschränkt</option>
+        <option value="Ja">Ja</option>
+      </select>
     </div>
   </div>
 
@@ -1616,8 +1612,6 @@ function buildSummaryLager() {
     html += block('Eigenes Material / Ausrüstung',
         zeile('Betroffen', g('lEArt'))
       + zeile('Beschädigt', g('lEDesc'))
-      + zeile('Artikel-/Inventarnr.', g('lENr'))
-      + zeile('Geschätzter Schaden', g('lEWert') ? g('lEWert') + ' EUR' : '')
       + zeile('Weiter nutzbar', g('lENutzbar')));
   }
 
@@ -1750,8 +1744,6 @@ async function generateDocxBase64() {
     body += table(
       row('Betroffen', g('lEArt')) +
       row('Beschädigt wurde', g('lEDesc')) +
-      row('Artikel-/Inventarnummer', g('lENr')) +
-      row('Geschätzter Schaden', g('lEWert') ? g('lEWert') + ' EUR' : '–') +
       row('Weiter nutzbar', g('lENutzbar'))
     );
   }
@@ -1948,8 +1940,6 @@ function pdfLagerAbschnitte(sec, row, longRow) {
     sec('EIGENES MATERIAL / AUSRÜSTUNG');
     row('Betroffen', g('lEArt'));
     longRow('Beschädigt wurde', g('lEDesc'));
-    row('Artikel-/Inventarnummer', g('lENr'));
-    row('Geschätzter Schaden', g('lEWert') ? g('lEWert') + ' EUR' : '–');
     row('Weiter nutzbar', g('lENutzbar'));
   }
 
@@ -2153,8 +2143,7 @@ async function createPDF() {
         'Ort:            ' + g('lLoc') + '\n' +
         'Schadensart:    ' + (S.damage||'–') + '\n' +
         'Betroffen:      ' + (bet.wert||'–') + '\n' +
-        (bet.eigen ? 'Eigenes Material: ' + (g('lEArt')||'–') + ' | ' + (g('lEDesc')||'–')
-                     + (g('lEWert') ? ' | ca. ' + g('lEWert') + ' EUR' : '') + '\n' : '') +
+        (bet.eigen ? 'Eigenes Material: ' + (g('lEArt')||'–') + ' | ' + (g('lEDesc')||'–') + '\n' : '') +
         (bet.pers ? 'Personenschaden: ' + (g('lPName')||'–') + ' | ' + (g('lPInjury')||'–') + '\n' : '') +
         (bet.sach ? 'Geschädigter Dritter: ' + (g('lTName')||'–') + '\n' : '') +
         '\nMit freundlichen Grüßen,\n' + g('lName') + '\n' + (g('lPhone') ? 'Tel: ' + g('lPhone') : '')
