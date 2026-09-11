@@ -78,7 +78,6 @@ Steht er auf `true`:
   HSE, Niederlassung oder Vertriebsleiter
 - Rotes Warnbanner am oberen Rand
 - `[TEST]` im Seitentitel und im Mailbetreff, „(TESTVERSION)" im PDF-Kopf
-
 - Der Verteiler wird trotzdem berechnet und im Mailtext sowie im
   Bestätigungsdialog angezeigt – so lässt sich die Standortermittlung prüfen,
   ohne jemanden anzuschreiben
