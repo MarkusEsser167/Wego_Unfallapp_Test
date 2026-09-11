@@ -98,14 +98,23 @@ Testversion im Browser öffnen → Menü → „Zum Startbildschirm hinzufügen"
 
 ## Änderungen in die Produktivversion übernehmen
 
-Es wird **nur `index.html`** übernommen. `manifest.json` und `sw.js` gehören zum
-jeweiligen Repo (App-Name, Cache-Name) und bleiben, wo sie sind.
+Übernommen werden `index.html` und geänderte Stammdaten (`stapler.json`, `ndl.json`).
+`manifest.json` bleibt repo-eigen.
+
+**`sw.js` im Produktiv-Repo muss bei jeder Freigabe geändert werden**, mindestens der
+Cache-Name (derzeit `wego-unfallapp-v3`). Die Produktiv-App lädt `index.html`
+cache-zuerst – ohne geänderte `sw.js` kommt die neue Fassung auf den Geräten nie an.
+Die `sw.js` dieses Repos wird dabei nicht kopiert.
 
 1. `index.html` aus diesem Repo in eine Arbeitskopie des Produktiv-Repos kopieren
 2. `python tools/make_testversion.py --prod <arbeitskopie>` – setzt den Schalter
    auf `false`
-3. Prüfen, dass im Diff nur die gewollten Änderungen stehen
-4. Committen und pushen
+3. Im Produktiv-Repo den Cache-Namen in `sw.js` hochzählen
+4. Lokal abnehmen, den Versand dabei abfangen – produktiv geht er echt an Logistik
+5. Prüfen, dass im Diff nur die gewollten Änderungen stehen
+6. Committen und pushen
+
+Zuletzt freigegeben: 11.09.2026, Produktiv-Commit `eb1ef56`.
 
 Schritt 2 stellt genau eine Zeile um. Es gibt nichts zurückzubauen, weil in
 beiden Fassungen dasselbe Gerüst steckt.
