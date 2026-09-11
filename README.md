@@ -79,13 +79,14 @@ Steht er auf `true`:
 - Rotes Warnbanner am oberen Rand
 - `[TEST]` im Seitentitel und im Mailbetreff, „(TESTVERSION)" im PDF-Kopf
 
+- Der Verteiler wird trotzdem berechnet und im Mailtext sowie im
+  Bestätigungsdialog angezeigt – so lässt sich die Standortermittlung prüfen,
+  ohne jemanden anzuschreiben
+
 Zusätzlich lädt der Service Worker dieser Fassung `index.html` **netzwerk-zuerst**
 statt aus dem Cache. Sonst testet man nach jeder Änderung unbemerkt weiter gegen
 den alten Stand. Offline greift weiterhin der Cache. In der Produktivfassung
 bleibt es bei Cache-zuerst – dort zählen Startgeschwindigkeit und Offlinebetrieb.
-- Der Verteiler wird trotzdem berechnet und im Mailtext sowie im
-  Bestätigungsdialog angezeigt – so lässt sich die Standortermittlung prüfen,
-  ohne jemanden anzuschreiben
 
 ## Auf dem Handy installieren
 
@@ -130,7 +131,7 @@ Arbeitsordner, Generator `tools/ndl_aus_excel.py`.
 
 ## Aufbau
 
-Alles steckt in einer einzigen `index.html` (rund 155 KB): Oberfläche, Logik,
-Übersetzungen in sieben Sprachen (de, en, tr, ru, ro, pl, cs) und das Logo als
+Alles steckt in einer einzigen `index.html` (rund 185 KB): Oberfläche, Logik beider
+Bereiche, Übersetzungen (Fuhrpark in sieben Sprachen, Lager bislang Deutsch) und das Logo als
 eingebettetes Bild. Webfleet-Abfragen und Mailversand laufen über ein Google
 Apps Script, in dem auch die Zugangsdaten liegen – nicht im App-Code.
