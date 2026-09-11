@@ -2074,22 +2074,39 @@ async function createPDF() {
     }
 
     // Photos
+    // Jedes Foto behaelt sein Seitenverhaeltnis und wird in eine Zelle von
+    // hoechstens 82 x 100 mm eingepasst. Frueher stand jedes Foto in einem
+    // festen 82 x 62-Feld - Hochformat vom Handy (3:4) wurde dabei um 76 %
+    // in die Breite gezogen. Die Zeilenhoehe richtet sich nach dem hoeheren
+    // Foto des Paares, das schmalere steht mittig in seiner Zelle.
     if (S.photos.length > 0) {
       sec('FOTOS (' + S.photos.length + ')');
-      const iW = 82, iH = 62, gap = 8;
-      for (let i = 0; i < S.photos.length; i++) {
-        const col = i % 2;
-        if (col === 0) chk(iH + 10);
-        const x = M + col * (iW + gap);
-        try {
-          // DataURL beginnt mit "data:image/jpeg;base64," – Typ explizit ableiten
-          const dataUrl = S.photos[i].url;
-          const mime = dataUrl.split(';')[0].split(':')[1] || 'image/jpeg';
-          const fmt = mime.includes('png') ? 'PNG' : 'JPEG';
-          doc.addImage(dataUrl, fmt, x, y, iW, iH);
-        } catch(e) { console.warn('Foto ' + (i+1) + ' konnte nicht eingebettet werden:', e.message); }
-        doc.setFontSize(7); doc.text('Foto ' + (i+1), x+2, y + iH - 2);
-        if (col === 1 || i === S.photos.length - 1) y += iH + 4;
+      const cellW = 82, maxH = 100, gap = 8;
+      const mass = S.photos.map(p => {
+        let w = p.w, h = p.h;
+        if (!w || !h) {
+          try { const pr = doc.getImageProperties(p.url); w = pr.width; h = pr.height; } catch(e) {}
+        }
+        if (!w || !h) { w = 4; h = 3; }
+        const s = Math.min(cellW / w, maxH / h);
+        return { w: w * s, h: h * s };
+      });
+      for (let i = 0; i < S.photos.length; i += 2) {
+        const rowH = Math.max(mass[i].h, mass[i + 1] ? mass[i + 1].h : 0);
+        chk(rowH + 6);
+        for (let c = 0; c < 2 && i + c < S.photos.length; c++) {
+          const k = i + c, m = mass[k];
+          const x = M + c * (cellW + gap) + (cellW - m.w) / 2;
+          try {
+            // DataURL beginnt mit "data:image/jpeg;base64," – Typ explizit ableiten
+            const dataUrl = S.photos[k].url;
+            const mime = dataUrl.split(';')[0].split(':')[1] || 'image/jpeg';
+            const fmt = mime.includes('png') ? 'PNG' : 'JPEG';
+            doc.addImage(dataUrl, fmt, x, y, m.w, m.h);
+          } catch(e) { console.warn('Foto ' + (k+1) + ' konnte nicht eingebettet werden:', e.message); }
+          doc.setFontSize(7); doc.text('Foto ' + (k+1), x + 2, y + m.h - 2);
+        }
+        y += rowH + 4;
       }
     }
 
